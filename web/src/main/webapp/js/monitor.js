@@ -10,7 +10,7 @@ monitor.config(['$routeProvider', function($routeProvider) {
     })
   .when('/alternative', {
     templateUrl: 'partials/alternative.html',
-    controller: 'MonitorController'
+    controller: 'AlternativeMonitorController'
   }).
   otherwise({
     redirectTo: '/'
