@@ -1,5 +1,5 @@
 angular.module('MonitorDirectives')
-.directive('monitorservices', ['d3Service', '$interval', function(d3Service, $interval) {
+.directive('monitorservices', ['d3Service', '$interval', '$http', function(d3Service, $interval, $http) {
   return {
     restrict: 'E',
     scope: {
@@ -41,11 +41,21 @@ angular.module('MonitorDirectives')
             d.severity = (d.status == "OK" ? 0 : 1);
         });
       }
-      generateStatus();
+      function fetchStatus() {
+        $http.get('/api/status/' + scope.servicename)
+          .success(function(data, status, headers, config) {
+            console.log('service success');
+            console.log(data);
+            generateStatus();
+          })
+          .error(function(data, status, headers, config) {
+            console.log('service failure');
+            generateStatus();
+          });
+      };
+      fetchStatus();
 
-      var timer = $interval(function() {
-        generateStatus();
-      }, 3000);
+      var timer = $interval(fetchStatus, 3000);
       scope.$on('$destroy', function() {
         if (timer) {
           $interval.cancel(timer);

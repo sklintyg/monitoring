@@ -1,5 +1,5 @@
 angular.module('MonitorDirectives')
-.directive('chart', ['d3Service', '$interval', function(d3Service, $interval) {
+.directive('chart', ['d3Service', '$interval', '$http', function(d3Service, $interval, $http) {
   return {
     restrict: 'E',
     scope: {
@@ -10,7 +10,7 @@ angular.module('MonitorDirectives')
     link: function(scope, element, attrs) {
       // TODO replace this with accuiring proper data from server
       // Gets the data from the server
-      function fetchData() {
+      function fetchFakeData() {
         return [
         {
           "date": "2015-01-10:10:10:00",
@@ -91,12 +91,7 @@ angular.module('MonitorDirectives')
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var data = fetchData();
-        // Parse the data from the server
-        data.map(function(d) {
-          d.date = parseDate(d.date);
-          d.users = +d.users;
-        });
+        var data = [];
 
         x.domain(d3.extent(data, function(d) { return d.date; }));
         y.domain([0, d3.max(data, function(d) { return d.users; })]);
@@ -124,26 +119,14 @@ angular.module('MonitorDirectives')
         svg.append("g").append("text")
           .attr("class", "headline")
           .attr("text-anchor", "middle")
-          .attr("transform", "translate("+(width/2 - 15)+"," + (height/2 - 15) + ")")
-          .text(function(d) {
-            return Math.floor(data[data.length - 1].users); // TODO Not needed when we get real data?
-          });
-
-        var counter = 0;
+          .attr("transform", "translate("+(width/2 - 15)+"," + (height/2 - 15) + ")");
 
         // Updates the data in the chart
-        function updateChart() {
+        function updateChart(data) {
 
-            counter++;
-            //var data = fetchData();
-            //data.map(function(d) {
-              //d.date = parseDate(d.date);
-              //d.users = +d.users;
-            //});
-            data = data.slice(1, data.length);
-            data.push({
-              date: d3.time.minute.offset(data[data.length - 1].date, 1),
-              users: Math.min(Math.max(data[data.length - 1].users + (Math.random() * 20 - 10), 0), 100)
+            data.map(function(d) {
+              d.date = parseDate(d.date);
+              d.users = +d.users;
             });
             x.domain(d3.extent(data, function(d) { return d.date; }));
             y.domain([0, d3.max(data, function(d) { return d.users; })]);
@@ -168,9 +151,21 @@ angular.module('MonitorDirectives')
               .duration(750)
               .call(yAxis);
         }
-
+        function fetchData() {
+            $http.get('/api/counters/' + scope.chartname).
+                success(function(data, status, headers, config) {
+                    console.log('success');
+                    console.log(data);
+                    updateChart(fetchFakeData());
+                }).
+                error(function(data, status, headers, config) {
+                    console.log('failure');
+                    updateChart(fetchFakeData());
+                });
+        }
+        fetchData();
         // Update the chart with new data from server
-        var timer = $interval(updateChart, 3000);
+        var timer = $interval(fetchData, 3000);
         scope.$on('$destroy', function() {
           if (timer) {
             $interval.cancel(timer);
