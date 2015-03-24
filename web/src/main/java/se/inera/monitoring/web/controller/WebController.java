@@ -9,7 +9,7 @@ public class WebController {
 
     @RequestMapping("/")
     public String getIndexPage() {
-        return "hello";
+        return "index";
     }
     
 }
