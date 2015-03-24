@@ -10,7 +10,7 @@ import se.inera.monitoring.web.domain.Counters;
 import se.inera.monitoring.web.service.MonitoringService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/api")
 public class MonitoringController {
     
     @Autowired
