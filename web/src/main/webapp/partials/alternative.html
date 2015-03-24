@@ -1,0 +1,34 @@
+<div class="monitor-container">
+  <div class="row">
+    <div class="col-md-6"> <!-- FIRST HALF -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="page-header" style="text-align: center;">
+            <h2>Webcert</h2>
+          </div>
+          <chart chartname="webcert" chartwidth=400 chartheight=180></chart>
+          <monitorservices servicename="webcert" alertsize="flex-item-small"></monitorservices>
+        </div>
+        <div class="col-md-6">
+          <div class="page-header" style="text-align: center;">
+            <h2>Mina Intyg</h2>
+          </div>
+          <chart chartname="minaintyg" chartwidth=400 chartheight=180></chart>
+          <monitorservices servicename="mina-intyg" alertsize="flex-item-small"></monitorservices>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="page-header" style="text-align: center;">
+            <h2>Statistik</h2>
+          </div>
+          <chart chartname="statistik" chartwidth=400 chartheight=180></chart>
+          <monitorservices servicename="statistik" alertsize="flex-item-small"></monitorservices>
+        </div>
+      </div>
+    </div> <!-- end of first half -->
+    <div class="col-md-6">
+      <iframe class="fullsize" src="http://status.inera.se" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>

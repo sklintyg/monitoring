@@ -1,0 +1,13 @@
+<ul class="flex-container">
+  <li class="flex-item" ng-class="alertsize" ng-repeat="status in statusList">
+    <div ng-if="status.severity == 0" class="alert alert-success">
+      {{status.service}}: {{status.status}}
+    </div>
+    <div ng-if="status.severity == 1" class="alert alert-danger">
+      {{status.service}}: {{status.status}}
+    </div>
+    <div ng-if="status.severity == 2" class="alert alert-warning">
+      {{status.service}}: {{status.status}}
+    </div>
+  </li>
+</ul>

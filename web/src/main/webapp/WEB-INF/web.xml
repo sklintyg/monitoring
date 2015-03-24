@@ -17,9 +17,10 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
       <param-value>se.inera.monitoring.web.springconfig</param-value>
     </init-param>
   </servlet>
-  
+
   <servlet-mapping>
     <servlet-name>monitoring</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/api/*</url-pattern>
+    <load-on-startup>1</load-on-startup>
   </servlet-mapping>
 </web-app>

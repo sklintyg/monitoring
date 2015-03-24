@@ -9,5 +9,4 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 @ComponentScan(basePackages="se.inera.monitoring.web")
 public class WebConfig extends WebMvcConfigurerAdapter {
-
 }
