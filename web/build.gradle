@@ -4,6 +4,7 @@ apply plugin: 'eclipse-wtp'
 
 dependencies {
    compile 'org.springframework:spring-webmvc:4.1.5.RELEASE'
+   compile 'joda-time:joda-time:2.7'
 }
 
 jettyRunWar.contextPath = '' //otherwise defaults to name of project
