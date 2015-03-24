@@ -1,0 +1,9 @@
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'eclipse-wtp'
+
+dependencies {
+   compile 'org.springframework:spring-webmvc:4.1.5.RELEASE'
+}
+
+jettyRunWar.contextPath = '' //otherwise defaults to name of project
