@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
   <servlet>
     <servlet-name>monitoring</servlet-name>
     <servlet-class>
-        org.springframework.web.servlet.DispatcherServlet
+      org.springframework.web.servlet.DispatcherServlet
     </servlet-class>
     <init-param>
       <param-name>contextClass</param-name>
@@ -14,7 +14,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     </init-param>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>se.inera.monitoring.web.springconfig</param-value>
+      <param-value>se.inera.monitoring.springconfig</param-value>
     </init-param>
   </servlet>
 
