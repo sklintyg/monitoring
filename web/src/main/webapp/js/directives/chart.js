@@ -8,52 +8,14 @@ angular.module('MonitorDirectives')
       chartheight: '@'
     },
     link: function(scope, element, attrs) {
-      // TODO replace this with accuiring proper data from server
-      // Gets the data from the server
-      function fetchFakeData() {
-        return [
-        {
-          "date": "2015-01-10:10:10:00",
-          "users": Math.random() * 100
-        },
-        {
-          "date": "2015-01-10:10:11:00",
-          "users": Math.random() * 100
-        },
-        {
-          "date": "2015-01-10:10:12:00",
-          "users": Math.random() * 100
-        },
-        {
-          "date": "2015-01-10:10:13:00",
-          "users": Math.random() * 100
-        },
-        {
-          "date": "2015-01-10:10:14:00",
-          "users": Math.random() * 100
-        },
-        {
-          "date": "2015-01-10:10:15:00",
-          "users": Math.random() * 100
-        },
-        {
-          "date": "2015-01-10:10:16:00",
-          "users": Math.random() * 100
-        },
-        {
-          "date": "2015-01-10:10:17:00",
-          "users": Math.random() * 100
-        }
-        ];
-      };
 
       // Once d3 is loaded we can start drawing the chart
       d3Service.d3().then(function(d3) {
-        var margin = {top: 20, right: 20, bottom: 20, left: 30},
+        var margin = {top: 20, right: 20, bottom: 20, left: 50},
         width = (scope.chartwidth ? scope.chartwidth : 600) - margin.left - margin.right,
         height = (scope.chartheight ? scope.chartheight :  400) - margin.top - margin.bottom;
 
-        var parseDate = d3.time.format("%Y-%m-%d:%H:%M:%S").parse;
+        var parseDate = d3.time.format("%Y-%m-%d %H:%M:%S").parse;
 
         var x = d3.time.scale()
           .range([0, width]);
@@ -72,14 +34,14 @@ angular.module('MonitorDirectives')
 
         // Define the function that draws the area
         var area = d3.svg.area()
-          .x(function(d) { return x(d.date); })
+          .x(function(d) { return x(d.timeStamp); })
           .y0(height)
-          .y1(function(d) { return y(d.users); });
+          .y1(function(d) { return y(d.count); });
 
         // Define the function that draws the line
         var line = d3.svg.line()
-          .x(function(d) { return x(d.date); })
-          .y(function(d) { return y(d.users); });
+          .x(function(d) { return x(d.timeStamp); })
+          .y(function(d) { return y(d.count); });
 
         // We create a div with the id of the chartname to refer to this
         // specific chart in case of several charts on page
@@ -93,8 +55,8 @@ angular.module('MonitorDirectives')
 
         var data = [];
 
-        x.domain(d3.extent(data, function(d) { return d.date; }));
-        y.domain([0, d3.max(data, function(d) { return d.users; })]);
+        x.domain(d3.extent(data, function(d) { return d.timeStamp; }));
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
 
         svg.append("g").append("path")
           .datum(data)
@@ -125,18 +87,18 @@ angular.module('MonitorDirectives')
         function updateChart(data) {
 
             data.map(function(d) {
-              d.date = parseDate(d.date);
-              d.users = +d.users;
+              d.timeStamp = parseDate(d.timeStamp);
+              d.count = +d.count;
             });
-            x.domain(d3.extent(data, function(d) { return d.date; }));
-            y.domain([0, d3.max(data, function(d) { return d.users; })]);
+            x.domain(d3.extent(data, function(d) { return d.timeStamp; }));
+            y.domain([0, d3.max(data, function(d) { return d.count; })]);
 
             var svg = d3.select("#" + scope.chartname).transition();
 
             svg.select(".headline")
               .duration(750)
               .text(function(d) {
-                return Math.floor(data[data.length - 1].users); // TODO Not needed when we get real data?
+                return Math.floor(data[data.length - 1].count); // TODO Not needed when we get real data?
               });
             svg.select(".line")
               .duration(750)
@@ -154,18 +116,15 @@ angular.module('MonitorDirectives')
         function fetchData() {
             $http.get('/api/counters/' + scope.chartname).
                 success(function(data, status, headers, config) {
-                    console.log('success');
-                    console.log(data);
-                    updateChart(fetchFakeData());
+                    updateChart(data);
                 }).
                 error(function(data, status, headers, config) {
-                    console.log('failure');
-                    updateChart(fetchFakeData());
+                    console.log('Could not fetch the number of logged in users from the server for service ' + scope.chartname);
                 });
         }
         fetchData();
         // Update the chart with new data from server
-        var timer = $interval(fetchData, 3000);
+        var timer = $interval(fetchData, 30000);
         scope.$on('$destroy', function() {
           if (timer) {
             $interval.cancel(timer);

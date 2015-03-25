@@ -7,10 +7,11 @@ public class UserCount {
 
     private int count;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime timeStamp;
+    private String timeStamp;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    private LocalDateTime timeStamp;
 
-    public UserCount(int count, LocalDateTime timeStamp) {
+    public UserCount(int count, String timeStamp) {
         super();
         this.count = count;
         this.timeStamp = timeStamp;
@@ -24,11 +25,11 @@ public class UserCount {
         this.count = count;
     }
 
-    public LocalDateTime getTimeStamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(LocalDateTime timeStamp) {
+    public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
 

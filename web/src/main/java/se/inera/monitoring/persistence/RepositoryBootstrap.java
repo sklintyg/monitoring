@@ -1,0 +1,63 @@
+package se.inera.monitoring.persistence;
+
+import java.sql.Timestamp;
+import java.util.Random;
+
+import org.joda.time.DateTime;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import se.inera.monitoring.persistence.dao.Status;
+import se.inera.monitoring.persistence.dao.UserCount;
+
+@Service
+public class RepositoryBootstrap implements InitializingBean {
+
+	private static int min = 0;
+	private static int max = 1000;
+	private static int maxDiff = 2 * 1000 / 10;
+
+	@Autowired
+	private UserCountRepository userCountRepo;
+
+	@Autowired
+	private StatusRepository statusRepo;
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		generateUserData("webcert");
+		generateUserData("minaintyg");
+		generateUserData("statistik");
+
+		generateStatusData("webcert");
+		generateStatusData("minaintyg");
+		generateStatusData("statistik");
+	}
+
+	private void generateStatusData(String service) {
+		Random rand = new Random();
+		for (int i = 0; i < 5; i++) {
+			boolean isOk = rand.nextBoolean();
+			statusRepo.save(new Status(service, "test" + i, isOk ? "OK"
+					: "FAIL", isOk ? 0 : 1));
+		}
+	}
+
+	private void generateUserData(String service) {
+		Random rand = new Random();
+		int last = rand.nextInt(max - min) + min;
+		DateTime time = DateTime.now();
+
+		for (int i = 0; i < 1000; i++) {
+			UserCount userCount = new UserCount();
+			last = last + rand.nextInt(maxDiff) - maxDiff / 2;
+			last = Math.max(Math.min(last, 1000), 0);
+			time = time.plusMinutes(1);
+			userCount.setCount(last);
+			userCount.setService(service);
+			userCount.setTimestamp(new Timestamp(time.getMillis()));
+			userCountRepo.save(userCount);
+		}
+	}
+}
