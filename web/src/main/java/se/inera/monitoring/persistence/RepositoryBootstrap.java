@@ -14,9 +14,9 @@ import se.inera.monitoring.persistence.dao.UserCount;
 @Service
 public class RepositoryBootstrap implements InitializingBean {
 
-	private static int min = 0;
-	private static int max = 1000;
-	private static int maxDiff = 2 * 1000 / 10;
+	public static int min = 0;
+	public static int max = 1000;
+	public static int maxDiff = 2 * 1000 / 10;
 
 	@Autowired
 	private UserCountRepository userCountRepo;
@@ -52,7 +52,7 @@ public class RepositoryBootstrap implements InitializingBean {
 		for (int i = 0; i < 1000; i++) {
 			UserCount userCount = new UserCount();
 			last = last + rand.nextInt(maxDiff) - maxDiff / 2;
-			last = Math.max(Math.min(last, 1000), 0);
+			last = Math.max(Math.min(last, max), min);
 			time = time.plusMinutes(1);
 			userCount.setCount(last);
 			userCount.setService(service);

@@ -124,7 +124,7 @@ angular.module('MonitorDirectives')
         }
         fetchData();
         // Update the chart with new data from server
-        var timer = $interval(fetchData, 30000);
+        var timer = $interval(fetchData, 5000);
         scope.$on('$destroy', function() {
           if (timer) {
             $interval.cancel(timer);
