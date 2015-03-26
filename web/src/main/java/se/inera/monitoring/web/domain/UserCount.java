@@ -1,15 +1,11 @@
 package se.inera.monitoring.web.domain;
 
-import org.joda.time.LocalDateTime;
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class UserCount {
 
     private int count;
 
     private String timeStamp;
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    private LocalDateTime timeStamp;
 
     public UserCount(int count, String timeStamp) {
         super();

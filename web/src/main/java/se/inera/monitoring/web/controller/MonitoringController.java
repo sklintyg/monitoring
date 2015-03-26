@@ -1,6 +1,5 @@
 package se.inera.monitoring.web.controller;
 
-import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.Random;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,7 +15,6 @@ import se.inera.monitoring.persistence.dao.UserCount;
 @Service
 public class RepositoryUpdate {
 
-	private static final String[] services = {"webcert", "minaintyg", "statistik"};
 	@Autowired
 	private StatusRepository statusRepo;
 
@@ -25,8 +23,8 @@ public class RepositoryUpdate {
 
 	@Scheduled(fixedDelay = 5000)
 	public void updateDatabases() {
-		updateStatus(services);
-		updateUserCount(services);
+		updateStatus(RepositoryBootstrap.services);
+		updateUserCount(RepositoryBootstrap.services);
 	}
 
 	private void updateUserCount(String... services) {
