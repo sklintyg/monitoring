@@ -17,9 +17,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class ApplicationConfig {
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
 }

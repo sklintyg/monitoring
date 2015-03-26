@@ -22,82 +22,82 @@ import com.zaxxer.hikari.HikariDataSource;
 @EnableJpaRepositories(basePackages = "se.inera.monitoring.persistence")
 public class PersistenceConfig {
 
-	@Value("${db.driver}")
-	private String databaseDriver;
-	@Value("${db.url}")
-	private String databaseUrl;
-	@Value("${db.username}")
-	private String databaseUsername;
-	@Value("${db.password}")
-	private String databasePassword;
+    @Value("${db.driver}")
+    private String databaseDriver;
+    @Value("${db.url}")
+    private String databaseUrl;
+    @Value("${db.username}")
+    private String databaseUsername;
+    @Value("${db.password}")
+    private String databasePassword;
 
-	@Value("${hibernate.dialect}")
-	private String hibernateDialect;
-	@Value("${hibernate.hbm2ddl.auto}")
-	private String hibernateHbm2ddl;
-	@Value("${hibernate.ejb.naming_strategy}")
-	private String hibernateNamingStrategy;
-	@Value("${hibernate.show_sql}")
-	private String hibernateShowSql;
-	@Value("${hibernate.format_sql}")
-	private String hibernateFormatSql;
+    @Value("${hibernate.dialect}")
+    private String hibernateDialect;
+    @Value("${hibernate.hbm2ddl.auto}")
+    private String hibernateHbm2ddl;
+    @Value("${hibernate.ejb.naming_strategy}")
+    private String hibernateNamingStrategy;
+    @Value("${hibernate.show_sql}")
+    private String hibernateShowSql;
+    @Value("${hibernate.format_sql}")
+    private String hibernateFormatSql;
 
-	@Bean
-	Server createTcpServer() throws SQLException {
-		Server server = Server.createTcpServer("-tcp", "-tcpAllowOthers",
-				"-tcpPort", "8082");
-		server.start();
-		return server;
-	}
+    @Bean
+    Server createTcpServer() throws SQLException {
+        Server server = Server.createTcpServer("-tcp", "-tcpAllowOthers",
+                "-tcpPort", "8082");
+        server.start();
+        return server;
+    }
 
-	@Bean
-	Server createWebServer() throws SQLException {
-		Server server = Server.createWebServer("-web", "-webAllowOthers",
-				"-webPort", "8081");
-		server.start();
-		return server;
-	}
+    @Bean
+    Server createWebServer() throws SQLException {
+        Server server = Server.createWebServer("-web", "-webAllowOthers",
+                "-webPort", "8081");
+        server.start();
+        return server;
+    }
 
-	@Bean(destroyMethod = "close")
-	DataSource dataSource() {
-		HikariConfig dataSourceConfig = new HikariConfig();
-		dataSourceConfig.setDriverClassName(databaseDriver);
-		dataSourceConfig.setJdbcUrl(databaseUrl);
-		dataSourceConfig.setUsername(databaseUsername);
-		dataSourceConfig.setPassword(databasePassword);
+    @Bean(destroyMethod = "close")
+    DataSource dataSource() {
+        HikariConfig dataSourceConfig = new HikariConfig();
+        dataSourceConfig.setDriverClassName(databaseDriver);
+        dataSourceConfig.setJdbcUrl(databaseUrl);
+        dataSourceConfig.setUsername(databaseUsername);
+        dataSourceConfig.setPassword(databasePassword);
 
-		return new HikariDataSource(dataSourceConfig);
-	}
+        return new HikariDataSource(dataSourceConfig);
+    }
 
-	@Bean
-	LocalContainerEntityManagerFactoryBean entityManagerFactory(
-			DataSource dataSource) {
-		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-		entityManagerFactoryBean.setDataSource(dataSource);
-		entityManagerFactoryBean
-				.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-		entityManagerFactoryBean
-				.setPackagesToScan("se.inera.monitoring.persistence");
+    @Bean
+    LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            DataSource dataSource) {
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactoryBean.setDataSource(dataSource);
+        entityManagerFactoryBean
+                .setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        entityManagerFactoryBean
+                .setPackagesToScan("se.inera.monitoring.persistence");
 
-		Properties jpaProperties = new Properties();
+        Properties jpaProperties = new Properties();
 
-		jpaProperties.put("hibernate.dialect", hibernateDialect);
-		jpaProperties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddl);
-		jpaProperties.put("hibernate.ejb.naming_strategy",
-				hibernateNamingStrategy);
-		jpaProperties.put("hibernate.show_sql", hibernateShowSql);
-		jpaProperties.put("hibernate.format_sql", hibernateFormatSql);
+        jpaProperties.put("hibernate.dialect", hibernateDialect);
+        jpaProperties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddl);
+        jpaProperties.put("hibernate.ejb.naming_strategy",
+                hibernateNamingStrategy);
+        jpaProperties.put("hibernate.show_sql", hibernateShowSql);
+        jpaProperties.put("hibernate.format_sql", hibernateFormatSql);
 
-		entityManagerFactoryBean.setJpaProperties(jpaProperties);
+        entityManagerFactoryBean.setJpaProperties(jpaProperties);
 
-		return entityManagerFactoryBean;
-	}
+        return entityManagerFactoryBean;
+    }
 
-	@Bean
-	JpaTransactionManager transactionManager(
-			EntityManagerFactory entityManagerFactory) {
-		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(entityManagerFactory);
-		return transactionManager;
-	}
+    @Bean
+    JpaTransactionManager transactionManager(
+            EntityManagerFactory entityManagerFactory) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
+    }
 }

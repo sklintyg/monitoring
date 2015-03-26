@@ -8,9 +8,10 @@ import org.springframework.data.repository.CrudRepository;
 
 import se.inera.monitoring.persistence.dao.UserCount;
 
-public interface UserCountRepository extends CrudRepository<UserCount, Long>{
+public interface UserCountRepository extends CrudRepository<UserCount, Long> {
 
-	List<UserCount> findTop100ByServiceOrderByTimestampDesc(String service);
-	Slice<UserCount> findByServiceOrderByTimestampDesc(String service, Pageable pageable);
+    List<UserCount> findTop100ByServiceOrderByTimestampDesc(String service);
+
+    Slice<UserCount> findByServiceOrderByTimestampDesc(String service, Pageable pageable);
 
 }

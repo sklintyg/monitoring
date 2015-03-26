@@ -26,7 +26,8 @@ angular.module('MonitorDirectives')
         var xAxis = d3.svg.axis()
           .scale(x)
           .ticks(5) // TODO: Should it really be 5 here? Maybe a few more?
-          .orient("bottom");
+          .orient("bottom")
+          .tickFormat(d3.time.format("%H:%M"));
 
         var yAxis = d3.svg.axis()
           .scale(y)

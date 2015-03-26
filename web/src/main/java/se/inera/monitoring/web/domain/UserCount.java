@@ -1,6 +1,5 @@
 package se.inera.monitoring.web.domain;
 
-
 public class UserCount {
 
     private int count;

@@ -11,5 +11,5 @@ public class WebController {
     public String getIndexPage() {
         return "index";
     }
-    
+
 }

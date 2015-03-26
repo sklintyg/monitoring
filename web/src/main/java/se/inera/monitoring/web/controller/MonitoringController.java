@@ -17,26 +17,26 @@ import se.inera.monitoring.web.service.MonitoringService;
 @RequestMapping("/api")
 public class MonitoringController {
 
-	@Autowired
-	MonitoringService monitoringService;
+    @Autowired
+    MonitoringService monitoringService;
 
-	@RequestMapping("counters/{system}")
-	@ResponseBody
-	public List<UserCount> getCountersBySystem(
-			@PathVariable String system,
-			@RequestParam(defaultValue = "100", value = "entries") String entries) {
-		int count = 100;
-		try {
-			count = Integer.parseInt(entries);
-		} catch (NumberFormatException e) {
-			// TODO What do here?
-		}
-		return monitoringService.getCountersBySystem(system, count);
-	}
+    @RequestMapping("counters/{system}")
+    @ResponseBody
+    public List<UserCount> getCountersBySystem(
+            @PathVariable String system,
+            @RequestParam(defaultValue = "100", value = "entries") String entries) {
+        int count = 100;
+        try {
+            count = Integer.parseInt(entries);
+        } catch (NumberFormatException e) {
+            // TODO What do here?
+        }
+        return monitoringService.getCountersBySystem(system, count);
+    }
 
-	@RequestMapping("status/{system}")
-	@ResponseBody
-	public List<Status> getStatusBySystem(@PathVariable String system) {
-		return monitoringService.getStatusBySystem(system);
-	}
+    @RequestMapping("status/{system}")
+    @ResponseBody
+    public List<Status> getStatusBySystem(@PathVariable String system) {
+        return monitoringService.getStatusBySystem(system);
+    }
 }
