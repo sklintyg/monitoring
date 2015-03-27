@@ -1,35 +1,19 @@
-logging.captureStandardOutput LogLevel.INFO
+/*logging.captureStandardOutput LogLevel.INFO*/
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'io.spring.gradle:dependency-management-plugin:0.3.0.RELEASE'
-    }
-}
-
-apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
 apply plugin: 'jetty'
 apply plugin: 'eclipse-wtp'
 
-dependencyManagement {
-    imports {
-        mavenBom 'io.spring.platform:platform-bom:1.1.1.RELEASE'
-    }
-}
-
 dependencies {
-   compile 'org.springframework:spring-webmvc'
-   compile 'org.springframework.data:spring-data-jpa'
-   compile 'com.h2database:h2'
-   compile 'joda-time:joda-time'
-   compile 'org.hibernate:hibernate-entitymanager'
-   compile 'com.zaxxer:HikariCP'
+   compile 'org.springframework:spring-webmvc:4.1.4.RELEASE'
+   compile 'org.springframework.data:spring-data-jpa:1.7.1.RELEASE'
+   compile 'com.h2database:h2:1.4.183'
+   compile 'joda-time:joda-time:2.5'
+   compile 'org.hibernate:hibernate-entitymanager:4.3.7.Final'
+   compile 'com.zaxxer:HikariCP-java6:2.3.5'
    compile 'org.slf4j:slf4j-api:1.7.10'
    compile 'org.slf4j:slf4j-simple:1.7.10'
-   compile 'wsdl4j:wsdl4j'
+   compile 'wsdl4j:wsdl4j:1.6.3'
    compile 'se.riv.itintegration.monitoring:itintegration-monitoring-interactions:0-SNAPSHOT'
 
    compile 'org.apache.cxf:cxf-rt-frontend-jaxws:3.0.4'
@@ -38,6 +22,12 @@ dependencies {
 
 
 }
+
+/*dependencyManagement {*/
+    /*imports {*/
+        /*mavenBom 'io.spring.platform:platform-bom:1.1.1.RELEASE'*/
+    /*}*/
+/*}*/
 
 jettyRunWar.contextPath = '' //otherwise defaults to name of project
 
