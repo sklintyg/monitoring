@@ -19,7 +19,7 @@ import se.inera.monitoring.web.domain.UserCount;
 @Service
 public class MonitoringServiceImpl implements MonitoringService {
 
-    private static final DateTimeFormatter formatter = new DateTimeFormatterFactory("yyyy-MM-dd HH:mm:ss").createDateTimeFormatter();
+    protected static final DateTimeFormatter formatter = new DateTimeFormatterFactory("yyyy-MM-dd HH:mm:ss").createDateTimeFormatter();
 
     @Autowired
     private UserCountRepository userCountRepository;
