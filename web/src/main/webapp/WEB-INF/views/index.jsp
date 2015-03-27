@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <html ng-app="monitor">
   <head>
     <meta charset="utf-8">
