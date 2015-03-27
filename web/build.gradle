@@ -11,6 +11,7 @@ dependencies {
    compile 'com.zaxxer:HikariCP-java6:2.3.5'
    compile 'org.slf4j:slf4j-api:1.7.10'
    compile 'org.slf4j:slf4j-simple:1.7.10'
+   compile 'org.slf4j:slf4j-log4j12:1.7.10'
    compile 'wsdl4j:wsdl4j:1.6.3'
    compile 'se.riv.itintegration.monitoring:itintegration-monitoring-interactions:0-SNAPSHOT'
 
