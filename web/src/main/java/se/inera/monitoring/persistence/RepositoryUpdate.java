@@ -23,7 +23,7 @@ public class RepositoryUpdate {
 
     @Scheduled(fixedDelay = 5000)
     public void updateDatabases() {
-        // updateStatus(RepositoryBootstrap.services);
+        updateStatus("minaintyg", "statistik");
         updateUserCount(RepositoryBootstrap.services);
     }
 

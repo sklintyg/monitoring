@@ -28,7 +28,7 @@ public class RepositoryBootstrap implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         generateUserData(services);
-        // generateStatusData(services);
+        generateStatusData("minaintyg", "statistik");
     }
 
     private void generateStatusData(String... services) {
