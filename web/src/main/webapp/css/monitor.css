@@ -57,6 +57,7 @@
 .flex-item {
   padding: 5px;
   margin-top: 10px;
+  height: 75px;
 
   color: white;
   font-weight: bold;
@@ -65,10 +66,12 @@
 
 .flex-item-small {
   width: 200px;
-  height: 50px;
 }
 
 .flex-item-big {
   width: 290px;
-  height: 50px;
+}
+
+.fill {
+    height: 100%;
 }

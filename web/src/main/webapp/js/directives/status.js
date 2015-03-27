@@ -17,7 +17,7 @@ angular.module('MonitorDirectives')
             scope.statusList = data;
           })
           .error(function(data, status, headers, config) {
-            console.log('Could not reach server for the status for service ' + servicename);
+            console.log('Could not reach server for the status for service ' + scope.servicename);
           });
       };
       fetchStatus();
