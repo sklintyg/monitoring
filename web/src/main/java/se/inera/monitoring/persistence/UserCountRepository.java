@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.repository.CrudRepository;
 
-import se.inera.monitoring.persistence.dao.UserCount;
+import se.inera.monitoring.persistence.model.UserCount;
 
 public interface UserCountRepository extends CrudRepository<UserCount, Long> {
 
