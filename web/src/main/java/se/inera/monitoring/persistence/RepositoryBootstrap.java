@@ -8,8 +8,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import se.inera.monitoring.persistence.dao.Status;
-import se.inera.monitoring.persistence.dao.UserCount;
+import se.inera.monitoring.persistence.model.Status;
+import se.inera.monitoring.persistence.model.UserCount;
 
 @Service
 public class RepositoryBootstrap implements InitializingBean {
@@ -33,11 +33,12 @@ public class RepositoryBootstrap implements InitializingBean {
 
     private void generateStatusData(String... services) {
         Random rand = new Random();
+        Timestamp now = new Timestamp(DateTime.now().getMillis());
         for (String service : services) {
             for (int i = 0; i < 5; i++) {
                 boolean isOk = rand.nextBoolean();
                 statusRepo.save(new Status(service, "test" + i, isOk ? "OK"
-                        : "FAIL", isOk ? 0 : 1));
+                        : "FAIL", isOk ? 0 : 1, now));
             }
         }
     }

@@ -3,6 +3,7 @@ package se.inera.monitoring.web.service;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
@@ -13,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +28,7 @@ import org.springframework.data.domain.SliceImpl;
 
 import se.inera.monitoring.persistence.StatusRepository;
 import se.inera.monitoring.persistence.UserCountRepository;
-import se.inera.monitoring.persistence.dao.UserCount;
+import se.inera.monitoring.persistence.model.UserCount;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MonitoringServiceTest {
@@ -94,7 +96,18 @@ public class MonitoringServiceTest {
     @Test
     public void testCountersAreAscending() {
         when(countRepo.findByServiceOrderByTimestampDesc(Mockito.eq("webcert"), any(Pageable.class))).thenReturn(new SliceImpl<UserCount>(counts));
+        List<se.inera.monitoring.web.domain.UserCount> res = monitoring.getCountersBySystem("webcert", 100);
+        long oldTime = 0; // 1-1-1970 start of UNIX era
+        for (se.inera.monitoring.web.domain.UserCount userCount : res) {
+            DateTime tmpDate = MonitoringServiceImpl.formatter.parseDateTime(userCount.getTimeStamp());
+            if (oldTime > tmpDate.getMillis())
+                fail("Usercounts was not in ascending order");
+            oldTime = tmpDate.getMillis();
+        }
+    }
 
+    public void testArrayOfUserCount() {
+        when(countRepo.findByServiceOrderByTimestampDesc(Mockito.eq("webcert"), any(Pageable.class))).thenReturn(new SliceImpl<UserCount>(counts));
         assertArrayEquals(dtos.toArray(), monitoring.getCountersBySystem("webcert", 100).toArray());
     }
 }

@@ -1,4 +1,6 @@
-package se.inera.monitoring.persistence.dao;
+package se.inera.monitoring.persistence.model;
+
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,15 +23,18 @@ public class Status implements Comparable<Status> {
     private String status;
     @Column
     private int severity;
+    @Column
+    private Timestamp timestamp;
 
     public Status() {
     }
 
-    public Status(String service, String subservice, String status, int severity) {
+    public Status(String service, String subservice, String status, int severity, Timestamp timestamp) {
         this.service = service;
         this.subservice = subservice;
         this.status = status;
         this.severity = severity;
+        this.timestamp = timestamp;
     }
 
     public int getId() {

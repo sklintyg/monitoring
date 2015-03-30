@@ -9,8 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import se.inera.monitoring.persistence.dao.Status;
-import se.inera.monitoring.persistence.dao.UserCount;
+import se.inera.monitoring.persistence.model.Status;
+import se.inera.monitoring.persistence.model.UserCount;
 
 @Service
 public class RepositoryUpdate {

@@ -1,13 +1,19 @@
-<ul class="flex-container">
-  <li class="flex-item" ng-class="alertsize" ng-repeat="status in statusList">
-    <div ng-if="status.severity == 0" class="alert alert-success" style="height:100%;">
+<div style="margin-top: 20px; font-weight:bold;">
+  <span style="float: left;">{{serviceversion || "unknown"}}</span>
+  <span style="float: right;">{{checktime || "unknown"}}</span>
+</div>
+<div style="clear: both;">
+  <ul class="flex-container">
+    <li class="flex-item" ng-class="alertsize" ng-repeat="status in statusList">
+      <div ng-if="status.severity == 0" class="alert alert-success" style="height:100%;">
         {{status.servicename}}: {{status.statuscode}}
-    </div>
-    <div ng-if="status.severity == 1" class="alert alert-danger" style="height:100%;">
+      </div>
+      <div ng-if="status.severity == 1" class="alert alert-danger" style="height:100%;">
         {{status.servicename}}: {{status.statuscode}}
-    </div>
-    <div ng-if="status.severity == 2" class="alert alert-warning" style="height:100%;">
+      </div>
+      <div ng-if="status.severity == 2" class="alert alert-warning" style="height:100%;">
         {{status.servicename}}: {{status.statuscode}}
-    </div>
-  </li>
-</ul>
+      </div>
+    </li>
+  </ul>
+</div>

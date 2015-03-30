@@ -1,4 +1,4 @@
-package se.inera.monitoring.persistence.dao;
+package se.inera.monitoring.persistence.model;
 
 import java.sql.Timestamp;
 

@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import se.inera.monitoring.persistence.dao.Status;
+import se.inera.monitoring.persistence.model.Status;
 
 public interface StatusRepository extends CrudRepository<Status, Long> {
 
     List<Status> findByService(String service);
+    Status findByServiceAndSubserviceOrderByTimestampDesc(String service, String subservice);
 }
