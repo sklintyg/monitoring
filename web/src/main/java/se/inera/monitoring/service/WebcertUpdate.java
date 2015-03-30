@@ -1,4 +1,4 @@
-package se.inera.monitoring.web.service;
+package se.inera.monitoring.service;
 
 import java.util.List;
 

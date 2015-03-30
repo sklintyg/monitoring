@@ -1,4 +1,4 @@
-package se.inera.monitoring.springconfig;
+package se.inera.monitoring.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;

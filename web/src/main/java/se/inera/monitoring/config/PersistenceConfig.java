@@ -1,4 +1,4 @@
-package se.inera.monitoring.springconfig;
+package se.inera.monitoring.config;
 
 import java.sql.SQLException;
 import java.util.Properties;
@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -19,6 +20,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
+@ComponentScan("se.inera.monitoring.persistence")
 @EnableJpaRepositories(basePackages = "se.inera.monitoring.persistence")
 public class PersistenceConfig {
 

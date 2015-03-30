@@ -1,4 +1,4 @@
-package se.inera.monitoring.web.service;
+package se.inera.monitoring.service;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -27,6 +27,7 @@ import org.springframework.data.domain.SliceImpl;
 import se.inera.monitoring.persistence.StatusRepository;
 import se.inera.monitoring.persistence.UserCountRepository;
 import se.inera.monitoring.persistence.dao.UserCount;
+import se.inera.monitoring.service.MonitoringServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MonitoringServiceTest {

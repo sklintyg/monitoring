@@ -1,13 +1,14 @@
 package se.inera.monitoring.web.controller;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
 public class WebController {
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method = GET)
     public String getIndexPage() {
         return "index";
     }
