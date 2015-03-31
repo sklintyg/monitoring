@@ -43,6 +43,10 @@
   fill: steelblue;
 }
 
+.page-header {
+  text-align: center;
+}
+
 .flex-container {
   padding: 0px;
   margin: 5px;
@@ -57,8 +61,7 @@
 .flex-item {
   padding: 5px;
   margin-top: 10px;
-  height: 75px;
-
+  height: 65px;
   color: white;
   font-weight: bold;
   text-align: center;
@@ -74,4 +77,13 @@
 
 .fill {
     height: 100%;
+}
+.status-version {
+    margin-top: 20px;
+    margin-left: 20px;
+    margoin-right: 20px;
+    font-weight: bold;
+}
+.clear {
+    clear: both;
 }
