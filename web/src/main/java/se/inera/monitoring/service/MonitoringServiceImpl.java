@@ -62,13 +62,11 @@ public class MonitoringServiceImpl implements MonitoringService {
     private HashSet<String> getFields(String system) {
         HashSet<String> fields = new HashSet<>();
         if ("webcert".equals(system)) {
-            fields = webcertServices.getFields();
+            fields.addAll( webcertServices.getFields());
         } else if ("minaintyg".equals(system)) {
-            // TODO
-            fields = webcertServices.getFields();
-        } else if ("minaintyg".equals(system)) {
-            // TODO
-            fields = webcertServices.getFields();
+            fields.addAll(minaIntygServices.getFields());
+        } else if ("statistik".equals(system)) {
+            fields.addAll(statistikServices.getFields());
         }
         fields.add("version");
         return fields;

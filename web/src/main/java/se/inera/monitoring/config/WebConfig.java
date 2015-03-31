@@ -33,7 +33,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/partials/**").addResourceLocations(
                 "/partials/");
     }
-    
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();

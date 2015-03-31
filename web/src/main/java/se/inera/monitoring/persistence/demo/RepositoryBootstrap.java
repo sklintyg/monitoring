@@ -1,4 +1,4 @@
-package se.inera.monitoring.persistence;
+package se.inera.monitoring.persistence.demo;
 
 import java.sql.Timestamp;
 import java.util.Random;
@@ -8,6 +8,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import se.inera.monitoring.persistence.StatusRepository;
+import se.inera.monitoring.persistence.UserCountRepository;
 import se.inera.monitoring.persistence.model.Status;
 import se.inera.monitoring.persistence.model.UserCount;
 
@@ -16,7 +18,7 @@ public class RepositoryBootstrap implements InitializingBean {
 
     public static int min = 0;
     public static int max = 1000;
-    public static int maxDiff = 2 * 1000 / 10;
+    public static int maxDiff = 2 * 1000 / 20;
     public static final String[] services = { "webcert", "minaintyg", "statistik" };
 
     @Autowired

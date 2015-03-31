@@ -34,7 +34,7 @@ public class Status implements Comparable<Status> {
         this.subservice = subservice;
         this.status = status;
         this.severity = severity;
-        this.timestamp = timestamp;
+        this.setTimestamp(timestamp);
     }
 
     public int getId() {
@@ -115,5 +115,13 @@ public class Status implements Comparable<Status> {
             return subservice.compareTo(o.subservice);
         else
             return service.compareTo(o.service);
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 }
