@@ -1,12 +1,9 @@
 package se.inera.monitoring.service;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 
-import org.joda.time.DateTime;
-
-import se.inera.monitoring.persistence.model.Status;
+import se.inera.monitoring.persistence.model.SubsystemStatus;
 import se.riv.itintegration.monitoring.v1.ConfigurationType;
 
 public abstract class UpdateService {
@@ -23,22 +20,24 @@ public abstract class UpdateService {
      * 
      * @param configurations
      *            The configurations
-     * @param service
-     *            The current service (e.g. "webcert" or "minaintyg")
      * @param now
      *            The time (we want to use the same time for each status acquired by the same PingFor.. call
      * @return An HashMap with the subservice name as key and the new status as value
      */
-    protected HashMap<String, Status> getStatuses(List<ConfigurationType> configurations, String service, DateTime now) {
-        HashMap<String, Status> res = new HashMap<>();
+    protected HashMap<String, SubsystemStatus> getStatuses(List<ConfigurationType> configurations) {
+        HashMap<String, SubsystemStatus> res = new HashMap<>();
         for (ConfigurationType config : configurations) {
-            res.put(config.getName(), new Status(service, config.getName(), config.getValue(), 0, new Timestamp(now.getMillis())));
+            SubsystemStatus status = new SubsystemStatus();
+            status.setSubsystem(config.getName());
+            status.setStatus(config.getValue());
+            status.setSeverity(0);
+            res.put(config.getName(), status);
         }
         return res;
     }
 
     /**
-     * Updates the severity of a stautus. We do not want to do this for statuses we are not interested in.
+     * Updates the severity of a status. We do not want to do this for statuses we are not interested in.
      * 
      * If the status is some variant of "ok" we deem the status to be OK, if it is some variant of "fail" we deem it to
      * be of status FAIL. If the status contain the word queue we classify the status as a measure of an queue size.
@@ -48,14 +47,14 @@ public abstract class UpdateService {
      *            The status to be changed
      * @return The same status but with updated severity
      */
-    protected Status updateSeverity(Status status) {
+    protected SubsystemStatus updateSeverity(SubsystemStatus status) {
         if ("ok".equals(status.getStatus().trim().toLowerCase()))
             status.setSeverity(OK);
         else if ("fail".equals(status.getStatus().trim().toLowerCase()))
             status.setSeverity(FAIL);
         else {
             // TODO Now it gets trickier. We want to warn when queuesize is too high. When is the queue size too high?
-            if (status.getSubservice().toLowerCase().contains("queue")) {
+            if (status.getSubsystem().toLowerCase().contains("queue")) {
                 int queueSize = Integer.parseInt(status.getStatus());
                 if (queueSize >= queueFailThreshold)
                     status.setSeverity(FAIL);
@@ -65,7 +64,6 @@ public abstract class UpdateService {
                     status.setSeverity(OK);
             } else
                 status.setSeverity(OK);
-
         }
         return status;
     }

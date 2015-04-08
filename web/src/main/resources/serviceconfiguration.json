@@ -1,0 +1,46 @@
+{
+  "services": [
+    {
+      "serviceName":"webcert",
+      "configurations":["dbStatus","hsaStatus","jmsStatus","intygstjanst","signatureQueueSize"],
+      "nodes": [
+        {
+          "nodeName": "node1",
+          "nodeUrl": "URL"
+        },
+        {
+          "nodeName": "node2",
+          "nodeUrl": "URL"
+        }
+      ]
+    },
+    {
+      "serviceName":"minaintyg",
+      "configurations":["dbStatus","hsaStatus","jmsStatus","intygstjanst","signatureQueueSize"],
+      "nodes": [
+        {
+          "nodeName": "node1",
+          "nodeUrl": "URL"
+        },
+        {
+          "nodeName": "node2",
+          "nodeUrl": "URL"
+        }
+      ]
+    },
+    {
+      "serviceName":"statistik",
+      "configurations":["dbStatus","hsaStatus","jmsStatus","intygstjanst","signatureQueueSize"],
+      "nodes": [
+        {
+          "nodeName": "node1",
+          "nodeUrl": "URL"
+        },
+        {
+          "nodeName": "node2",
+          "nodeUrl": "URL"
+        }
+      ]
+    }
+  ]
+}

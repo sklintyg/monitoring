@@ -2,7 +2,6 @@ package se.inera.monitoring.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 import org.joda.time.LocalDateTime;
@@ -12,9 +11,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.format.datetime.joda.DateTimeFormatterFactory;
 import org.springframework.stereotype.Service;
 
-import se.inera.monitoring.persistence.StatusRepository;
-import se.inera.monitoring.persistence.UserCountRepository;
+import se.inera.monitoring.persistence.ApplicationStatusRepository;
+import se.inera.monitoring.persistence.model.ApplicationStatus;
+import se.inera.monitoring.persistence.model.SubsystemStatus;
 import se.inera.monitoring.web.domain.Status;
+import se.inera.monitoring.web.domain.StatusResponse;
 import se.inera.monitoring.web.domain.UserCount;
 
 @Service
@@ -23,60 +24,36 @@ public class MonitoringServiceImpl implements MonitoringService {
     protected static final DateTimeFormatter formatter = new DateTimeFormatterFactory("yyyy-MM-dd HH:mm:ss").createDateTimeFormatter();
 
     @Autowired
-    private UserCountRepository userCountRepository;
-
-    @Autowired
-    private StatusRepository statusRepository;
-
-    @Autowired
-    private WebcertServices webcertServices;
-
-    @Autowired
-    private MinaIntygServices minaIntygServices;
-
-    @Autowired
-    private StatistikServices statistikServices;
+    private ApplicationStatusRepository repo;
 
     @Override
     public List<UserCount> getCountersBySystem(String system, int count) {
         ArrayList<UserCount> res = new ArrayList<>();
-        for (se.inera.monitoring.persistence.model.UserCount userCount : userCountRepository
-                .findByServiceOrderByTimestampDesc(system, new PageRequest(0, count))) {
-            res.add(convert(userCount));
+        for (ApplicationStatus status : repo.findByApplicationOrderByTimestampDesc(system, new PageRequest(0, count))) {
+            res.add(convert(status));
         }
         Collections.reverse(res);
         return res;
     }
 
     @Override
-    public List<Status> getStatusBySystem(String system) {
-        List<Status> res = new ArrayList<>();
-        for (String service : getFields(system)) {
-            se.inera.monitoring.persistence.model.Status status = statusRepository.findByServiceAndSubserviceOrderByTimestampDesc(system, service);
-            if (status != null) // If the status existed
-                res.add(convert(status));
+    public StatusResponse getStatusBySystem(String system) {
+        ApplicationStatus status = repo.findByApplicationOrderByTimestampDesc(system);
+        return new StatusResponse(system, status.getServer(), status.getResponsetime(),
+                new LocalDateTime(status.getTimestamp()).toString(formatter),
+                (int) status.getCurrentUsers(), status.getVersion(),
+                convert(status.getSubsystemStatus()));
+    }
+
+    private List<Status> convert(List<SubsystemStatus> subsystemStatus) {
+        ArrayList<Status> res = new ArrayList<>();
+        for (SubsystemStatus status : subsystemStatus) {
+            res.add(new Status(status.getSubsystem(), status.getStatus(), status.getSeverity()));
         }
         return res;
     }
 
-    private HashSet<String> getFields(String system) {
-        HashSet<String> fields = new HashSet<>();
-        if ("webcert".equals(system)) {
-            fields.addAll( webcertServices.getFields());
-        } else if ("minaintyg".equals(system)) {
-            fields.addAll(minaIntygServices.getFields());
-        } else if ("statistik".equals(system)) {
-            fields.addAll(statistikServices.getFields());
-        }
-        fields.add("version");
-        return fields;
-    }
-
-    private static Status convert(se.inera.monitoring.persistence.model.Status modelStatus) {
-        return new Status(modelStatus.getSubservice(), modelStatus.getStatus(), modelStatus.getSeverity());
-    }
-
-    private static UserCount convert(se.inera.monitoring.persistence.model.UserCount userCount) {
-        return new UserCount(userCount.getCount(), new LocalDateTime(userCount.getTimestamp()).toString(formatter));
+    private static UserCount convert(ApplicationStatus status) {
+        return new UserCount(status.getCurrentUsers(), new LocalDateTime(status.getTimestamp()).toString(formatter));
     }
 }

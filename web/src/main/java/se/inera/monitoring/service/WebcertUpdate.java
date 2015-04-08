@@ -1,17 +1,22 @@
 package se.inera.monitoring.service;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 
-import se.inera.monitoring.persistence.StatusRepository;
-import se.inera.monitoring.persistence.model.Status;
+import se.inera.monitoring.persistence.ApplicationStatusRepository;
+import se.inera.monitoring.persistence.model.ApplicationStatus;
+import se.inera.monitoring.persistence.model.SubsystemStatus;
+import se.inera.monitoring.service.configuration.ServiceConfiguration;
 import se.riv.itintegration.monitoring.rivtabp21.v1.PingForConfigurationResponderInterface;
 import se.riv.itintegration.monitoring.v1.PingForConfigurationResponseType;
 import se.riv.itintegration.monitoring.v1.PingForConfigurationType;
@@ -28,28 +33,51 @@ public class WebcertUpdate extends UpdateService {
     private PingForConfigurationResponderInterface webcert;
 
     @Autowired
-    private StatusRepository statusRepo;
+    private ServiceConfiguration config;
 
     @Autowired
-    private WebcertServices webcertServices;
+    private ApplicationStatusRepository applicationStatus;
 
     @Scheduled(cron = "${webcert.ping.cron}")
     public void update() {
         log.debug("Updating status of webcert");
-        DateTime now = DateTime.now();
+
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
 
         // Ping webcert for its statuses
         PingForConfigurationResponseType response = webcert.pingForConfiguration("", new PingForConfigurationType());
+        stopWatch.stop();
 
         // Convert the statuses to our internal Status model
-        HashMap<String, Status> statuses = getStatuses(response.getConfiguration(), serviceName, now);
-        // Save the statuses we are interested in
-        for (String service : webcertServices.getFields()) {
-            if (statuses.containsKey(service))
-                statusRepo.save(updateSeverity(statuses.get(service)));
+        HashMap<String, SubsystemStatus> statuses = getStatuses(response.getConfiguration());
+
+        // Save the applicationStatus
+        applicationStatus.save(createApplicationStatus(7, stopWatch.getTotalTimeMillis(), "server1", new Date(), response.getVersion(),
+                getSubsystems(statuses)));
+    }
+
+    private ApplicationStatus createApplicationStatus(Integer currentUsers, long responsetime, String server, Date timestamp, String version,
+            List<SubsystemStatus> statuses) {
+        ApplicationStatus status = new ApplicationStatus();
+        status.setApplication(serviceName);
+        status.setCurrentUsers(currentUsers);
+        status.setId(UUID.randomUUID().toString());
+        status.setResponsetime(responsetime);
+        status.setServer(server);
+        status.setTimestamp(timestamp);
+        status.setVersion(version);
+        status.setSubsystemStatus(statuses);
+        return status;
+    }
+
+    private List<SubsystemStatus> getSubsystems(HashMap<String, SubsystemStatus> statuses) {
+        List<SubsystemStatus> res = new ArrayList<>();
+        for (String service : config.getService(serviceName).getConfigurations()) {
+            if (statuses.containsKey(service)) {
+                res.add(updateSeverity(statuses.get(service)));
+            }
         }
-        // Save the version number
-        statusRepo.save(new Status(serviceName, "version", response.getVersion() + ";" + now.toString(MonitoringServiceImpl.formatter), 0,
-                new Timestamp(now.getMillis())));
+        return res;
     }
 }
