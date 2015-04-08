@@ -6,11 +6,11 @@
       "nodes": [
         {
           "nodeName": "node1",
-          "nodeUrl": "URL"
+          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         },
         {
           "nodeName": "node2",
-          "nodeUrl": "URL"
+          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         }
       ]
     },
@@ -20,11 +20,11 @@
       "nodes": [
         {
           "nodeName": "node1",
-          "nodeUrl": "URL"
+          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         },
         {
           "nodeName": "node2",
-          "nodeUrl": "URL"
+          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         }
       ]
     },
@@ -34,11 +34,11 @@
       "nodes": [
         {
           "nodeName": "node1",
-          "nodeUrl": "URL"
+          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         },
         {
           "nodeName": "node2",
-          "nodeUrl": "URL"
+          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         }
       ]
     }
