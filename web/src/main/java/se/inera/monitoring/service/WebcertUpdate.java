@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -53,7 +54,7 @@ public class WebcertUpdate extends UpdateService {
         HashMap<String, SubsystemStatus> statuses = getStatuses(response.getConfiguration());
 
         // Save the applicationStatus
-        applicationStatus.save(createApplicationStatus(7, stopWatch.getTotalTimeMillis(), "server1", new Date(), response.getVersion(),
+        applicationStatus.save(createApplicationStatus(new Random().nextInt(1000), stopWatch.getTotalTimeMillis(), "server1", new Date(), response.getVersion(),
                 getSubsystems(statuses)));
     }
 

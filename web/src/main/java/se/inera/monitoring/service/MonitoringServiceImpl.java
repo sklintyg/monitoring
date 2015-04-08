@@ -38,11 +38,16 @@ public class MonitoringServiceImpl implements MonitoringService {
 
     @Override
     public StatusResponse getStatusBySystem(String system) {
-        ApplicationStatus status = repo.findByApplicationOrderByTimestampDesc(system);
-        return new StatusResponse(system, status.getServer(), status.getResponsetime(),
-                new LocalDateTime(status.getTimestamp()).toString(formatter),
-                (int) status.getCurrentUsers(), status.getVersion(),
-                convert(status.getSubsystemStatus()));
+        List<ApplicationStatus> resp = repo.findByApplicationOrderByTimestampDesc(system, new PageRequest(0, 1));
+        if (resp != null && resp.size() != 0) {
+            ApplicationStatus status = resp.get(0);
+            return new StatusResponse(system, status.getServer(), status.getResponsetime(),
+                    new LocalDateTime(status.getTimestamp()).toString(formatter),
+                    (int) status.getCurrentUsers(), status.getVersion(),
+                    convert(status.getSubsystemStatus()));
+        }
+        else
+            return null;
     }
 
     private List<Status> convert(List<SubsystemStatus> subsystemStatus) {

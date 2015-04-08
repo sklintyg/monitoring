@@ -86,6 +86,8 @@ angular.module('MonitorDirectives')
 
         // Updates the data in the chart
         function updateChart(data) {
+            if (data.length == 0)
+                return;
 
             data.map(function(d) {
               d.timeStamp = parseDate(d.timeStamp);

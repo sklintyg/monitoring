@@ -10,5 +10,4 @@ import se.inera.monitoring.persistence.model.ApplicationStatus;
 public interface ApplicationStatusRepository extends ElasticsearchCrudRepository<ApplicationStatus, String> {
 
     List<ApplicationStatus> findByApplicationOrderByTimestampDesc(String service, Pageable pageable);
-    ApplicationStatus findByApplicationOrderByTimestampDesc(String service);
 }
