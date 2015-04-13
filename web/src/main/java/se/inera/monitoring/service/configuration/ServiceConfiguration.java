@@ -8,6 +8,13 @@ public class ServiceConfiguration {
     public ServiceConfiguration() {
     }
 
+    /**
+     * Returns the requested service configuration.
+     * 
+     * @param serviceName
+     *            The name of the requested service
+     * @return The configuration of the requested service
+     */
     public Service getService(String serviceName) {
         for (Service service : services) {
             if (service.getServiceName().equals(serviceName)) {

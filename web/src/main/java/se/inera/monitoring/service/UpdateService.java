@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
-import org.apache.cxf.interceptor.LoggingInInterceptor;
-import org.apache.cxf.interceptor.LoggingOutInterceptor;
-import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +25,15 @@ import se.riv.itintegration.monitoring.v1.PingForConfigurationType;
 
 @Service
 public class UpdateService {
+
+    /**
+     * The String which identifies the number of currently logged in users in the service
+     */
+    private static final String CURRENT_USERS_NAME = "nbrOfUsers";
+
     private static final Logger log = LoggerFactory.getLogger(UpdateService.class);
 
+    // TODO: Replace with real values
     private static final int queueWarnThreshold = 5;
     private static final int queueFailThreshold = 10;
 
@@ -39,43 +42,69 @@ public class UpdateService {
     public static final int WARN = 2;
 
     @Autowired
+    private PingForConfigurationServiceFactory serviceFactory;
+
+    @Autowired
     private ServiceConfiguration config;
 
     @Autowired
     private ApplicationStatusRepository applicationStatus;
 
+    /**
+     * Updates the services defined in the configuration file
+     */
     @Scheduled(cron = "${ping.cron}")
     public void update() {
         for (se.inera.monitoring.service.configuration.Service service : config.getServices()) {
             log.debug(String.format("Updating status of %s", service.getServiceName()));
 
             for (Node node : config.getService(service.getServiceName()).getNodes()) {
-                PingForConfigurationResponderInterface ping = getPingInterface(node.getNodeUrl());
+                PingForConfigurationResponderInterface ping = serviceFactory.getPingInterface(node.getNodeUrl());
 
                 StopWatch stopWatch = new StopWatch();
                 stopWatch.start();
+                // TODO Logical address?
                 PingForConfigurationResponseType response = ping.pingForConfiguration("", new PingForConfigurationType());
                 stopWatch.stop();
 
                 // Convert the statuses to our internal SubsystemStatus model
                 HashMap<String, SubsystemStatus> statuses = getStatuses(response.getConfiguration());
 
+                // Get the number of users currently logged in
+                int currentUsers = 0;
+                try {
+                    currentUsers = getCurrentUsers(response.getConfiguration());
+                } catch (NumberFormatException e) {
+                    log.warn(String.format("Could not parse the number of users from %s at node %s", service.getServiceName(), node.getNodeName()));
+                }
+
                 // Save the ApplicationStatus
-                applicationStatus.save(createApplicationStatus(service.getServiceName(), new Random().nextInt(1000),
+                // TODO Maybe use the date returned from the response. However we need to make sure we always get the
+                // date on the correct format if this is the case.
+                applicationStatus.save(createApplicationStatus(service.getServiceName(), currentUsers,
                         stopWatch.getTotalTimeMillis(), node.getNodeName(), new Date(), response.getVersion(),
                         getSubsystems(service.getServiceName(), statuses)));
             }
         }
     }
 
-    private PingForConfigurationResponderInterface getPingInterface(String nodeUrl) {
-        JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
-        factory.getInInterceptors().add(new LoggingInInterceptor());
-        factory.getOutInterceptors().add(new LoggingOutInterceptor());
-        factory.setServiceClass(PingForConfigurationResponderInterface.class);
-        factory.setAddress(nodeUrl);
-        PingForConfigurationResponderInterface ping = (PingForConfigurationResponderInterface) factory.create();
-        return ping;
+    /**
+     * The number of current users are presented as one of the subsystem status. This is not ideal and we want to
+     * present it as a mandatory field for the status of the node.
+     * 
+     * This is why we loop through the available configurations (which are around 5-8) until we find the configuration
+     * with the name of {@linkplain UpdateService#CURRENT_USERS_NAME}
+     * 
+     * @param configurations
+     * @return
+     */
+    private int getCurrentUsers(List<ConfigurationType> configurations) {
+        for (ConfigurationType config : configurations) {
+            if (CURRENT_USERS_NAME.equals(config.getName())) {
+                return Integer.parseInt(config.getValue());
+            }
+        }
+        return 0;
     }
 
     private ApplicationStatus createApplicationStatus(String serviceName, Integer currentUsers, long responsetime, String server, Date timestamp,

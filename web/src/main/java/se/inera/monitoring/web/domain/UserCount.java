@@ -56,4 +56,8 @@ public class UserCount {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "UserCount [count=" + count + ", timeStamp=" + timeStamp + "]";
+    }
 }

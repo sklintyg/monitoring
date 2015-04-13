@@ -7,38 +7,6 @@
         {
           "nodeName": "node1",
           "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
-        },
-        {
-          "nodeName": "node2",
-          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
-        }
-      ]
-    },
-    {
-      "serviceName":"minaintyg",
-      "configurations":["dbStatus","hsaStatus","jmsStatus","intygstjanst","signatureQueueSize"],
-      "nodes": [
-        {
-          "nodeName": "node1",
-          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
-        },
-        {
-          "nodeName": "node2",
-          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
-        }
-      ]
-    },
-    {
-      "serviceName":"statistik",
-      "configurations":["dbStatus","hsaStatus","jmsStatus","intygstjanst","signatureQueueSize"],
-      "nodes": [
-        {
-          "nodeName": "node1",
-          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
-        },
-        {
-          "nodeName": "node2",
-          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         }
       ]
     }
