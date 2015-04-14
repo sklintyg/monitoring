@@ -32,8 +32,8 @@ public class UpdateService {
     private static final Logger log = LoggerFactory.getLogger(UpdateService.class);
 
     // TODO: Replace with real values
-    private static final int queueWarnThreshold = 5;
-    private static final int queueFailThreshold = 10;
+    protected static final int queueWarnThreshold = 5;
+    protected static final int queueFailThreshold = 10;
 
     public static final int OK = 0;
     public static final int FAIL = 1;
@@ -174,7 +174,9 @@ public class UpdateService {
      * @return The same status but with updated severity
      */
     protected SubsystemStatus updateSeverity(SubsystemStatus status) {
-        if ("ok".equals(status.getStatus().trim().toLowerCase()))
+        if (status.getStatus() == null || status.getSubsystem() == null)
+            return status;
+        else if ("ok".equals(status.getStatus().trim().toLowerCase()))
             status.setSeverity(OK);
         else if ("fail".equals(status.getStatus().trim().toLowerCase()))
             status.setSeverity(FAIL);
@@ -188,8 +190,7 @@ public class UpdateService {
                     status.setSeverity(WARN);
                 else
                     status.setSeverity(OK);
-            } else
-                status.setSeverity(OK);
+            }
         }
         return status;
     }
