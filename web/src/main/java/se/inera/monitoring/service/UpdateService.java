@@ -18,10 +18,8 @@ import se.inera.monitoring.persistence.model.ApplicationStatus;
 import se.inera.monitoring.persistence.model.SubsystemStatus;
 import se.inera.monitoring.service.configuration.Node;
 import se.inera.monitoring.service.configuration.ServiceConfiguration;
-import se.riv.itintegration.monitoring.rivtabp21.v1.PingForConfigurationResponderInterface;
 import se.riv.itintegration.monitoring.v1.ConfigurationType;
 import se.riv.itintegration.monitoring.v1.PingForConfigurationResponseType;
-import se.riv.itintegration.monitoring.v1.PingForConfigurationType;
 
 @Service
 public class UpdateService {
@@ -42,7 +40,7 @@ public class UpdateService {
     public static final int WARN = 2;
 
     @Autowired
-    private PingForConfigurationServiceFactory serviceFactory;
+    private PingForConfigurationFactory pingFactory;
 
     @Autowired
     private ServiceConfiguration config;
@@ -59,12 +57,16 @@ public class UpdateService {
             log.debug(String.format("Updating status of %s", service.getServiceName()));
 
             for (Node node : config.getService(service.getServiceName()).getNodes()) {
-                PingForConfigurationResponderInterface ping = serviceFactory.getPingInterface(node.getNodeUrl());
 
                 StopWatch stopWatch = new StopWatch();
                 stopWatch.start();
-                // TODO Logical address?
-                PingForConfigurationResponseType response = ping.pingForConfiguration("", new PingForConfigurationType());
+                PingForConfigurationResponseType response = null;
+                try {
+                    response = pingFactory.ping(node.getNodeUrl());
+                } catch (ServiceNotReachableException e1) {
+                    log.error(String.format("Could not reach %s at %s located at URL %s", service.getServiceName(), node.getNodeName(),
+                            node.getNodeUrl()));
+                }
                 stopWatch.stop();
 
                 // Convert the statuses to our internal SubsystemStatus model
@@ -122,6 +124,13 @@ public class UpdateService {
         return status;
     }
 
+    /**
+     * Retrieves the relevant subsystems defined in the configuration in {@linkplain ServiceConfiguration}
+     * 
+     * @param serviceName
+     * @param statuses
+     * @return
+     */
     private List<SubsystemStatus> getSubsystems(String serviceName, HashMap<String, SubsystemStatus> statuses) {
         List<SubsystemStatus> res = new ArrayList<>();
         for (String service : config.getService(serviceName).getConfigurations()) {

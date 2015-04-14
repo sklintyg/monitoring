@@ -21,9 +21,7 @@ import se.inera.monitoring.persistence.ApplicationStatusRepository;
 import se.inera.monitoring.service.configuration.Node;
 import se.inera.monitoring.service.configuration.Service;
 import se.inera.monitoring.service.configuration.ServiceConfiguration;
-import se.riv.itintegration.monitoring.rivtabp21.v1.PingForConfigurationResponderInterface;
 import se.riv.itintegration.monitoring.v1.PingForConfigurationResponseType;
-import se.riv.itintegration.monitoring.v1.PingForConfigurationType;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UpdateServiceTest {
@@ -37,10 +35,7 @@ public class UpdateServiceTest {
     ApplicationStatusRepository repo;
 
     @Mock
-    PingForConfigurationServiceFactory serviceFactory;
-
-    @Mock
-    PingForConfigurationResponderInterface pingInterface;
+    PingForConfigurationFactory pingFactory;
 
     @InjectMocks
     UpdateService updateService;
@@ -70,15 +65,13 @@ public class UpdateServiceTest {
 
         when(config.getService(eq(SERVICE))).thenReturn(service);
         when(config.getServices()).thenReturn(serviceList);
-        when(serviceFactory.getPingInterface(any(String.class))).thenReturn(pingInterface);
     }
 
     @Test
-    public void testAccessedOnceForEachNode() {
-        when(pingInterface.pingForConfiguration(any(String.class), any(PingForConfigurationType.class))).thenReturn(
-                new PingForConfigurationResponseType());
+    public void testAccessedOnceForEachNode() throws ServiceNotReachableException {
+        when(pingFactory.ping(any(String.class))).thenReturn(new PingForConfigurationResponseType());
         updateService.update();
-        verify(pingInterface, times(2)).pingForConfiguration(any(String.class), any(PingForConfigurationType.class));
+        verify(pingFactory, times(2)).ping(any(String.class));
     }
 
 }
