@@ -1,0 +1,56 @@
+# Elasticsearch
+
+### Installation
+Elasticsearch is preferably installed through your favourite packagemanager.
+
+### Configuration
+No configuration is needed. Default port of 9200 is fine.
+
+### Running
+Start the daemon through (this is if systemd is used, else use upstart/SysVinit/..
+in a similar fashion)
+
+```
+sudo systemctl start elasticsearch
+```
+
+# Logstash
+
+### Installation
+Logstash is preferably installed through your favourite packagemanager.
+
+### Configuration
+In the file the absolute path to the log files should be entered, not the
+placeholder which exist today.
+
+Logstash daemon is looking for a configuration file at `/etc/logstash/conf.d/`.
+However, development so far not used the daemon but instead running logstash in
+the foreground to leverage output to stdout as well as the flags --testconfig
+and --debug
+
+### Running
+Start Logstash with the following command
+
+```
+logstash -f logstash-webcert.conf
+```
+
+# Kibana
+
+### Installation
+Kibana is preferably installed through your favourite packagemanager.
+
+### Configuration
+As we use Kibana 4 in the project there is no real export/import feature. (No
+idea why this was removed.)
+
+As a workaround we use the dump from the `.kibana` index in elasticsearch to
+restore an old index.
+
+### Running
+Start the daemon through (this is if systemD is used, else use upstart/SysVinit/..
+in a similar fashion)
+
+```
+sudo systemctl start kibana
+```
