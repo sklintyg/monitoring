@@ -8,6 +8,9 @@
           },
           "defaultIndex" : {
             "type" : "string"
+          },
+          "shortDots:enable" : {
+            "type" : "string"
           }
         }
       },
@@ -95,4 +98,22 @@
           },
           "kibanaSavedObjectMeta" : {
             "properties" : {
-              "searchSourceJ
+              "searchSourceJSON" : {
+                "type" : "string"
+              }
+            }
+          },
+          "sort" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "version" : {
+            "type" : "integer"
+          }
+        }
+      }
+    }
+  }
+}
