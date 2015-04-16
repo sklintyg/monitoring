@@ -24,9 +24,9 @@ In the file the absolute path to the log files should be entered, not the
 placeholder which exist today.
 
 Logstash daemon is looking for a configuration file at `/etc/logstash/conf.d/`.
-However, development so far not used the daemon but instead running logstash in
-the foreground to leverage output to stdout as well as the flags --testconfig
-and --debug
+However, development has so far not used the daemon but are instead running
+logstash in the foreground to leverage output to stdout as well as the flags
+--testconfig and --debug
 
 ### Running
 Start Logstash with the following command
