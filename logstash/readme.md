@@ -47,6 +47,17 @@ idea why this was removed.)
 As a workaround we use the dump from the `.kibana` index in elasticsearch to
 restore an old index.
 
+To export and import we use the tool `elasticdump` (https://github.com/taskrabbit/elasticsearch-dump)
+
+For instance to import use (for export swap input and output)
+```
+elasticdump --input=logstash/kibana/data --output=http://localhost:9200/.kibana  --type=data
+elasticdump --input=logstash/kibana/mapping --output=http://localhost:9200/.kibana  --type=mapping
+```
+
+Then the dashboard should be available at http://localhost:5601
+
+
 ### Running
 Start the daemon through (this is if systemD is used, else use upstart/SysVinit/..
 in a similar fashion)
