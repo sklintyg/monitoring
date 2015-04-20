@@ -1,0 +1,2 @@
+PU_LOOKUP Lookup performed on '%{DATA:personnummer}' with result '%{DATA:pu_result}'
+PU_PARSE %{PU_LOOKUP}
