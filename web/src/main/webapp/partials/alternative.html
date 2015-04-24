@@ -6,15 +6,25 @@
           <div class="page-header">
             <h2>Webcert</h2>
           </div>
-          <chart chartname="webcert" chartwidth=400 chartheight=180></chart>
-          <monitorservices service-name="webcert" alertsize="flex-item-small"></monitorservices>
+          <div style="width:100%; text-align: center;" ng-if="!webcert.doneLoading">
+            <img src="images/ajax-loader.gif" alt="Loading..."/>
+          </div>
+          <div ng-if="webcert.doneLoading">
+            <chart chartname="webcert" chartwidth=400 chartheight=180></chart>
+            <monitorservices service-name="webcert" alertsize="flex-item-small"></monitorservices>
+          </div>
         </div>
         <div class="col-md-6">
           <div class="page-header">
             <h2>Mina Intyg</h2>
           </div>
-          <chart chartname="minaintyg" chartwidth=400 chartheight=180></chart>
-          <monitorservices service-name="minaintyg" alertsize="flex-item-small"></monitorservices>
+          <div style="width:100%; text-align: center;" ng-if="!minaintyg.doneLoading">
+            <img src="images/ajax-loader.gif" alt="Loading..."/>
+          </div>
+          <div ng-if="minaintyg.doneLoading">
+            <chart chartname="minaintyg" chartwidth=400 chartheight=180></chart>
+            <monitorservices service-name="minaintyg" alertsize="flex-item-small"></monitorservices>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -22,8 +32,13 @@
           <div class="page-header">
             <h2>Statistik</h2>
           </div>
-          <chart chartname="statistik" chartwidth=400 chartheight=180></chart>
-          <monitorservices service-name="statistik" alertsize="flex-item-small"></monitorservices>
+          <div style="width:100%; text-align: center;" ng-if="!statistik.doneLoading">
+            <img src="images/ajax-loader.gif" alt="Loading..."/>
+          </div>
+          <div ng-if="statistik.doneLoading">
+            <chart chartname="statistik" chartwidth=400 chartheight=180></chart>
+            <monitorservices service-name="statistik" alertsize="flex-item-small"></monitorservices>
+          </div>
         </div>
       </div>
     </div> <!-- end of first half -->

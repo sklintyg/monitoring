@@ -1,6 +1,27 @@
 angular.module('MonitorControllers')
-.controller('MonitorController', ['$scope', '$http', '$location', '$interval',
+.controller('AlternativeMonitorController', ['$scope', '$http', '$location', '$interval',
   function($scope, $http, $location, $interval) {
+
+    var timer = $interval(function() {
+      var iframe = document.getElementById('pingdomframe');
+      iframe.src = iframe.src;
+    }, 30000);
+
+    $scope.$on('$destroy', function() {
+      if (timer) {
+        $interval.cancel(timer);
+      }
+      if ($scope.webcert.timer) {
+        $interval.cancel($scope.webcert.timer);
+      }
+      if ($scope.minaintyg.timer) {
+        $interval.cancel($scope.minaintyg.timer);
+      }
+      if ($scope.statistik.timer) {
+        $interval.cancel($scope.statistik.timer);
+      }
+    });
+
     $scope.webcert = {
       doneLoading: false,
       name: 'webcert'
@@ -35,19 +56,4 @@ angular.module('MonitorControllers')
       .error(function() {
       });
     }
-
-    $scope.$on('$destroy', function() {
-      if (timer) {
-        $interval.cancel(timer);
-      }
-      if ($scope.webcert.timer) {
-        $interval.cancel($scope.webcert.timer);
-      }
-      if ($scope.minaintyg.timer) {
-        $interval.cancel($scope.minaintyg.timer);
-      }
-      if ($scope.statistik.timer) {
-        $interval.cancel($scope.statistik.timer);
-      }
-    });
-}]);
+}])

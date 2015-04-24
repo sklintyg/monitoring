@@ -4,22 +4,37 @@
       <div class="page-header">
         <h2>Webcert</h2>
       </div>
-      <chart chartname="webcert"></chart>
-      <monitorservices service-name="webcert" alertsize="flex-item-big"></monitorservices>
+      <div style="width:100%; text-align: center;" ng-if="!webcert.doneLoading">
+        <img src="images/ajax-loader.gif" alt="Loading..."/>
+      </div>
+      <div ng-if="webcert.doneLoading">
+        <chart chartname="webcert"></chart>
+        <monitorservices service-name="webcert" alertsize="flex-item-big"></monitorservices>
+      </div>
     </div>
     <div class="col-md-4">
       <div class="page-header">
         <h2>Mina Intyg</h2>
       </div>
-      <chart chartname="minaintyg"></chart>
-      <monitorservices service-name="minaintyg" alertsize="flex-item-big"></monitorservices>
+      <div style="width:100%; text-align: center;" ng-if="!minaintyg.doneLoading">
+        <img src="images/ajax-loader.gif" alt="Loading..."/>
+      </div>
+      <div ng-if="minaintyg.doneLoading">
+        <chart chartname="minaintyg"></chart>
+        <monitorservices service-name="minaintyg" alertsize="flex-item-big"></monitorservices>
+      </div>
     </div>
     <div class="col-md-4">
       <div class="page-header">
         <h2>Statistik</h2>
       </div>
-      <chart chartname="statistik"></chart>
-      <monitorservices service-name="statistik" alertsize="flex-item-big"></monitorservices>
+      <div style="width:100%; text-align: center;" ng-if="!statistik.doneLoading">
+        <img src="images/ajax-loader.gif" alt="Loading..."/>
+      </div>
+      <div ng-if="statistik.doneLoading">
+        <chart chartname="statistik"></chart>
+        <monitorservices service-name="statistik" alertsize="flex-item-big"></monitorservices>
+      </div>
     </div>
   </div>
 </div>
