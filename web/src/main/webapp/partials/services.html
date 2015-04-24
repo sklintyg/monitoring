@@ -20,13 +20,22 @@
           <td>{{server.server}}</td>
           <td ng-repeat="status in server.statuses">
             <div ng-if="status.severity == 0">
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-ok"
+                    aria-hidden="true"
+                    style="color: green">
+              </span>
             </div>
             <div ng-if="status.severity == 1">
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-remove"
+                    aria-hidden="true"
+                    style="color:#c40">
+              </span>
             </div>
             <div ng-if="status.severity == 2">
-              <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-warning-sign"
+                    aria-hidden="true"
+                    style="color: darkorange">
+              </span>
             </div>
           </td>
         </tr>
