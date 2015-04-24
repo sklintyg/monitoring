@@ -1,5 +1,6 @@
 package se.inera.monitoring.web.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StatusResponse {
@@ -10,7 +11,8 @@ public class StatusResponse {
     private String timestamp;
     private int userCount;
     private String version;
-    private List<Status> statuses;
+    private boolean reachable = true;
+    private List<Status> statuses = new ArrayList<>();
 
     public StatusResponse() {
     }
@@ -24,6 +26,14 @@ public class StatusResponse {
         this.userCount = userCount;
         this.version = version;
         this.statuses = statuses;
+    }
+    
+    public static StatusResponse getUnreachable(String application, String server) {
+        StatusResponse response = new StatusResponse();
+        response.setApplication(application);
+        response.setReachable(false);
+        response.setServer(server);
+        return response;
     }
 
     public List<Status> getStatuses() {
@@ -80,5 +90,13 @@ public class StatusResponse {
 
     public void setServer(String server) {
         this.server = server;
+    }
+
+    public boolean isReachable() {
+        return reachable;
+    }
+
+    public void setReachable(boolean reachable) {
+        this.reachable = reachable;
     }
 }

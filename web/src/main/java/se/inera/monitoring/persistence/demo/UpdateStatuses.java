@@ -1,11 +1,11 @@
 package se.inera.monitoring.persistence.demo;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -27,7 +27,7 @@ public class UpdateStatuses {
     @Autowired
     private ServiceConfiguration config;
 
-    @Scheduled(fixedDelay = 5000)
+//    @Scheduled(cron = "${ping.cron}")
     public void update() {
         for (String service : services) {
             updateService(service);
@@ -35,8 +35,8 @@ public class UpdateStatuses {
     }
 
     private void updateService(String service) {
-        List<ApplicationStatus> lastStatus = repo.findByApplicationOrderByTimestampDesc(service, new PageRequest(0, 1));
-        int lastCurrentUsers = 0; 
+        List<ApplicationStatus> lastStatus = repo.findByApplicationOrderByTimestampDescServerDesc(service, new PageRequest(0, 1));
+        int lastCurrentUsers = 0;
         if (lastStatus != null && !lastStatus.isEmpty()) {
             lastCurrentUsers = lastStatus.get(0).getCurrentUsers();
         }
@@ -44,13 +44,12 @@ public class UpdateStatuses {
         ApplicationStatus bogusStatus = new ApplicationStatus();
 
         bogusStatus.setApplication(service);
-        bogusStatus.setCurrentUsers(Math.min(Math.max(lastCurrentUsers + (rand.nextInt(20) - 10), 0),1000));
-        bogusStatus.setId(UUID.randomUUID().toString());
+        bogusStatus.setCurrentUsers(Math.min(Math.max(lastCurrentUsers + (rand.nextInt(20) - 10), 0), 1000));
         bogusStatus.setResponsetime(0);
         bogusStatus.setServer("server1");
-        bogusStatus.setTimestamp(new Date());
+        bogusStatus.setTimestamp(new Timestamp(new DateTime().getMillis()));
         bogusStatus.setVersion("fake");
-        bogusStatus.setSubsystemStatus(generateStatuses(service));
+        bogusStatus.setSubsystemStatuses(generateStatuses(service));
 
         repo.save(bogusStatus);
     }

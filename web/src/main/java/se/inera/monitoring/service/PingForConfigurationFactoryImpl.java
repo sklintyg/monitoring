@@ -1,6 +1,5 @@
 package se.inera.monitoring.service;
 
-import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
@@ -28,7 +27,7 @@ public class PingForConfigurationFactoryImpl implements PingForConfigurationFact
         try {
             PingForConfigurationResponderInterface pingInterface = getInterface(nodeUrl);
             return pingInterface.pingForConfiguration("", new PingForConfigurationType());
-        } catch (Fault e) {
+        } catch (Exception e) {
             log.error(String.format("Could not reach target URL %s", nodeUrl), e);
             throw new ServiceNotReachableException();
         }

@@ -29,7 +29,7 @@ public class MonitoringController {
     }
 
     @RequestMapping(value = "status/{system}", method = GET, produces = "application/json")
-    public StatusResponse getStatusBySystem(@PathVariable String system) {
+    public List<StatusResponse> getStatusBySystem(@PathVariable String system) {
         return monitoringService.getStatusBySystem(system);
     }
 }

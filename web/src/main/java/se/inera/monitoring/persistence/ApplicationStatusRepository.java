@@ -9,5 +9,6 @@ import se.inera.monitoring.persistence.model.ApplicationStatus;
 
 public interface ApplicationStatusRepository extends JpaRepository<ApplicationStatus, Long> {
 
-    List<ApplicationStatus> findByApplicationOrderByTimestampDesc(String service, Pageable pageable);
+    List<ApplicationStatus> findByApplicationOrderByTimestampDescServerDesc(String application, Pageable pageable);
+    List<ApplicationStatus> findByApplicationAndServerOrderByTimestampDesc(String application, String server, Pageable pageRequest);
 }

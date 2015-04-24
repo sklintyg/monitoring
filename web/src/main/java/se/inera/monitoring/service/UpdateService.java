@@ -1,11 +1,13 @@
 package se.inera.monitoring.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
+import javax.xml.ws.WebServiceException;
+
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,13 @@ import se.inera.monitoring.service.configuration.ServiceConfiguration;
 import se.riv.itintegration.monitoring.v1.ConfigurationType;
 import se.riv.itintegration.monitoring.v1.PingForConfigurationResponseType;
 
+/**
+ * Service which handles updating the monitored services. The configuration of nodes and url's are found by the
+ * {@link ServiceConfiguration}
+ * 
+ * @author kaan
+ *
+ */
 @Service
 public class UpdateService {
 
@@ -31,7 +40,6 @@ public class UpdateService {
 
     private static final Logger log = LoggerFactory.getLogger(UpdateService.class);
 
-    // TODO: Replace with real values
     protected static final int queueWarnThreshold = 5;
     protected static final int queueFailThreshold = 10;
 
@@ -50,42 +58,42 @@ public class UpdateService {
 
     /**
      * Updates the services defined in the configuration file
+     * 
+     * The cron expression should not be more than once every minute
      */
     @Scheduled(cron = "${ping.cron}")
     public void update() {
+        Timestamp timestamp = new Timestamp(new DateTime().getMillis());
         for (se.inera.monitoring.service.configuration.Service service : config.getServices()) {
             log.debug(String.format("Updating status of %s", service.getServiceName()));
 
             for (Node node : config.getService(service.getServiceName()).getNodes()) {
 
                 StopWatch stopWatch = new StopWatch();
-                stopWatch.start();
                 PingForConfigurationResponseType response = null;
                 try {
+                    stopWatch.start();
                     response = pingFactory.ping(node.getNodeUrl());
-                } catch (ServiceNotReachableException e1) {
+                    stopWatch.stop();
+
+                    // Convert the statuses to our internal SubsystemStatus model
+                    HashMap<String, SubsystemStatus> statuses = getStatuses(response.getConfiguration());
+
+                    int currentUsers = 0;
+                    try {
+                        currentUsers = getCurrentUsers(response.getConfiguration());
+                    } catch (NumberFormatException e) {
+                        log.warn(String.format("Could not parse the number of users from %s at node %s", service.getServiceName(), node.getNodeName()));
+                    }
+
+                    applicationStatus.save(ApplicationStatus.getApplicationStatus(service.getServiceName(), currentUsers,
+                            stopWatch.getTotalTimeMillis(), node.getNodeName(), timestamp, response.getVersion(),
+                            getSubsystems(service.getServiceName(), statuses)));
+                } catch (IllegalArgumentException | WebServiceException | ServiceNotReachableException e1) {
                     log.error(String.format("Could not reach %s at %s located at URL %s", service.getServiceName(), node.getNodeName(),
                             node.getNodeUrl()));
+                    applicationStatus.save(ApplicationStatus.getUnreachable(service.getServiceName(), node.getNodeName(), timestamp));
                 }
-                stopWatch.stop();
-
-                // Convert the statuses to our internal SubsystemStatus model
-                HashMap<String, SubsystemStatus> statuses = getStatuses(response.getConfiguration());
-
-                // Get the number of users currently logged in
-                int currentUsers = 0;
-                try {
-                    currentUsers = getCurrentUsers(response.getConfiguration());
-                } catch (NumberFormatException e) {
-                    log.warn(String.format("Could not parse the number of users from %s at node %s", service.getServiceName(), node.getNodeName()));
-                }
-
-                // Save the ApplicationStatus
-                // TODO Maybe use the date returned from the response. However we need to make sure we always get the
-                // date on the correct format if this is the case.
-                applicationStatus.save(createApplicationStatus(service.getServiceName(), currentUsers,
-                        stopWatch.getTotalTimeMillis(), node.getNodeName(), new Date(), response.getVersion(),
-                        getSubsystems(service.getServiceName(), statuses)));
             }
         }
     }
@@ -107,21 +115,6 @@ public class UpdateService {
             }
         }
         return 0;
-    }
-
-    private ApplicationStatus createApplicationStatus(String serviceName, Integer currentUsers, long responsetime, String server, Date timestamp,
-            String version,
-            List<SubsystemStatus> statuses) {
-        ApplicationStatus status = new ApplicationStatus();
-        status.setApplication(serviceName);
-        status.setCurrentUsers(currentUsers);
-        status.setId(UUID.randomUUID().toString());
-        status.setResponsetime(responsetime);
-        status.setServer(server);
-        status.setTimestamp(timestamp);
-        status.setVersion(version);
-        status.setSubsystemStatus(statuses);
-        return status;
     }
 
     /**
