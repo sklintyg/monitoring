@@ -1,39 +1,87 @@
 package se.inera.monitoring.persistence.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.DateFormat;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldIndex;
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Document(indexName = "applicationstatus", type = "ApplicationStatus", shards = 1, replicas = 0, indexStoreType = "memory")
+import org.hibernate.annotations.Type;
+
+@Entity
+@Table(name = "application_status")
 public class ApplicationStatus {
 
     @Id
-    private String id;
+    @Column(name = "APPLICATION_STATUS_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column(name = "APPLICATION")
     private String application;
+
+    @Column(name = "VERSION")
     private String version;
+
+    @Column(name = "SERVER")
     private String server;
 
-    @Field(type = FieldType.Date ,format = DateFormat.basic_date_time)
-    private Date timestamp;
+    @Column(name = "TIMESTAMP")
+    @Type(type = "timestamp")
+    private Timestamp timestamp;
+
+    @Column(name = "RESPONSETIME")
     private long responsetime;
 
-    @Field(type = FieldType.Integer, index = FieldIndex.analyzed)
-    private Integer currentUsers;
+    @Column(name = "CURRENT_USERS")
+    private int currentUsers;
 
-    @Field(type = FieldType.Nested, index = FieldIndex.analyzed)
-    private List<SubsystemStatus> subsystemStatus;
+    @Column(name = "REACHABLE")
+    private boolean reachable = true;
 
-    public String getId() {
+    @OneToMany(mappedBy = "applicationstatus", cascade = CascadeType.ALL)
+    private List<SubsystemStatus> subsystemStatuses = new ArrayList<>();
+
+    /**
+     * Creates an unreachable ApplicationStatus
+     */
+    public static ApplicationStatus getUnreachable(String application, String server, Timestamp timestamp) {
+        ApplicationStatus unreachable = new ApplicationStatus();
+        unreachable.setApplication(application);
+        unreachable.setServer(server);
+        unreachable.setReachable(false);
+        unreachable.setTimestamp(timestamp);
+        return unreachable;
+    }
+
+    /**
+     * Creates an ApplicationStatus from the data in the parameters
+     */
+    public static ApplicationStatus getApplicationStatus(String serviceName, Integer currentUsers, long responsetime, String server,
+            Timestamp timestamp, String version, List<SubsystemStatus> statuses) {
+        ApplicationStatus status = new ApplicationStatus();
+        status.setApplication(serviceName);
+        status.setCurrentUsers(currentUsers);
+        status.setResponsetime(responsetime);
+        status.setServer(server);
+        status.setTimestamp(timestamp);
+        status.setVersion(version);
+        status.setSubsystemStatuses(statuses);
+        return status;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -61,11 +109,11 @@ public class ApplicationStatus {
         this.server = server;
     }
 
-    public Date getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -77,19 +125,30 @@ public class ApplicationStatus {
         this.responsetime = responsetime;
     }
 
-    public Integer getCurrentUsers() {
+    public int getCurrentUsers() {
         return currentUsers;
     }
 
-    public void setCurrentUsers(Integer currentUsers) {
+    public void setCurrentUsers(int currentUsers) {
         this.currentUsers = currentUsers;
     }
 
-    public List<SubsystemStatus> getSubsystemStatus() {
-        return subsystemStatus;
+    public List<SubsystemStatus> getSubsystemStatuses() {
+        return subsystemStatuses;
     }
 
-    public void setSubsystemStatus(List<SubsystemStatus> subsystemStatus) {
-        this.subsystemStatus = subsystemStatus;
+    public void setSubsystemStatuses(List<SubsystemStatus> subsystemStatuses) {
+        for (SubsystemStatus status : subsystemStatuses) {
+            status.setApplicationstatus(this);
+        }
+        this.subsystemStatuses = subsystemStatuses;
+    }
+
+    public boolean isReachable() {
+        return reachable;
+    }
+
+    public void setReachable(boolean reachable) {
+        this.reachable = reachable;
     }
 }
