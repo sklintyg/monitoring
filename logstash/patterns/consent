@@ -1,0 +1,3 @@
+CONSENT_GIVEN Consent given by citizen '%{USER:user}'
+CONSENT_REVOKED Consent revoked by citizen '%{USER:user}'
+CONSENT_PARSE (%{CONSENT_GIVEN}|%{CONSENT_REVOKED})

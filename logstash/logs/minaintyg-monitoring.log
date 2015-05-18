@@ -1,0 +1,35 @@
+2015-05-18 12:59:33,893 1h38rt3882qcb6sp8jflcds0l - CITIZEN_LOGIN Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged in using login method 'MVK'
+2015-05-18 12:59:36,882 1h38rt3882qcb6sp8jflcds0l - CONSENT_GIVEN Consent given by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 12:59:46,905 1h38rt3882qcb6sp8jflcds0l - CONSENT_REVOKED Consent revoked by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:00:05,368 1h38rt3882qcb6sp8jflcds0l - CONSENT_GIVEN Consent given by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:00:05,378 1h38rt3882qcb6sp8jflcds0l - CITIZEN_LOGOUT Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged out using login method 'MVK'
+2015-05-18 13:00:18,011 jkxazsr3y25h1rv8eoj18vxfi - CITIZEN_LOGIN Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged in using login method 'MVK'
+2015-05-18 13:00:25,599 jkxazsr3y25h1rv8eoj18vxfi - CONSENT_REVOKED Consent revoked by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:00:48,226 jkxazsr3y25h1rv8eoj18vxfi - CONSENT_GIVEN Consent given by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:00:48,235 jkxazsr3y25h1rv8eoj18vxfi - CITIZEN_LOGOUT Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged out using login method 'MVK'
+2015-05-18 13:01:20,237 wf6pdo8229gaxd3t6ev1jchz - CITIZEN_LOGIN Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged in using login method 'MVK'
+2015-05-18 13:01:34,992 wf6pdo8229gaxd3t6ev1jchz - CONSENT_REVOKED Consent revoked by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:01:56,554 wf6pdo8229gaxd3t6ev1jchz - CITIZEN_LOGOUT Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged out using login method 'MVK'
+2015-05-18 13:01:56,556 b2h0f49cy3d7qrdf4ot432u0 - CITIZEN_LOGIN Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged in using login method 'MVK'
+2015-05-18 13:02:02,147 b2h0f49cy3d7qrdf4ot432u0 - CONSENT_GIVEN Consent given by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:02:35,134 b2h0f49cy3d7qrdf4ot432u0 - CONSENT_REVOKED Consent revoked by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:02:39,698 b2h0f49cy3d7qrdf4ot432u0 - CONSENT_GIVEN Consent given by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:02:45,359 b2h0f49cy3d7qrdf4ot432u0 - CONSENT_REVOKED Consent revoked by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:02:57,937 b2h0f49cy3d7qrdf4ot432u0 - CONSENT_GIVEN Consent given by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:02:57,946 b2h0f49cy3d7qrdf4ot432u0 - CITIZEN_LOGOUT Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged out using login method 'MVK'
+2015-05-18 13:03:14,949 5wz9ihqpb26hae8p4sqjmc3x - CITIZEN_LOGIN Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged in using login method 'MVK'
+2015-05-18 13:03:20,897 5wz9ihqpb26hae8p4sqjmc3x - CONSENT_REVOKED Consent revoked by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:03:29,045 5wz9ihqpb26hae8p4sqjmc3x - CONSENT_GIVEN Consent given by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
+2015-05-18 13:03:29,055 5wz9ihqpb26hae8p4sqjmc3x - CITIZEN_LOGOUT Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged out using login method 'MVK'
+2015-05-18 13:11:44,181 1xebvwfiz80f71h9xla98tqvs2 - CITIZEN_LOGIN Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged in using login method 'MVK'
+2015-05-18 13:11:48,492 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_ARCHIVED Certificate 'intyg-2' archived
+2015-05-18 13:11:50,855 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_ARCHIVED Certificate 'intyg-4-revoked' archived
+2015-05-18 13:11:53,481 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_ARCHIVED Certificate 'intyg-5' archived
+2015-05-18 13:11:57,923 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_RESTORED Certificate 'intyg-4-revoked' restored
+2015-05-18 13:12:00,748 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_RESTORED Certificate 'intyg-5' restored
+2015-05-18 13:12:02,686 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_RESTORED Certificate 'intyg-2' restored
+2015-05-18 13:12:06,133 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_READ Certificate 'intyg-2' of type 'fk7263' was read
+2015-05-18 13:12:09,772 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_SEND Certificate 'intyg-2' sent to 'FK'
+2015-05-18 13:12:10,854 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_READ Certificate 'intyg-2' of type 'fk7263' was read
+2015-05-18 13:12:14,337 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_SEND Certificate 'intyg-2' sent to 'FK'
+2015-05-18 13:12:15,274 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_READ Certificate 'intyg-2' of type 'fk7263' was read

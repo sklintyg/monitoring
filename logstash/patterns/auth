@@ -1,4 +1,6 @@
 USER_LOGIN Login user '%{DATA:user}' using scheme '%{DATA:scheme}'
 USER_LOGOUT Logout user '%{DATA:user}' using scheme '%{DATA:scheme}'
 USER_SESSION_EXPIRY Session expired for user '%{DATA:user}' using scheme '%{DATA:scheme}'
-AUTH_PARSE (%{USER_LOGIN}|%{USER_LOGOUT}|%{USER_SESSION_EXPIRY})
+CITIZEN_LOGIN Citizen '%{DATA:user}' logged in using login method '%{DATA:scheme}'
+CITIZEN_LOGOUT Citizen '%{DATA:user}' logged out using login method '%{DATA:scheme}'
+AUTH_PARSE (%{USER_LOGIN}|%{USER_LOGOUT}|%{USER_SESSION_EXPIRY}|%{CITIZEN_LOGIN}|%{CITIZEN_LOGOUT})

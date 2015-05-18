@@ -1,0 +1,6 @@
+CERTIFICATE_READ Certificate '%{DATA:intygid}' of type '%{DATA:intygtyp}' was read
+CERTIFICATE_SEND Certificate '%{DATA:intygid}' sent to '%{DATA:recipient}'
+CERTIFICATE_ARCHIVED Certificate '%{DATA:intygid}' archived
+CERTIFICATE_RESTORED Certificate '%{DATA:intygid}' restored
+CERTIFICATE_PARSE (%{CERTIFICATE_READ}|%{CERTIFICATE_SEND}|%{CERTIFICATE_ARCHIVED}|%{CERTIFICATE_RESTORED})
+
