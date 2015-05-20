@@ -5,3 +5,9 @@ build/
 .classpath
 
 bin
+
+web/node_modules
+web/bower_components
+# This is the minified js which is not interesting at all
+app.min.js
+web/src/main/webapp/vendor/*

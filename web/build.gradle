@@ -1,15 +1,19 @@
+import org.gradle.api.tasks.Exec
+
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
         classpath 'org.akhikhl.gretty:gretty:1.2.0'
+        classpath 'com.moowork.gradle:gradle-grunt-plugin:0.9'
     }
 }
 
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'org.akhikhl.gretty'
+apply plugin: 'com.moowork.grunt'
 
 dependencies {
     compile 'org.springframework:spring-webmvc:4.1.4.RELEASE'
@@ -34,6 +38,22 @@ dependencies {
 
     providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
 }
+
+task copydeps(type: Copy) {
+    from 'bower_components'
+    into 'src/main/webapp/vendor'
+    include '**/*.js'
+    include '**/*.css'
+    include '**/*.js.map'
+    include '**/fonts/*'
+}
+task bower(type: Exec){
+    commandLine 'bower', 'install'
+}
+
+copydeps.dependsOn bower
+grunt_build.dependsOn copydeps
+build.dependsOn grunt_build
 
 gretty {
     httpPort = 8080

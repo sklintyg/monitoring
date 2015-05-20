@@ -20,7 +20,6 @@ angular.module('MonitorDirectives')
               scope.subservices = data[i].statuses;
               scope.serviceversion = data[i].version;
               scope.checktime = data[i].timestamp;
-              console.log(data[i]);
               break;
             }
           })
