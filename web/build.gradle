@@ -59,4 +59,8 @@ gretty {
     httpPort = 8080
     contextPath = '/'
     logbackConfigFile = "${projectDir}/src/main/resources/logback.xml"
+    jvmArgs = [
+        '-Dmonitoring.config.file=' + projectDir + '/src/main/resources/application-dev.properties',
+        '-Dmonitoring.service.configuration=' + projectDir + '/src/main/resources/serviceconfiguration.json'
+    ]
 }
