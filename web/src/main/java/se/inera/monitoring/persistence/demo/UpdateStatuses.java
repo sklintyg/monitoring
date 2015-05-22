@@ -8,7 +8,6 @@ import java.util.Random;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.scheduling.annotation.Scheduled;
 
 import se.inera.monitoring.persistence.ApplicationStatusRepository;
 import se.inera.monitoring.persistence.model.ApplicationStatus;

@@ -1,12 +1,10 @@
 package se.inera.monitoring.config;
 
-import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -43,20 +41,6 @@ public class PersistenceConfig {
     private String hibernateShowSql;
     @Value("${hibernate.format_sql}")
     private String hibernateFormatSql;
-
-    @Bean
-    Server createTcpServer() throws SQLException {
-        Server server = Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "8082");
-        server.start();
-        return server;
-    }
-
-    @Bean
-    Server createWebServer() throws SQLException {
-        Server server = Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8081");
-        server.start();
-        return server;
-    }
 
     @Bean(destroyMethod = "close")
     DataSource dataSource() {

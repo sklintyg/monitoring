@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd"
+  logicalFilePath="classpath:changelog/changelog.xml">
+
+  <changeSet id="1" author="kaan">
+
+    <createTable tableName="APPLICATION_STATUS">
+
+      <column name="APPLICATION_STATUS_ID" type="bigint">
+        <constraints unique="true" nullable="false" />
+      </column>
+
+      <column name="APPLICATION" type="varchar(255)">
+        <constraints nullable="true" />
+      </column>
+
+      <column name="CURRENT_USERS" type="int">
+        <constraints nullable="true" />
+      </column>
+
+      <column name="REACHABLE" type="boolean">
+        <constraints nullable="true" />
+      </column>
+
+      <column name="RESPONSE_TIME" type="bigint">
+        <constraints nullable="true" />
+      </column>
+
+      <column name="TIMESTAMP" type="timestamp">
+        <constraints nullable="true" />
+      </column>
+
+      <column name="VERSION" type="varchar(255)">
+        <constraints nullable="true" />
+      </column>
+
+    </createTable>
+
+    <createIndex indexName="IDX_APPLICATION_STATUS_ID"
+      tableName="APPLICATION_STATUS" unique="true">
+      <column name="APPLICATION_STATUS_ID" />
+    </createIndex>
+
+    <createTable tableName="SUBSYSTEM_STATUS">
+
+      <column name="SUBSYSTEM_STATUS_ID" type="bigint">
+        <constraints unique="true" nullable="false" />
+      </column>
+
+      <column name="SEVERITY" type="int">
+        <constraints nullable="true" />
+      </column>
+
+      <column name="STATUS" type="varchar(255)">
+        <constraints nullable="true" />
+      </column>
+
+      <column name="SUBSYSTEM" type="varchar(255)">
+        <constraints nullable="true" />
+      </column>
+
+      <column name="APPLICATION_STATUS_ID" type="bigint">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+
+    <createIndex indexName="IDX_SUBSYSTEM_STATUS_ID"
+      tableName="SUBSYSTEM_STATUS" unique="true">
+      <column name="SUBSYSTEM_STATUS_ID" />
+    </createIndex>
+
+    <addAutoIncrement columnDataType="bigint"
+      columnName="APPLICATION_STATUS_ID" incrementBy="1" startWith="1"
+      tableName="APPLICATION_STATUS" />
+    <addAutoIncrement columnDataType="bigint"
+      columnName="SUBSYSTEM_STATUS_ID" incrementBy="1" startWith="1"
+      tableName="SUBSYSTEM_STATUS" />
+
+    <addForeignKeyConstraint baseColumnNames="SUBSYSTEM_STATUS_ID"
+      baseTableName="SUBSYSTEM_STATUS" constraintName="SUBSYSTEM_APPLICATION_FK"
+      referencedColumnNames="APPLICATION_STATUS_ID" referencedTableName="APPLICATION_STATUS" />
+  </changeSet>
+
+</databaseChangeLog>
