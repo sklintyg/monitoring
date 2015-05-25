@@ -1,0 +1,5 @@
+[tomcat]
+monitoring-demo ansible_ssh_port=2222 ansible_ssh_host=localhost ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/r2m/inera/monitoring/ansible/vagrant_rsa ansible_python_interpreter=python2
+
+[mysql]
+monitoring-demo ansible_ssh_port=2222 ansible_ssh_host=localhost ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/r2m/inera/monitoring/ansible/vagrant_rsa ansible_python_interpreter=python2

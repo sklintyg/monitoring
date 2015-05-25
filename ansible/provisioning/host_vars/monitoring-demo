@@ -1,0 +1,9 @@
+---
+# file: host_vars/intygstjanst-demo
+
+# Spring profiles
+profiles: dev
+
+# Configuration repository
+environment_name: "demo"
+config_etc_folder: "{{ config_folder }}/{{ environment_name }}"

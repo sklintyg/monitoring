@@ -1,0 +1,9 @@
+---
+# file: roles/monitoring-resurser/tasks/main.yml
+
+- name: configure jdbc resource
+  lineinfile:
+    dest="{{ tomcat_conf }}/context.xml"
+    regexp="    <Resource name='jdbc/monitoring'"
+    insertbefore="</Context>"
+    line="    <Resource name='jdbc/monitoring' auth='Container' type='javax.sql.DataSource' username='{{ database_username }}' password='{{ database_password }}' driverClassName='{{ database_driver }}' url='{{ database_url }}' maxActive='{{ database_pool_maxActive }}' maxIdle='{{ database_pool_maxIdle }}' minIdle='{{ database_pool_minIdle }}' initialSize='{{ database_pool_initialSize }}' validationQuery='SELECT 1' validationQueryTimeout='3' testWhileIdle='true' timeBetweenEvictionRunsMillis='300000' minEvictableIdleTimeMillis='60000' defaultAutocommit='false' />"

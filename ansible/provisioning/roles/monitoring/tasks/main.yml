@@ -1,0 +1,41 @@
+---
+# file: roles/monitoring/tasks/main.yml
+
+- name: start tomcat
+  service: name={{ tomcat_service }} state=stopped
+
+- name: create release directory
+  file: path={{ releases_folder }} state=directory
+
+#- name: download monitoring-liquibase-runner-{{ version }}.jar
+  #get_url: url=http://repository-callistasoftware.forge.cloudbees.com/{{ repo }}/se/inera/intyg/monitoring/monitoring-liquibase-runner/{{ version }}/monitoring-liquibase-runner-{{ version }}.jar
+      #dest={{ releases_folder }}/monitoring-liquibase-runner-{{ version }}.jar
+
+#- name: run liquibase update
+  #command: java -jar {{ releases_folder }}/monitoring-liquibase-runner-{{ version }}.jar --changeLogFile="changelog/changelog.xml" --username="{{ database_username }}" --password="{{ database_password }}" --url="{{ database_url }}" --driver="{{ database_driver }}" --contexts=none update
+
+#- name: Download monitoring-web-{{ version }}.war
+  #get_url: url=http://repository-callistasoftware.forge.cloudbees.com/{{ repo }}/se/inera/intyg/monitoring/monitoring-web/{{ version }}/monitoring-web-{{ version }}.war
+      #dest={{ releases_folder }}/monitoring-web-{{ version }}.war
+
+- name: remove old version of unpacked ROOT war
+  file: state=absent
+      path={{ webapps_folder }}/ROOT
+
+- name: remove old version of ROOT war
+  file: state=absent
+      path={{ webapps_folder }}/ROOT.war
+
+- name: Deploy monitoring-web-{{ version }}.war as ROOT.war
+  command: cp {{ releases_folder }}/monitoring-web-{{ version }}.war {{ webapps_folder }}/ROOT.war
+
+#- name: Create version file
+  #template: src=version.txt.j2 dest={{ webapps_folder }}/version.txt
+
+#- name: update configuration to {{ config_version }}
+  #git: repo={{ config_repository }}
+       #dest={{ config_folder }}
+       #version={{ config_version }}
+
+- name: start tomcat
+  service: name={{ tomcat_service }} state=started

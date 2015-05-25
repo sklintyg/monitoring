@@ -1,0 +1,12 @@
+---
+# file: roles/monitoring-mysql/tasks/main.yml
+- name: Drop any existing mysql database for 'demo' environment
+  mysql_db: name={{ database_name }} state=absent
+  when: environment_name == "demo"
+
+- name: Create mysql database
+  mysql_db: name={{ database_name }} state=present
+
+- name: Create mysql user
+  mysql_user: name={{ database_username }} password={{ database_username }} priv=*.*:ALL state=present
+

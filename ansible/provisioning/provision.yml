@@ -1,0 +1,30 @@
+---
+- hosts: tomcat
+  sudo: yes
+  tasks:
+  - name: ensure tomcat is at the latest version
+    apt: name=tomcat7 state=latest update_cache=yes
+  - name: ensure tomcat is running (and enable it at boot)
+    service: name=tomcat7 state=started enabled=yes
+  handlers:
+    - name: restart tomcat
+      service: name=tomcat7 state=restarted
+
+- hosts: mysql
+  sudo: yes
+  tasks:
+  - name: ensure mysql is at the latest version
+    apt: name=mysql-server state=latest update_cache=yes
+  - name: ensure python-mysqldb is at the latest version
+    apt: name=python-mysqldb state=latest update_cache=yes
+  - name: ensure mysql is running (and enable it at boot)
+    service: name=mysql state=started enabled=yes
+  - name: Drop any existing mysql database for 'demo' environment
+    mysql_db: name={{ database_name }} state=absent
+  - name: ensure datbase exists
+    mysql_db: name=monitoring state=present
+  - name: Create mysql user
+    mysql_user: name={{ database_username }} password={{ database_username }} priv=*.*:ALL state=present
+  handlers:
+    - name: restart mysql
+      service: name=mysql state=restarted

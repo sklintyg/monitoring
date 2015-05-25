@@ -1,0 +1,4 @@
+ENV_CFG="-Dspring.profiles.active={{ profiles }}"
+MONITORING_CFG="-Dmonitoring.config.file={{ config_etc_folder
+}}/monitoring.properties -Dmonitoring.service.configuration={{ config_etc_folder }}/monitoring-services.json"
+export JAVA_OPTS="$JAVA_OPTS $ENV_CFG $MONITORING_CFG"

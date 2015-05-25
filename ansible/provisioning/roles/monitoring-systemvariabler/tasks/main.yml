@@ -1,0 +1,15 @@
+---
+# file: roles/monitoring-systemvariabler/tasks/main.yml
+
+- name: Create monitoring-env.sh file
+  template: src=monitoring-env.sh.j2 dest="{{ inera_tomcat_folder }}/monitoring-env.sh" mode=755
+
+- name: configure setenv.sh
+  lineinfile:
+    dest="{{ tomcat_bin }}/setenv.sh"
+    create=yes
+    mode=755
+    regexp="monitoring-env\.sh"
+    insertafter="EOF"
+    line=". \"{{ inera_tomcat_folder }}/monitoring-env.sh\""
+

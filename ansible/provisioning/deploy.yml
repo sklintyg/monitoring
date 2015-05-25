@@ -1,0 +1,15 @@
+# This playbook deploys monitoring application
+
+- hosts: tomcat
+  sudo: yes
+  vars:
+    # repo - values: snapshot or release
+    repo: release
+
+    version: 1.0
+    config_version: master
+
+  roles:
+    - monitoring-systemvariabler
+    - monitoring-jarfiler
+    - monitoring
