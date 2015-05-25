@@ -7,6 +7,64 @@ angular.module('MonitorControllers')
       iframe.src = iframe.src;
     }, 30000);
 
+    // Set the maximum amount of failed retries
+    $scope.threshold = 10;
+    // Set the time between retiess
+    var retryTime = 30000;
+    // Counts the number of retries
+
+    $scope.webcert = {
+      doneLoading: false,
+      fail: 0,
+      name: 'webcert'
+    };
+    $scope.minaintyg = {
+      doneLoading: false,
+      fail: 0,
+      name: 'minaintyg'
+    };
+    $scope.statistik = {
+      doneLoading: false,
+      fail: 0,
+      name: 'statistik'
+    };
+
+    $scope.webcert.timer = $interval(function() {
+      checkIfDone($scope.webcert)
+    }, retryTime);
+    $scope.minaintyg.timer = $interval(function() {
+      checkIfDone($scope.minaintyg)
+    }, retryTime);
+    $scope.statistik.timer = $interval(function() {
+      checkIfDone($scope.statistik)
+    }, retryTime);
+
+    checkIfDone($scope.webcert);
+    checkIfDone($scope.minaintyg);
+    checkIfDone($scope.statistik);
+
+    function checkIfDone(service) {
+      $http.get('/api/counters/' + service.name)
+        .success(function(data) {
+          if (data.length != 0) {
+            service.doneLoading = true;
+            $interval.cancel(service.timer);
+          }
+          else {
+            service.fail++;
+            if (service.fail > $scope.threshold) {
+              $interval.cancel(service.timer);
+            }
+          }
+        })
+      .error(function() {
+        service.fail++;
+        if (service.fail > $scope.threshold) {
+          $interval.cancel(service.timer);
+        }
+      });
+    }
+
     $scope.$on('$destroy', function() {
       if (timer) {
         $interval.cancel(timer);
@@ -22,38 +80,4 @@ angular.module('MonitorControllers')
       }
     });
 
-    $scope.webcert = {
-      doneLoading: false,
-      name: 'webcert'
-    };
-    $scope.minaintyg = {
-      doneLoading: false,
-      name: 'minaintyg'
-    };
-    $scope.statistik = {
-      doneLoading: false,
-      name: 'statistik'
-    };
-
-    $scope.webcert.timer = $interval(function() {
-      checkIfDone($scope.webcert)
-    }, 1000);
-    $scope.minaintyg.timer = $interval(function() {
-      checkIfDone($scope.minaintyg)
-    }, 1000);
-    $scope.statistik.timer = $interval(function() {
-      checkIfDone($scope.statistik)
-    }, 1000);
-
-    function checkIfDone(service) {
-      $http.get('/api/counters/' + service.name)
-        .success(function(data) {
-          if (data.length != 0) {
-            service.doneLoading = true;
-            $interval.cancel(service.timer);
-          }
-        })
-      .error(function() {
-      });
-    }
 }])

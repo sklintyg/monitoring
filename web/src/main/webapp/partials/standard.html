@@ -4,8 +4,15 @@
       <div class="page-header">
         <h2>Webcert</h2>
       </div>
-      <div style="width:100%; text-align: center;" ng-if="!webcert.doneLoading">
+      <div style="width:100%; text-align: center;"
+           ng-if="!webcert.doneLoading && webcert.fail < threshold">
         <img src="images/ajax-loader.gif" alt="Loading..."/>
+      </div>
+      <div style="width:100%; text-align: center;"
+           ng-if="!webcert.doneLoading && webcert.fail >= threshold">
+        <div class="alert alert-danger">
+          Kunde inte kontakta Webcert. Testa ladda om sidan.
+        </div>
       </div>
       <div ng-if="webcert.doneLoading">
         <chart chartname="webcert"></chart>
@@ -16,8 +23,15 @@
       <div class="page-header">
         <h2>Mina Intyg</h2>
       </div>
-      <div style="width:100%; text-align: center;" ng-if="!minaintyg.doneLoading">
+      <div style="width:100%; text-align: center;"
+           ng-if="!minaintyg.doneLoading && minaintyg.fail < threshold">
         <img src="images/ajax-loader.gif" alt="Loading..."/>
+      </div>
+      <div style="width:100%; text-align: center;"
+           ng-if="!minaintyg.doneLoading && minaintyg.fail >= threshold">
+        <div class="alert alert-danger">
+          Kunde inte kontakta Mina Intyg. Testa ladda om sidan.
+        </div>
       </div>
       <div ng-if="minaintyg.doneLoading">
         <chart chartname="minaintyg"></chart>
@@ -28,8 +42,15 @@
       <div class="page-header">
         <h2>Statistik</h2>
       </div>
-      <div style="width:100%; text-align: center;" ng-if="!statistik.doneLoading">
+      <div style="width:100%; text-align: center;"
+           ng-if="!statistik.doneLoading && statistik.fail < threshold">
         <img src="images/ajax-loader.gif" alt="Loading..."/>
+      </div>
+      <div style="width:100%; text-align: center;"
+           ng-if="!statistik.doneLoading && statistik.fail >= threshold">
+        <div class="alert alert-danger">
+          Kunde inte kontakta Statistiktjänsten. Testa ladda om sidan.
+        </div>
       </div>
       <div ng-if="statistik.doneLoading">
         <chart chartname="statistik"></chart>
