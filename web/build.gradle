@@ -36,6 +36,9 @@ dependencies {
     compile 'junit:junit:4.12'
     compile 'org.mockito:mockito-all:1.10.19'
 
+    compile 'org.slf4j:log4j-over-slf4j:1.7.12'
+    compile 'org.slf4j:jcl-over-slf4j:1.7.12'
+
     providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
 }
 

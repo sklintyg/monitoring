@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name = "application_status")
+@Table(name = "APPLICATION_STATUS")
 public class ApplicationStatus {
 
     @Id

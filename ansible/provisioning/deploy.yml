@@ -6,10 +6,11 @@
     # repo - values: snapshot or release
     repo: release
 
-    version: 1.0
+    version: 1.0.0
     config_version: master
 
   roles:
     - monitoring-systemvariabler
     - monitoring-jarfiler
+    - monitoring-resurser
     - monitoring

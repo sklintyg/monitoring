@@ -23,6 +23,7 @@ tomcat_lib: "/usr/share/tomcat7/lib"
 tomcat_service: tomcat7
 inera_tomcat_folder: "/var/lib/{{ tomcat_service }}"
 webapps_folder: "{{ inera_tomcat_folder }}/webapps"
+tomcat_conf: "{{ inera_tomcat_folder }}/conf"
 
 # Database configuration
 database_server: localhost

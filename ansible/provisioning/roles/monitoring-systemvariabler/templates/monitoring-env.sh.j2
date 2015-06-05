@@ -1,4 +1,4 @@
 ENV_CFG="-Dspring.profiles.active={{ profiles }}"
-MONITORING_CFG="-Dmonitoring.config.file={{ config_etc_folder
-}}/monitoring.properties -Dmonitoring.service.configuration={{ config_etc_folder }}/monitoring-services.json"
-export JAVA_OPTS="$JAVA_OPTS $ENV_CFG $MONITORING_CFG"
+JVM_CFG="-Xms1024m -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=512m -Dfile.encoding=UTF-8"
+MONITORING_CFG="-Dmonitoring.config.file={{ config_etc_folder }}/application.properties -Dmonitoring.service.configuration={{ config_etc_folder }}/serviceconfiguration.json -Dlogback.configurationFile={{ config_etc_folder }}/logback.xml"
+export JAVA_OPTS="$JAVA_OPTS $ENV_CFG $JVM_CFG $MONITORING_CFG"

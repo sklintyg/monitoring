@@ -1,5 +1,11 @@
-[tomcat]
-monitoring-demo ansible_ssh_port=2222 ansible_ssh_host=localhost ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/r2m/inera/monitoring/ansible/vagrant_rsa ansible_python_interpreter=python2
+[tomcat-monitoring]
+monitoring-demo ansible_ssh_port=22 ansible_ssh_host=10.250.35.54 ansible_ssh_user=intygadmin ansible_ssh_private_key_file=~/.ssh/inera_rsa
 
-[mysql]
-monitoring-demo ansible_ssh_port=2222 ansible_ssh_host=localhost ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/r2m/inera/monitoring/ansible/vagrant_rsa ansible_python_interpreter=python2
+[mysql-monitoring]
+monitoring-demo ansible_ssh_port=22 ansible_ssh_host=10.250.35.54 ansible_ssh_user=intygadmin ansible_ssh_private_key_file=~/.ssh/inera_rsa
+
+[tomcat:children]
+tomcat-monitoring
+
+[mysql:children]
+mysql-monitoring
