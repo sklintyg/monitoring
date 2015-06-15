@@ -1,6 +1,12 @@
+plugins {
+    id 'net.researchgate.release' version '2.1.2'
+}
 allprojects {
     group = 'se.inera.monitoring'
-    version = '1.0.0-SNAPSHOT'
+    ext.revision = 'git rev-list --count HEAD'.execute().text.trim()
+    ext.hash = 'git rev-parse --short HEAD'.execute().text.trim()
+    version = "r${revision}.${hash}"
+
 
     repositories {
         mavenLocal()
