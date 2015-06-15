@@ -99,7 +99,7 @@ angular.module('MonitorDirectives')
               }, 0);
             });
 
-          var timer = $interval(function() {fetchData(updateChart);}, 5000);
+          var timer = $interval(function() {fetchData(updateChart);}, 10000);
           scope.$on('$destroy', function() {
             if (timer) {
               $interval.cancel(timer);

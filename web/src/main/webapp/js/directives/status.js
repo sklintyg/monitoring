@@ -29,7 +29,7 @@ angular.module('MonitorDirectives')
       };
       fetchStatus();
 
-      var timer = $interval(fetchStatus, 5000);
+      var timer = $interval(fetchStatus, 10000);
       scope.$on('$destroy', function() {
         if (timer) {
           $interval.cancel(timer);

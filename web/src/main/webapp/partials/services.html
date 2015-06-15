@@ -19,23 +19,28 @@
         <tr ng-repeat="server in servers" ng-class="{danger: !server.reachable}">
           <td>{{server.server}}</td>
           <td ng-repeat="status in server.statuses">
-            <div ng-if="status.severity == 0">
-              <span class="glyphicon glyphicon-ok"
-                    aria-hidden="true"
-                    style="color: green">
-              </span>
+            <div ng-if="status.serviceName.indexOf('Queue') != -1">
+                {{status.statuscode}}
             </div>
-            <div ng-if="status.severity == 1">
-              <span class="glyphicon glyphicon-remove"
-                    aria-hidden="true"
-                    style="color:#c40">
-              </span>
-            </div>
-            <div ng-if="status.severity == 2">
-              <span class="glyphicon glyphicon-warning-sign"
-                    aria-hidden="true"
-                    style="color: darkorange">
-              </span>
+            <div ng-if="status.serviceName.indexOf('Queue') == -1">
+              <div ng-if="status.severity == 0">
+                <span class="glyphicon glyphicon-ok"
+                      aria-hidden="true"
+                      style="color: green">
+                </span>
+              </div>
+              <div ng-if="status.severity == 1">
+                <span class="glyphicon glyphicon-remove"
+                      aria-hidden="true"
+                      style="color:#c40">
+                </span>
+              </div>
+              <div ng-if="status.severity == 2">
+                <span class="glyphicon glyphicon-warning-sign"
+                      aria-hidden="true"
+                      style="color: darkorange">
+                </span>
+              </div>
             </div>
           </td>
         </tr>
