@@ -4,8 +4,9 @@ plugins {
 allprojects {
     group = 'se.inera.monitoring'
     ext.revision = 'git rev-list --count HEAD'.execute().text.trim()
-    ext.hash = 'git rev-parse --short HEAD'.execute().text.trim()
-    version = "r${revision}.${hash}"
+    ext.major = '1'
+    ext.minor = '0'
+    version = "${major}.${minor}.${revision}"
 
 
     repositories {
