@@ -4,9 +4,9 @@
   sudo: yes
   vars:
     # repo - values: snapshot or release
-    repo: release
+    repo: releases
 
-    version: 1.0.0
+    version: 1.0.62
     config_version: master
 
   roles:

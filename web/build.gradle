@@ -11,6 +11,7 @@ buildscript {
 }
 
 apply plugin: 'war'
+apply plugin: 'maven'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'org.akhikhl.gretty'
 apply plugin: 'com.moowork.grunt'
@@ -66,4 +67,14 @@ gretty {
         '-Dmonitoring.config.file=' + projectDir + '/src/main/resources/application-dev.properties',
         '-Dmonitoring.service.configuration=' + projectDir + '/src/main/resources/serviceconfiguration.json'
     ]
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url:"https://build-inera.nordicmedtest.se/nexus/content/repositories/releases/") {
+                authentication(userName: "<username>", password: "<password>")
+            }
+        }
+    }
 }

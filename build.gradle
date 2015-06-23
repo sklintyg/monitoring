@@ -16,6 +16,8 @@ allprojects {
         maven { url "https://repository-callistasoftware.forge.cloudbees.com/snapshot/" }
         maven { url "https://repository-callistasoftware.forge.cloudbees.com/3rdparty/" }
         maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
+        maven { url "https://build-inera.nordicmedtest.se/content/repositories/releases" }
+        maven { url "https://build-inera.nordicmedtest.se/content/repositories/snapshots" }
     }
 }
 
