@@ -22,4 +22,4 @@ Maybe 'mkdir -p ${PATH_TO_PATTERNS}' would solve it."
     exit -1
 fi
 
-sed -i -e "s/\$PATTERNS_DIR/${PATH_TO_PATTERNS}/g" ${FILE}
+sed -i -e "s#\$PATTERNS_DIR#${PATH_TO_PATTERNS}#g" ${FILE}
