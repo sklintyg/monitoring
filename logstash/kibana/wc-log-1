@@ -32,7 +32,7 @@
         "1": {
           "type": "field",
           "field": "host",
-          "query": "\"ine-sib-app01.sth.basefarm.net\"",
+          "query": "\"ine-pib-app01.sth.basefarm.net\"",
           "mandate": "either",
           "active": true,
           "alias": "",
@@ -41,7 +41,7 @@
         "2": {
           "type": "field",
           "field": "host",
-          "query": "\"ine-sib-app02.sth.basefarm.net\"",
+          "query": "\"ine-pib-app02.sth.basefarm.net\"",
           "mandate": "either",
           "active": true,
           "alias": "",
@@ -55,13 +55,23 @@
           "active": true,
           "alias": "",
           "id": 3
+        },
+        "4": {
+          "type": "field",
+          "field": "loglevel",
+          "query": "\"INFO\"",
+          "mandate": "mustNot",
+          "active": true,
+          "alias": "",
+          "id": 4
         }
       },
       "ids": [
         0,
         1,
         2,
-        3
+        3,
+        4
       ]
     }
   },
@@ -179,8 +189,6 @@
             "@timestamp",
             "host",
             "loglevel",
-            "session",
-            "user",
             "javaclass",
             "msg"
           ],
@@ -199,7 +207,7 @@
           },
           "field_list": true,
           "status": "Stable",
-          "trimFactor": 300,
+          "trimFactor": 450,
           "normTimes": true,
           "all_fields": false
         }
@@ -226,15 +234,15 @@
       "pinned": true,
       "history": [
         "*",
+        "loglevel=DEBUG",
+        "!(loglevel=DEBUG)",
+        "loglevel!=DEBUG",
+        "loglevel=WARN",
         "TAGS=INTYG",
         "TAGS=QA",
         "TAGS=AUTH",
         "TAGS=OTHER",
-        "TAGS=PU",
-        "",
-        "intygid = 'e45*'",
-        "TAGS=MAIL",
-        "TAGS="
+        "TAGS=PU"
       ],
       "remember": 10,
       "enable": true
