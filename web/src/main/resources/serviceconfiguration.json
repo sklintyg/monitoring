@@ -23,16 +23,6 @@
           "nodeUrl": "http://test.minaintyg.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         }
       ]
-    },
-    {
-      "serviceName":"statistik",
-      "configurations":["dbStatus","hsaStatus"],
-      "nodes": [
-        {
-          "nodeName": "server1",
-          "nodeUrl": "null"
-        }
-      ]
     }
   ]
 }
