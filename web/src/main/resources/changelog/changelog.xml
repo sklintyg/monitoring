@@ -6,80 +6,80 @@
 
   <changeSet id="1" author="kaan">
 
-    <createTable tableName="application_status">
+    <createTable tableName="APPLICATION_STATUS">
 
-      <column name="application_status_id" type="bigint">
+      <column name="APPLICATION_STATUS_ID" type="bigint">
         <constraints unique="true" nullable="false" />
       </column>
 
-      <column name="application" type="varchar(255)">
+      <column name="APPLICATION" type="varchar(255)">
         <constraints nullable="true" />
       </column>
 
-      <column name="current_users" type="int">
+      <column name="CURRENT_USERS" type="int">
         <constraints nullable="true" />
       </column>
 
-      <column name="reachable" type="boolean">
+      <column name="REACHABLE" type="boolean">
         <constraints nullable="true" />
       </column>
 
-      <column name="responsetime" type="bigint">
+      <column name="RESPONSETIME" type="bigint">
         <constraints nullable="true" />
       </column>
 
-      <column name="timestamp" type="timestamp">
+      <column name="TIMESTAMP" type="timestamp">
         <constraints nullable="true" />
       </column>
 
-      <column name="version" type="varchar(255)">
+      <column name="VERSION" type="varchar(255)">
         <constraints nullable="true" />
       </column>
 
-      <column name="server" type="varchar(255)">
+      <column name="SERVER" type="varchar(255)">
         <constraints nullable="true" />
       </column>
 
     </createTable>
 
-    <createIndex indexName="idx_application_status_id"
-      tableName="application_status" unique="true">
-      <column name="application_status_id" />
+    <createIndex indexName="IDX_APPLICATION_STATUS_ID"
+      tableName="APPLICATION_STATUS" unique="true">
+      <column name="APPLICATION_STATUS_ID" />
     </createIndex>
 
-    <createTable tableName="subsystem_status">
+    <createTable tableName="SUBSYSTEM_STATUS">
 
-      <column name="subsystem_status_id" type="bigint">
+      <column name="SUBSYSTEM_STATUS_ID" type="bigint">
         <constraints unique="true" nullable="false" />
       </column>
 
-      <column name="severity" type="int">
+      <column name="SEVERITY" type="int">
         <constraints nullable="true" />
       </column>
 
-      <column name="status" type="varchar(255)">
+      <column name="STATUS" type="varchar(255)">
         <constraints nullable="true" />
       </column>
 
-      <column name="subsystem" type="varchar(255)">
+      <column name="SUBSYSTEM" type="varchar(255)">
         <constraints nullable="true" />
       </column>
 
-      <column name="application_status_id" type="bigint">
+      <column name="APPLICATION_STATUS_ID" type="bigint">
         <constraints nullable="false" />
       </column>
     </createTable>
 
-    <createIndex indexName="idx_subsystem_status_id"
-      tableName="subsystem_status" unique="true">
-      <column name="subsystem_status_id" />
+    <createIndex indexName="IDX_SUBSYSTEM_STATUS_ID"
+      tableName="SUBSYSTEM_STATUS" unique="true">
+      <column name="SUBSYSTEM_STATUS_ID" />
     </createIndex>
 
     <addAutoIncrement columnDataType="bigint"
-      columnName="application_status_id" incrementBy="1" startWith="1"
-      tableName="application_status" />
+      columnName="APPLICATION_STATUS_ID" incrementBy="1" startWith="1"
+      tableName="APPLICATION_STATUS" />
     <addAutoIncrement columnDataType="bigint"
-      columnName="subsystem_status_id" incrementBy="1" startWith="1"
-      tableName="subsystem_status" />
+      columnName="SUBSYSTEM_STATUS_ID" incrementBy="1" startWith="1"
+      tableName="SUBSYSTEM_STATUS" />
   </changeSet>
 </databaseChangeLog>
