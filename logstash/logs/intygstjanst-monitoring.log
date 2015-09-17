@@ -1,0 +1,12 @@
+2015-09-17 01:10:33,893 1h38rt3882qcb6sp8jflcds0l - CERTIFICATE_SENT_AND_NOTIFIED_BY_WIRETAPPING Certificate 'CERTIFICATE_ID-1' with type 'CERTIFICATE_TYPE', care unit 'CARE_UNIT-1' - sent to 'RECIPIENT' (notification received by wiretapping)
+2015-09-17 02:11:33,893 1h38rt3882qcb6sp8jflcds0l - CERTIFICATE_STATUS_CHANGED Certificate 'CERTIFICATE_ID-2' - changed to status 'STATUS'
+2015-09-17 03:12:33,893 1h38rt3882qcb6sp8jflcds0l - CERTIFICATE_REGISTERED Certificate 'CERTIFICATE_ID-3' with type 'CERTIFICATE_TYPE', care unit 'CARE_UNIT-2' - registered
+2015-09-17 04:13:33,893 1h38rt3882qcb6sp8jflcds0l - CERTIFICATE_REVOKE_SENT Certificate 'CERTIFICATE_ID-4' with type 'CERTIFICATE_TYPE', care unit 'CARE_UNIT' - revoke sent to 'RECIPIENT'
+2015-09-17 05:14:33,893 1h38rt3882qcb6sp8jflcds0l - CERTIFICATE_LISTED_BY_CARE Certificates for citizen 'CITIZEN-1' - listed by care
+2015-09-17 06:15:33,893 1h38rt3882qcb6sp8jflcds0l - CERTIFICATE_LISTED_BY_CITIZEN Certificates for citizen 'CITIZEN-2' - listed by citizen
+2015-09-17 07:16:33,893 1h38rt3882qcb6sp8jflcds0l - CERTIFICATE_REVOKED Certificate 'CERTIFICATE_ID' with type 'CERTIFICATE_TYPE', care unit 'CARE_UNIT' - revoked
+2015-09-17 08:17:33,893 1h38rt3882qcb6sp8jflcds0l - CONSENT_REVOKED Consent revoked from citizen 'CITIZEN-1'
+2015-09-17 09:18:33,893 1h38rt3882qcb6sp8jflcds0l - STATISTICS_SENT Certificate 'CERTIFICATE_ID' with type 'CERTIFICATE_TYPE', care unit 'CARE_UNIT' - sent to statistics
+2015-09-17 10:19:33,893 1h38rt3882qcb6sp8jflcds0l - CONSENT_GIVEN Consent given by citizen 'CITIZEN-2'
+2015-09-17 11:01:33,893 1h38rt3882qcb6sp8jflcds0l - CERTIFICATE_SENT Certificate 'CERTIFICATE_ID' with type 'CERTIFICATE_TYPE', care unit 'CARE_UNIT' - sent to 'RECIPIENT'
+2015-09-17 12:11:33,893 1h38rt3882qcb6sp8jflcds0l - STATISTICS_REVOKED Certificate 'CERTIFICATE_ID' with type 'CERTIFICATE_TYPE', care unit 'CARE_UNIT' - revoke sent to statistics
