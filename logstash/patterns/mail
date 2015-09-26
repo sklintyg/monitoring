@@ -1,3 +1,0 @@
-MAIL_SENT Mail sent to unit '%{DATA:mail_unit}' for %{DATA:reason}
-MAIL_MISSING_ADDRESS Mail sent to admin on behalf of unit '%{DATA:mail_unit}' for %{DATA:reason}
-MAIL_PARSE (%{MAIL_SENT}|%{MAIL_MISSING_ADDRESS})

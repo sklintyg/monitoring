@@ -47,6 +47,15 @@
           "type": "lucene",
           "enable": true,
           "query": "TAGS=PU"
+        },
+        "5": {
+          "id": 5,
+          "color": "#1F78C1",
+          "alias": "Mail",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "TAGS=MAIL"
         }
       },
       "ids": [
@@ -54,7 +63,8 @@
         1,
         2,
         3,
-        4
+        4,
+        5
       ]
     },
     "filter": {
@@ -136,7 +146,8 @@
               1,
               2,
               3,
-              4
+              4,
+              5
             ]
           },
           "annotate": {
@@ -355,7 +366,8 @@
               1,
               2,
               3,
-              4
+              4,
+              5
             ]
           },
           "tmode": "terms",
@@ -392,7 +404,8 @@
               1,
               2,
               3,
-              4
+              4,
+              5
             ]
           },
           "tmode": "terms",
@@ -429,7 +442,8 @@
               1,
               2,
               3,
-              4
+              4,
+              5
             ]
           },
           "tmode": "terms",
@@ -489,7 +503,8 @@
               1,
               2,
               3,
-              4
+              4,
+              5
             ]
           },
           "field_list": false,
@@ -515,10 +530,10 @@
   "pulldowns": [
     {
       "type": "query",
-      "collapse": true,
+      "collapse": false,
       "notice": false,
       "query": "*",
-      "pinned": false,
+      "pinned": true,
       "history": [
         "TAGS=PU",
         "TAGS=OTHER",
