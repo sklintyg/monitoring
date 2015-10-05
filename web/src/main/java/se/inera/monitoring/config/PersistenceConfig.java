@@ -2,37 +2,16 @@ package se.inera.monitoring.config;
 
 import java.util.Properties;
 
-import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
-@Configuration
-@ComponentScan("se.inera.monitoring.persistence")
-@EnableJpaRepositories(basePackages = "se.inera.monitoring.persistence")
-public class PersistenceConfig {
-
-    @Value("${db.driver}")
-    private String databaseDriver;
-    @Value("${db.url}")
-    private String databaseUrl;
-    @Value("${db.username}")
-    private String databaseUsername;
-    @Value("${db.password}")
-    private String databasePassword;
+public abstract class PersistenceConfig {
 
     @Value("${hibernate.dialect}")
     private String hibernateDialect;
@@ -44,30 +23,6 @@ public class PersistenceConfig {
     private String hibernateShowSql;
     @Value("${hibernate.format_sql}")
     private String hibernateFormatSql;
-
-    @Bean(destroyMethod = "close")
-    @Profile("!dev")
-    DataSource jndiDataSource() {
-        DataSource dataSource = null;
-        JndiTemplate jndi = new JndiTemplate();
-        try {
-            dataSource = (DataSource) jndi.lookup("java:comp/env/jdbc/monitoring");
-        } catch (NamingException e) {
-            
-        }
-        return dataSource;
-    }
-    @Bean(destroyMethod = "close")
-    @Profile("dev")
-    DataSource dataSource() {
-        HikariConfig dataSourceConfig = new HikariConfig();
-        dataSourceConfig.setDriverClassName(databaseDriver);
-        dataSourceConfig.setJdbcUrl(databaseUrl);
-        dataSourceConfig.setUsername(databaseUsername);
-        dataSourceConfig.setPassword(databasePassword);
-
-        return new HikariDataSource(dataSourceConfig);
-    }
 
     @Bean
     LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {

@@ -7,7 +7,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[] {
-                ApplicationConfig.class, PersistenceConfig.class, ServiceConfig.class, WsConfig.class
+                ApplicationConfig.class, PersistenceConfigJndi.class, PersistenceConfigDev.class, ServiceConfig.class, WsConfig.class
         };
     }
 
