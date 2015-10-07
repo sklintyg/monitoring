@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function help {
-    echo "Usage: ./diagnosera.sh <logfile> <troublemakers>"
+    echo "Usage: ./diagnosera.sh <logfile> <troublemakers> <date>"
 }
 
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
@@ -25,8 +25,11 @@ elif [[ ! -f "$2" ]]; then
     exit -1
 fi
 
-# We only want today
-TIME=`date -I`
+if [[ "$#" -eq 3 ]]; then
+    TIME=`date -I --date="${3}"`
+else
+    TIME=`date -I`
+fi
 
 # Read in known troublemakers for TAK
 declare -A troublemakers
