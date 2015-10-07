@@ -37,6 +37,7 @@ done < <(cat $2)
 declare -A TAK_ERROR
 APPLICATION_ERROR=false
 FK_ERROR=false
+UNKNOWN=false
 
 while read line; do
     ## TAKningsfel
@@ -47,6 +48,8 @@ while read line; do
         APPLICATION_ERROR=true
     elif [[ -n `echo $line | grep "Certificate couldn't be sent to recipient"` ]]; then
         FK_ERROR=true
+    else
+        UNKNOWN=true
     fi
 done < <(cat $1 | grep -i "^${TIME}.*JmsConsumer.*\(WARN\|ERROR\)")
 
@@ -56,7 +59,7 @@ do
     if [[ ! -z ${troublemakers[$i]} ]]; then
         echo "Hittade potentiellt takningsfel för känt problematisk enhet: ${troublemakers[$i]}"
     else
-        echo "---> Hittade potentiellt takningsfel för enhet: $i"
+        echo "Hittade potentiellt takningsfel för enhet: $i"
     fi
 done
 
@@ -68,5 +71,13 @@ fi
 # FK was temporary (hopefully) down
 if $APPLICATION_ERROR ; then
     echo "Intyg kunde inte skickas till Försäkringskassan för att de inte svarade"
+fi
+
+# FK was temporary (hopefully) down
+if $UNKNOWN ; then
+    echo ""
+    echo "OBSERVERA!"
+    echo "--> Det finns okända fel som behöver utredas"
+    echo ""
 fi
 
