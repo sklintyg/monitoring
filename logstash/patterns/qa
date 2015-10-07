@@ -1,5 +1,0 @@
-QUESTION_RECEIVED Received question from '%{DATA:questioner}' regarding intyg '%{DATA:intygid}' with reference '%{DATA:questionid}'
-ANSWER_RECEIVED Received answer to question '%{DATA:questionid}' regarding intyg '%{DATA:intygid}'
-QUESTION_SENT Sent question '%{DATA:questionid}' regarding intyg '%{DATA:intygid}'
-ANSWER_SENT Sent answer to question '%{DATA:questionid}' regarding intyg '%{DATA:intygid}'
-QA_PARSE (%{QUESTION_RECEIVED}|%{ANSWER_RECEIVED}|%{QUESTION_SENT}|%{ANSWER_SENT})

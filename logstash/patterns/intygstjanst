@@ -1,0 +1,20 @@
+# ------------------------------------------------------------
+# INTYGSTJANST__STATISTICS_PARSE
+# ------------------------------------------------------------
+STATISTICS_REVOKED Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - revoke sent to statistics
+STATISTICS_SENT Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - sent to statistics
+INTYGSTJANST__STATISTICS_PARSE (%{STATISTICS_REVOKED}|%{STATISTICS_SENT})
+
+# ------------------------------------------------------------
+# INTYGSTJANST__CERTIFICATE_PARSE
+# ------------------------------------------------------------
+CERTIFICATE_REGISTERED Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - registered
+CERTIFICATE_SENT Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - sent to '%{DATA:recipient}'
+CERTIFICATE_SENT_AND_NOTIFIED_BY_WIRETAPPING Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - sent to '%{DATA:recipient}' (notification received by wiretapping)
+CERTIFICATE_REVOKED Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - revoked
+CERTIFICATE_REVOKE_SENT Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - revoke sent to '%{DATA:recipient}'
+CERTIFICATE_LISTED_BY_CITIZEN Certificates for citizen '%{DATA:user}' - listed by citizen
+CERTIFICATE_LISTED_BY_CARE Certificates for citizen '%{DATA:user}' - listed by care
+CERTIFICATE_STATUS_CHANGED Certificate '%{DATA:intygid}' - changed to status '%{DATA:status}'
+INTYGSTJANST__CERTIFICATE_PARSE (%{CERTIFICATE_REGISTERED}|%{CERTIFICATE_SENT}|%{CERTIFICATE_SENT_AND_NOTIFIED_BY_WIRETAPPING}|%{CERTIFICATE_REVOKED}|%{CERTIFICATE_REVOKE_SENT}|%{CERTIFICATE_LISTED_BY_CITIZEN}|%{CERTIFICATE_LISTED_BY_CARE}|%{CERTIFICATE_STATUS_CHANGED})
+

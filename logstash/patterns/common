@@ -1,0 +1,45 @@
+# ------------------------------------------------------------
+# SESSION
+# ------------------------------------------------------------
+NO_SESSION NO SESSION
+SESSION (?:%{NO_SESSION}|%{DATA})
+
+# ------------------------------------------------------------
+# WEBCERTTIMESTAMP
+# ------------------------------------------------------------
+WEBCERTDATE %{YEAR}[- ]%{MONTHNUM}[- ]%{MONTHDAY}
+WEBCERTTIMESTAMP %{WEBCERTDATE}[ ]%{TIME}
+
+# ------------------------------------------------------------
+# UNIT
+# ------------------------------------------------------------
+NO_UNIT NO UNIT
+UNIT (?:%{NO_UNIT}|%{DATA})
+
+# ------------------------------------------------------------
+# USER
+# ------------------------------------------------------------
+NO_USER NO USER
+USER (?:%{NO_USER}|%{DATA})
+
+# ------------------------------------------------------------
+# LOG_LVL
+# ------------------------------------------------------------
+LOG_LVL (DEBUG|INFO|WARN|ERROR)
+
+# ------------------------------------------------------------
+# CONSENT_PARSE
+# ------------------------------------------------------------
+CONSENT_GIVEN Consent given by citizen '%{DATA:user}'
+CONSENT_REVOKED Consent revoked by citizen '%{DATA:user}'
+CONSENT_PARSE (%{CONSENT_GIVEN}|%{CONSENT_REVOKED})
+
+# ------------------------------------------------------------
+# AUTH_PARSE
+# ------------------------------------------------------------
+USER_LOGIN Login user '%{DATA:user}' using scheme '%{DATA:scheme}'
+USER_LOGOUT Logout user '%{DATA:user}' using scheme '%{DATA:scheme}'
+USER_SESSION_EXPIRY Session expired for user '%{DATA:user}' using scheme '%{DATA:scheme}'
+CITIZEN_LOGIN Citizen '%{DATA:user}' logged in using login method '%{DATA:scheme}'
+CITIZEN_LOGOUT Citizen '%{DATA:user}' logged out using login method '%{DATA:scheme}'
+AUTH_PARSE (%{USER_LOGIN}|%{USER_LOGOUT}|%{USER_SESSION_EXPIRY}|%{CITIZEN_LOGIN}|%{CITIZEN_LOGOUT})

@@ -1,34 +1,34 @@
 {
-  "title": "wc-mon-1",
+  "title": "it-mon-1",
   "services": {
     "query": {
       "list": {
         "0": {
-          "id": 0,
-          "color": "#7EB26D",
+          "query": "TAGS=INTYG",
           "alias": "Intyg",
+          "color": "#7EB26D",
+          "id": 0,
           "pin": true,
           "type": "lucene",
-          "enable": true,
-          "query": "TAGS=INTYG"
+          "enable": true
         },
         "1": {
           "id": 1,
           "color": "#EAB839",
-          "alias": "QA",
+          "alias": "Consent",
           "pin": true,
           "type": "lucene",
           "enable": true,
-          "query": "TAGS=QA"
+          "query": "TAGS=CONSENT"
         },
         "2": {
           "id": 2,
           "color": "#6ED0E0",
-          "alias": "Authensiering",
+          "alias": "Statistics",
           "pin": true,
           "type": "lucene",
           "enable": true,
-          "query": "TAGS=AUTH"
+          "query": "TAGS=STATISTICS"
         },
         "3": {
           "id": 3,
@@ -38,73 +38,6 @@
           "type": "lucene",
           "enable": true,
           "query": "TAGS=OTHER"
-        },
-        "4": {
-          "id": 4,
-          "color": "#E24D42",
-          "alias": "PU",
-          "pin": true,
-          "type": "lucene",
-          "enable": true,
-          "query": "TAGS=PU"
-        },
-        "5": {
-          "id": 5,
-          "color": "#1F78C1",
-          "alias": "Mail",
-          "pin": true,
-          "type": "lucene",
-          "enable": true,
-          "query": "TAGS=MAIL"
-        }
-      },
-      "ids": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ]
-    },
-    "filter": {
-      "list": {
-        "0": {
-          "type": "time",
-          "field": "@timestamp",
-          "from": "now-12h",
-          "to": "now",
-          "mandate": "must",
-          "active": true,
-          "alias": "",
-          "id": 0
-        },
-        "1": {
-          "type": "field",
-          "field": "host",
-          "query": "\"ine-sib-app01.sth.basefarm.net\"",
-          "mandate": "either",
-          "active": true,
-          "alias": "",
-          "id": 1
-        },
-        "2": {
-          "type": "field",
-          "field": "host",
-          "query": "\"ine-sib-app02.sth.basefarm.net\"",
-          "mandate": "either",
-          "active": true,
-          "alias": "",
-          "id": 2
-        },
-        "3": {
-          "type": "field",
-          "field": "_type",
-          "query": "\"webcert-monitoring\"",
-          "mandate": "must",
-          "active": true,
-          "alias": "",
-          "id": 3
         }
       },
       "ids": [
@@ -113,12 +46,29 @@
         2,
         3
       ]
+    },
+    "filter": {
+      "list": {
+        "0": {
+          "type": "time",
+          "field": "@timestamp",
+          "from": "now-24h",
+          "to": "now",
+          "mandate": "must",
+          "active": true,
+          "alias": "",
+          "id": 0
+        }
+      },
+      "ids": [
+        0
+      ]
     }
   },
   "rows": [
     {
-      "title": "Graphs",
-      "height": "200px",
+      "title": "Graph",
+      "height": "350px",
       "editable": true,
       "collapse": false,
       "collapsable": true,
@@ -126,43 +76,40 @@
         {
           "span": 12,
           "editable": true,
+          "group": [
+            "default"
+          ],
           "type": "histogram",
-          "loadingEditor": false,
           "mode": "count",
           "time_field": "@timestamp",
           "value_field": null,
+          "auto_int": true,
+          "resolution": 100,
+          "interval": "10m",
+          "fill": 3,
+          "linewidth": 3,
+          "timezone": "browser",
+          "spyable": true,
+          "zoomlinks": true,
+          "bars": false,
+          "stack": true,
+          "points": false,
+          "lines": true,
+          "legend": true,
           "x-axis": true,
           "y-axis": true,
-          "scale": 1,
-          "y_format": "short",
-          "grid": {
-            "max": null,
-            "min": 0
-          },
+          "percentage": false,
+          "interactive": true,
           "queries": {
             "mode": "all",
             "ids": [
               0,
               1,
               2,
-              3,
-              4,
-              5
+              3
             ]
           },
-          "annotate": {
-            "enable": false,
-            "query": "*",
-            "size": 20,
-            "field": "_type",
-            "sort": [
-              "_score",
-              "desc"
-            ]
-          },
-          "auto_int": true,
-          "resolution": 100,
-          "interval": "5m",
+          "title": "Events over time",
           "intervals": [
             "auto",
             "1s",
@@ -175,31 +122,35 @@
             "12h",
             "1d",
             "1w",
+            "1M",
             "1y"
           ],
-          "lines": true,
-          "fill": 0,
-          "linewidth": 3,
-          "points": false,
-          "pointradius": 5,
-          "bars": false,
-          "stack": false,
-          "spyable": true,
-          "zoomlinks": true,
           "options": true,
-          "legend": true,
-          "show_query": true,
-          "interactive": true,
-          "legend_counts": true,
-          "timezone": "browser",
-          "percentage": false,
-          "zerofill": true,
-          "derivative": false,
           "tooltip": {
             "value_type": "cumulative",
             "query_as_alias": true
           },
-          "title": "Events over time"
+          "scale": 1,
+          "y_format": "none",
+          "grid": {
+            "max": null,
+            "min": 0
+          },
+          "annotate": {
+            "enable": false,
+            "query": "*",
+            "size": 20,
+            "field": "_type",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "pointradius": 5,
+          "show_query": true,
+          "legend_counts": true,
+          "zerofill": true,
+          "derivative": false
         }
       ],
       "notice": false
@@ -236,16 +187,12 @@
           "queries": {
             "mode": "all",
             "ids": [
-              0,
-              1,
-              2,
-              3,
-              4
+              0
             ]
           },
           "tmode": "terms",
           "tstat": "total",
-          "valuefield": "user.raw",
+          "valuefield": "",
           "title": "User"
         },
         {
@@ -255,10 +202,7 @@
           "type": "terms",
           "loadingEditor": false,
           "field": "unit",
-          "exclude": [
-            "NO UNIT",
-            "NO USER NO UNIT"
-          ],
+          "exclude": [],
           "missing": false,
           "other": false,
           "size": 20,
@@ -276,11 +220,7 @@
           "queries": {
             "mode": "all",
             "ids": [
-              0,
-              1,
-              2,
-              3,
-              4
+              0
             ]
           },
           "tmode": "terms",
@@ -313,17 +253,13 @@
           "queries": {
             "mode": "all",
             "ids": [
-              0,
-              1,
-              2,
-              3,
-              4
+              0
             ]
           },
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Intygsid"
+          "title": "intygid"
         }
       ],
       "notice": false
@@ -343,7 +279,7 @@
           "loadingEditor": false,
           "field": "tags",
           "exclude": [
-            "webcert-monitoring"
+            "intygstjanst-monitoring"
           ],
           "missing": false,
           "other": false,
@@ -352,7 +288,7 @@
           "style": {
             "font-size": "10pt"
           },
-          "donut": true,
+          "donut": false,
           "tilt": false,
           "labels": true,
           "arrangement": "horizontal",
@@ -365,9 +301,7 @@
               0,
               1,
               2,
-              3,
-              4,
-              5
+              3
             ]
           },
           "tmode": "terms",
@@ -403,9 +337,7 @@
               0,
               1,
               2,
-              3,
-              4,
-              5
+              3
             ]
           },
           "tmode": "terms",
@@ -441,9 +373,7 @@
               0,
               1,
               2,
-              3,
-              4,
-              5
+              3
             ]
           },
           "tmode": "terms",
@@ -487,7 +417,8 @@
             "unit",
             "user",
             "msg",
-            "intygid"
+            "intygid",
+            "tags"
           ],
           "localTime": true,
           "timeField": "@timestamp",
@@ -502,9 +433,7 @@
               0,
               1,
               2,
-              3,
-              4,
-              5
+              3
             ]
           },
           "field_list": false,
@@ -535,24 +464,19 @@
       "query": "*",
       "pinned": true,
       "history": [
-        "TAGS=PU",
         "TAGS=OTHER",
-        "TAGS=AUTH",
-        "TAGS=QA",
+        "TAGS=STATISTICS",
+        "TAGS=CONSENT",
         "TAGS=INTYG",
-        "",
-        "intygid = 'e45*'",
-        "TAGS=MAIL",
-        "*",
-        "TAGS="
+        "*"
       ],
       "remember": 10,
       "enable": true
     },
     {
       "type": "filtering",
-      "collapse": true,
-      "notice": false,
+      "collapse": false,
+      "notice": true,
       "enable": true
     }
   ],
