@@ -9,4 +9,4 @@
 2015-09-26 06:10:33,893 SESSION-1 - STATISTICS_REVOKED Certificate 'CERTIFICATE_ID' with type 'CERTIFICATE_TYPE', care unit 'CARE_UNIT' - revoke sent to statistics
 2015-09-26 06:10:33,893 SESSION-1 - STATISTICS_SENT Certificate 'CERTIFICATE_ID' with type 'CERTIFICATE_TYPE', care unit 'CARE_UNIT' - sent to statistics
 2015-09-26 06:10:33,893 SESSION-1 - CONSENT_GIVEN Consent given by citizen 'CITIZEN'
-2015-09-26 06:10:33,893 SESSION-1 - CONSENT_REVOKED Consent revoked from citizen 'CITIZEN'
+2015-09-26 06:10:33,893 SESSION-1 - CONSENT_REVOKED Consent revoked by citizen 'CITIZEN'
