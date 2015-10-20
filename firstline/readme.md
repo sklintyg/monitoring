@@ -24,7 +24,7 @@ Hittade potentiellt takningsfel för enhet: SE2321000115-O48545
  - Detta är inte akut utan kan vänta till nästa vardagsmorgon. Underrätta Inera
    beredskap om att detta ska göras på måndag och uppge ovanstående text.
 
-VAS kunde inte hantera notifieringar som skickats. Detta brukar bero på att de får meddelanden i fel ordning efter ett tidigare stopp.
+Problem med kommunikationen till VAS. Detta brukar bero på att de får meddelanden i fel ordning efter ett tidigare stopp.
  - Detta behöver man undersöka vidare. Kontakta Inera beredskap och uppge
    ovanstående text.
 
@@ -32,7 +32,12 @@ Intyg kunde inte skickas till Försäkringskassan för att de inte svarar på an
  - Detta behöver man undersöka vidare. Har FK service fönster? Om inte så
    Kontakta Inera beredskap med detta meddelandet.
 
---> Det finns okända fel som behöver utredas
+--> Det finns okända fel som behöver utredas. Dessa är:
+ * <Felmeddelande 1>
+ * <Felmeddelande 2>
+ * ...
+ * <Felmeddelande N>
+
  - Detta är output när scriptet inte kunde identifiera vad det var som gick fel.
    Detta är inte ett känt fel. Kontakta Inera beredskap och uppge ovanstående
    text.

@@ -40,7 +40,7 @@ done < <(cat $2)
 declare -A TAK_ERROR
 APPLICATION_ERROR=false
 FK_ERROR=false
-UNKNOWN=false
+declare -A UNKNOWN
 
 while read line; do
     ## TAKningsfel
@@ -52,7 +52,8 @@ while read line; do
     elif [[ -n `echo $line | grep "Certificate couldn't be sent to recipient"` ]]; then
         FK_ERROR=true
     else
-        UNKNOWN=true
+        line=${line#*] - }
+        UNKNOWN[$line]=true
     fi
 done < <(cat $1 | grep -i "^${TIME}.*JmsConsumer.*\(WARN\|ERROR\)")
 
@@ -68,19 +69,22 @@ done
 
 # Print message detailing why VAS could not accept our notifications
 if $APPLICATION_ERROR ; then
-    echo "VAS kunde inte hantera notifieringar som skickats, brukar bero på att de får meddelanden i fel ordning"
+    echo "Problem med kommunikationen till VAS. Detta brukar bero på att de får meddelanden i fel ordning efter ett tidigare stopp."
 fi
 
 # FK was temporary (hopefully) down
 if $APPLICATION_ERROR ; then
-    echo "Intyg kunde inte skickas till Försäkringskassan för att de inte svarade"
+    echo "Intyg kunde inte skickas till Försäkringskassan för att de inte svarar på anrop."
 fi
 
 # FK was temporary (hopefully) down
-if $UNKNOWN ; then
+if [[ ${#UNKNOWN[*]} -gt 0 ]]; then
     echo ""
     echo "OBSERVERA!"
-    echo "--> Det finns okända fel som behöver utredas"
-    echo ""
+    echo "--> Det finns okända fel som behöver utredas. Dessa är:"
+    for i in "${!UNKNOWN[@]}"
+    do
+        echo " * $i"
+    done
 fi
 
