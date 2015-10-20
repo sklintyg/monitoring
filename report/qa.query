@@ -1,0 +1,71 @@
+{
+  "query": {
+    "filtered": {
+      "query": {
+        "bool": {
+          "should": [
+            {
+              "query_string": {
+                "query": "event:ANSWER_SENT OR QUESTION_SENT"
+              }
+            }
+          ]
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "range": {
+                "@timestamp": {
+                  "from": FROM_VAR,
+                  "to": TO_VAR
+                }
+              }
+            },
+            {
+              "fquery": {
+                "query": {
+                  "query_string": {
+                    "query": "_type:(\"webcert-monitoring\")"
+                  }
+                },
+                "_cache": true
+              }
+            },
+            {
+              "terms": {
+                "tags.raw": [
+                  "QA"
+                ]
+              }
+            }
+          ],
+          "should": [
+            {
+              "fquery": {
+                "query": {
+                  "query_string": {
+                    "query": "host:(\"ine-pib-app01.sth.basefarm.net\")"
+                  }
+                },
+                "_cache": true
+              }
+            },
+            {
+              "fquery": {
+                "query": {
+                  "query_string": {
+                    "query": "host:(\"ine-pib-app02.sth.basefarm.net\")"
+                  }
+                },
+                "_cache": true
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "size": 10000
+}
