@@ -3,7 +3,7 @@
 # ------------------------------------------------------------
 PLK_USER_DELETED User '%{DATA:user}' deleted
 PLK_USER_DETAILS_CHANGED Details for user '%{DATA:user}' changed
-PLK_USER_REGISTERED User '%{DATA:user}' registered with hsaId '%{DATA:hsaid}', status '%{DATA:status}'
+PLK_USER_REGISTERED User '%{DATA:user}' registered with consent version '%{DATA:consent_version}' and hsaId '%{DATA:hsaid}', returned status '%{DATA:status}'
 PLK__USER_PARSE (%{PLK_USER_DELETED}|%{PLK_USER_DETAILS_CHANGED}|%{PLK_USER_REGISTERED})
 
 # ------------------------------------------------------------
