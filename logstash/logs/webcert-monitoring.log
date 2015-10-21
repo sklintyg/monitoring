@@ -25,3 +25,4 @@
 2015-09-26 04:10:59,835 SESSION-1 USER-1 UNIT-1 - ANSWER_SENT Sent answer to question with external reference 'EXTERN_REFERENS' and internal reference '97' regarding intyg 'INTYGS_ID' to unit 'ENHET' with subject 'AMNE'
 2015-09-26 04:10:59,835 SESSION-1 USER-1 UNIT-1 - QUESTION_SENT Sent question with external reference 'EXTERN_REFERENS' and internal reference '97' regarding intyg 'INTYGS_ID' to unit 'ENHET' with subject 'AMNE'
 2015-09-26 04:10:59,835 SESSION-1 USER-1 UNIT-1 - QUESTION_RECEIVED Received question from 'FRAGESTALLARE' with external reference 'EXTERN_REFERENS' and internal reference '97' regarding intyg 'INTYGS_ID' to unit 'ENHET' with subject 'AMNE'
+2015-09-26 04:10:59,835 SESSION-1 USER-1 UNIT-1 - USER_AGREEMENT_ACCEPTED User 'HSA_ID' accepted agreement version '1' with date '2016-10-19T14:00:00.000'

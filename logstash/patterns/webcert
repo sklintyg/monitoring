@@ -36,3 +36,10 @@ WEBCERT__MAIL_PARSE (%{MAIL_SENT}|%{MAIL_MISSING_ADDRESS})
 # ------------------------------------------------------------
 PU_LOOKUP Lookup performed on '%{DATA:personnummer}' with result '%{DATA:pu_result}'
 WEBCERT__PU_PARSE %{PU_LOOKUP}
+
+
+# ------------------------------------------------------------
+# WEBCERT__USER_PARSE
+# ------------------------------------------------------------
+USER_AGREEMENT_ACCEPTED  User '%{DATA:user}' accepted agreement version '%{DATA:version}' with date '%{DATA:version_date}'
+WEBCERT__USER_PARSE %{USER_AGREEMENT_ACCEPTED}

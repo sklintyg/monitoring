@@ -56,6 +56,15 @@
           "type": "lucene",
           "enable": true,
           "query": "TAGS=MAIL"
+        },
+        "6": {
+          "id": 6,
+          "color": "#BA43A9",
+          "alias": "Privatläkare",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "TAGS=PLK"
         }
       },
       "ids": [
@@ -64,7 +73,8 @@
         2,
         3,
         4,
-        5
+        5,
+        6
       ]
     },
     "filter": {
@@ -535,6 +545,8 @@
       "query": "*",
       "pinned": true,
       "history": [
+        "TAGS=PLK",
+        "TAGS=MAIL",
         "TAGS=PU",
         "TAGS=OTHER",
         "TAGS=AUTH",
@@ -542,9 +554,7 @@
         "TAGS=INTYG",
         "",
         "intygid = 'e45*'",
-        "TAGS=MAIL",
-        "*",
-        "TAGS="
+        "*"
       ],
       "remember": 10,
       "enable": true
