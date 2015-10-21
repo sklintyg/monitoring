@@ -29,24 +29,6 @@
           "alias": "",
           "id": 0
         },
-        "1": {
-          "type": "field",
-          "field": "host",
-          "query": "\"ine-pib-app01.sth.basefarm.net\"",
-          "mandate": "either",
-          "active": true,
-          "alias": "",
-          "id": 1
-        },
-        "2": {
-          "type": "field",
-          "field": "host",
-          "query": "\"ine-pib-app02.sth.basefarm.net\"",
-          "mandate": "either",
-          "active": true,
-          "alias": "",
-          "id": 2
-        },
         "3": {
           "type": "field",
           "field": "_type",
@@ -68,8 +50,6 @@
       },
       "ids": [
         0,
-        1,
-        2,
         3,
         4
       ]
@@ -249,8 +229,8 @@
     },
     {
       "type": "filtering",
-      "collapse": true,
-      "notice": false,
+      "collapse": false,
+      "notice": true,
       "enable": true
     }
   ],
