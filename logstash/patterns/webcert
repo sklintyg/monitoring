@@ -39,7 +39,7 @@ WEBCERT__PU_PARSE %{PU_LOOKUP}
 
 
 # ------------------------------------------------------------
-# WEBCERT__USER_PARSE
+# WEBCERT__CONSENT_PARSE
 # ------------------------------------------------------------
-USER_AGREEMENT_ACCEPTED  User '%{DATA:user}' accepted agreement version '%{DATA:version}' with date '%{DATA:version_date}'
-WEBCERT__USER_PARSE %{USER_AGREEMENT_ACCEPTED}
+WEBCERT__CONSENT_GIVEN Consent given by user '%{DATA:user}', hsaId '%{DATA:hsaId}', version '%{DATA:version}', date '%{DATA:version_date}'
+WEBCERT__CONSENT_PARSE %{WEBCERT__CONSENT_GIVEN}
