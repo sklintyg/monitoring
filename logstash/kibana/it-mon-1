@@ -58,10 +58,20 @@
           "active": true,
           "alias": "",
           "id": 0
+        },
+        "2": {
+          "type": "terms",
+          "field": "_type",
+          "value": "intygstjanst-monitoring",
+          "mandate": "must",
+          "active": true,
+          "alias": "",
+          "id": 2
         }
       },
       "ids": [
-        0
+        0,
+        2
       ]
     }
   },
@@ -307,7 +317,7 @@
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Grouping"
+          "title": "Tag"
         },
         {
           "error": false,
@@ -379,7 +389,7 @@
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Server"
+          "title": "Host"
         }
       ],
       "notice": false
@@ -418,7 +428,8 @@
             "user",
             "msg",
             "intygid",
-            "tags"
+            "tags",
+            "_type"
           ],
           "localTime": true,
           "timeField": "@timestamp",
@@ -436,7 +447,7 @@
               3
             ]
           },
-          "field_list": false,
+          "field_list": true,
           "status": "Stable",
           "trimFactor": 300,
           "normTimes": true,
