@@ -31,6 +31,12 @@ else
     TIME=`date -I`
 fi
 
+# Handle gzipped files by using zcat otherwise use normal cat
+CAT=cat
+if [[ $1 == *.gz ]]; then
+    CAT=zcat
+fi
+
 # Read in known troublemakers for TAK
 declare -A troublemakers
 while read -r hsa name; do
@@ -55,7 +61,7 @@ while read line; do
         line=${line#*] - }
         UNKNOWN[$line]=true
     fi
-done < <(cat $1 | grep -i "^${TIME}.*JmsConsumer.*\(WARN\|ERROR\)")
+done < <($CAT $1 | grep -i "^${TIME}.*JmsConsumer.*\(WARN\|ERROR\)")
 
 # Iterate over TAK_ERROR and print prettified output
 for i in "${!TAK_ERROR[@]}"
