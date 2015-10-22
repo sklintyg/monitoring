@@ -36,3 +36,10 @@ WEBCERT__MAIL_PARSE (%{MAIL_SENT}|%{MAIL_MISSING_ADDRESS})
 # ------------------------------------------------------------
 PU_LOOKUP Lookup performed on '%{DATA:personnummer}' with result '%{DATA:pu_result}'
 WEBCERT__PU_PARSE %{PU_LOOKUP}
+
+
+# ------------------------------------------------------------
+# WEBCERT__CONSENT_PARSE
+# ------------------------------------------------------------
+WEBCERT__CONSENT_GIVEN Consent given by user '%{DATA:user}', hsaId '%{DATA:hsaId}', version '%{DATA:consent_version}', date '%{DATA:consent_date}'
+WEBCERT__CONSENT_PARSE %{WEBCERT__CONSENT_GIVEN}

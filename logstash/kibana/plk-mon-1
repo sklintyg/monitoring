@@ -49,28 +49,10 @@
           "alias": "",
           "id": 0
         },
-        "1": {
-          "type": "field",
-          "field": "host",
-          "query": "\"ine-pib-app01.sth.basefarm.net\"",
-          "mandate": "either",
-          "active": true,
-          "alias": "",
-          "id": 1
-        },
-        "2": {
-          "type": "field",
-          "field": "host",
-          "query": "\"ine-pib-app02.sth.basefarm.net\"",
-          "mandate": "either",
-          "active": true,
-          "alias": "",
-          "id": 2
-        },
         "3": {
           "type": "field",
           "field": "_type",
-          "query": "\"privatlakarportal\"",
+          "query": "\"privatlakarportal-monitoring\"",
           "mandate": "must",
           "active": true,
           "alias": "",
@@ -79,8 +61,6 @@
       },
       "ids": [
         0,
-        1,
-        2,
         3
       ]
     }
@@ -335,7 +315,7 @@
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Grouping"
+          "title": "Tag"
         },
         {
           "error": false,
@@ -405,7 +385,7 @@
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Server"
+          "title": "Host"
         }
       ],
       "notice": false
@@ -504,7 +484,7 @@
     {
       "type": "filtering",
       "collapse": false,
-      "notice": false,
+      "notice": true,
       "enable": true
     }
   ],
