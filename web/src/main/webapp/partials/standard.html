@@ -40,21 +40,21 @@
     </div>
     <div class="col-md-4">
       <div class="page-header">
-        <h2>Statistik</h2>
+        <h2>Privatläkarportalen</h2>
       </div>
       <div style="width:100%; text-align: center;"
-           ng-if="!statistik.doneLoading && statistik.fail < threshold">
+           ng-if="!privatlakarportalen.doneLoading && privatlakarportalen.fail < threshold">
         <img src="images/ajax-loader.gif" alt="Loading..."/>
       </div>
       <div style="width:100%; text-align: center;"
-           ng-if="!statistik.doneLoading && statistik.fail >= threshold">
+           ng-if="!privatlakarportalen.doneLoading && privatlakarportalen.fail >= threshold">
         <div class="alert alert-danger">
-          Kunde inte kontakta Statistiktjänsten. Testa ladda om sidan.
+          Kunde inte kontakta Privatläkarportalen. Testa ladda om sidan.
         </div>
       </div>
-      <div ng-if="statistik.doneLoading">
-        <chart chartname="statistik"></chart>
-        <monitorservices service-name="statistik" alertsize="flex-item-big"></monitorservices>
+      <div ng-if="privatlakarportalen.doneLoading">
+        <chart chartname="privatlakarportalen"></chart>
+        <monitorservices service-name="privatlakarportalen" alertsize="flex-item-big"></monitorservices>
       </div>
     </div>
   </div>

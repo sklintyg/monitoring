@@ -7,13 +7,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    //grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-ng-annotate');
     grunt.loadNpmTasks('grunt-concurrent');
-    //grunt.loadNpmTasks('grunt-connect-proxy');
-    //grunt.loadNpmTasks('grunt-contrib-connect');
-    //grunt.loadNpmTasks('grunt-angular-templates');
-    //grunt.loadNpmTasks('grunt-contrib-watch');
 
     var SRC_DIR = 'src/main/webapp/js/';
     var TEST_DIR = 'src/test/js/';
@@ -54,13 +49,6 @@ module.exports = function(grunt) {
                 src: ['Gruntfile.js', SRC_DIR + '**/*.js', TEST_DIR + '**/*.js', '!' + SRC_DIR + '/app.min.js']
             }
         },
-
-        //karma: {
-            //monitoring: {
-                //configFile: 'src/test/resources/karma.conf.ci.js',
-                //reporters: ['mocha']
-            //}
-        //},
 
         ngAnnotate: {
             options: {

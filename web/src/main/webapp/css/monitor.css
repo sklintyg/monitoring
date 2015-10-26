@@ -27,7 +27,7 @@
 }
 
 #webcert,
-#statistik,
+#privatlakarportalen,
 #mina-intyg {
   text-align: center;
 }
@@ -35,7 +35,7 @@
   fill: lightblue;
 }
 
-#statistik .area {
+#privatlakarportalen .area {
   fill: teal;
 }
 

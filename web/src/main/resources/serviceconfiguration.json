@@ -23,6 +23,16 @@
           "nodeUrl": "http://test.minaintyg.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         }
       ]
+    },
+    {
+      "serviceName":"privatlakarportalen",
+      "configurations":["dbStatus","hsaStatus"],
+      "nodes": [
+        {
+          "nodeName": "node1",
+          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
+        }
+      ]
     }
   ]
 }
