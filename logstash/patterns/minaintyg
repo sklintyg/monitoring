@@ -1,15 +1,22 @@
 # ------------------------------------------------------------
-# MINAINTYG__CERTIFICATE_PARSE
+# MI__CERTIFICATE_PARSE
 # ------------------------------------------------------------
-CERTIFICATE_READ Certificate '%{DATA:intygid}' of type '%{DATA:intygtyp}' was read
-CERTIFICATE_SEND Certificate '%{DATA:intygid}' sent to '%{DATA:recipient}'
-CERTIFICATE_ARCHIVED Certificate '%{DATA:intygid}' archived
-CERTIFICATE_RESTORED Certificate '%{DATA:intygid}' restored
-MINAINTYG__CERTIFICATE_PARSE (%{CERTIFICATE_READ}|%{CERTIFICATE_SEND}|%{CERTIFICATE_ARCHIVED}|%{CERTIFICATE_RESTORED})
+MI__CERTIFICATE_READ Certificate '%{DATA:intygid}' of type '%{DATA:intygtyp}' was read
+MI__CERTIFICATE_SEND Certificate '%{DATA:intygid}' sent to '%{DATA:recipient}'
+MI__CERTIFICATE_ARCHIVED Certificate '%{DATA:intygid}' archived
+MI__CERTIFICATE_RESTORED Certificate '%{DATA:intygid}' restored
+MI__CERTIFICATE_PARSE (%{MI__CERTIFICATE_READ}|%{MI__CERTIFICATE_SEND}|%{MI__CERTIFICATE_ARCHIVED}|%{MI__CERTIFICATE_RESTORED})
 
 # ------------------------------------------------------------
-# MINAINTYG__AUTH_PARSE
+# MI__AUTH_PARSE
 # ------------------------------------------------------------
-CITIZEN_LOGIN Citizen '%{DATA:user}' logged in using login method '%{DATA:scheme}'
-CITIZEN_LOGOUT Citizen '%{DATA:user}' logged out using login method '%{DATA:scheme}'
-MINAINTYG__AUTH_PARSE (%{CITIZEN_LOGIN}|%{CITIZEN_LOGOUT})
+MI__CITIZEN_LOGIN Citizen '%{DATA:user}' logged in using login method '%{DATA:scheme}'
+MI__CITIZEN_LOGOUT Citizen '%{DATA:user}' logged out using login method '%{DATA:scheme}'
+MI__AUTH_PARSE (%{MI__CITIZEN_LOGIN}|%{MI__CITIZEN_LOGOUT})
+
+# ------------------------------------------------------------
+# MI__CONSENT_PARSE
+# ------------------------------------------------------------
+MI__CONSENT_GIVEN Consent given by citizen '%{DATA:user}'
+MI__CONSENT_REVOKED Consent revoked by citizen '%{DATA:user}'
+MI__CONSENT_PARSE (%{MI__CONSENT_GIVEN}|%{MI__CONSENT_REVOKED})
