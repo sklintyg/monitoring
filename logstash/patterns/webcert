@@ -1,42 +1,50 @@
 # ------------------------------------------------------------
-# WEBCERT__QA_PARSE
+# WC__QA_PARSE
 # ------------------------------------------------------------
-QUESTION_RECEIVED Received question from '%{DATA:questioner}' with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
-ANSWER_RECEIVED Received answer to question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
-QUESTION_SENT Sent question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
-ANSWER_SENT Sent answer to question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
-WEBCERT__QA_PARSE (%{QUESTION_RECEIVED}|%{ANSWER_RECEIVED}|%{QUESTION_SENT}|%{ANSWER_SENT})
+WC__QUESTION_RECEIVED Received question from '%{DATA:questioner}' with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
+WC__ANSWER_RECEIVED Received answer to question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
+WC__QUESTION_SENT Sent question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
+WC__ANSWER_SENT Sent answer to question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
+WC__QA_PARSE (%{WC__QUESTION_RECEIVED}|%{WC__ANSWER_RECEIVED}|%{WC__QUESTION_SENT}|%{WC__ANSWER_SENT})
 
 # ------------------------------------------------------------
-# WEBCERT__INTYG_PARSE
+# WC__INTYG_PARSE
 # ------------------------------------------------------------
-INTYG_READ Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' was read
-INTYG_PRINT_PDF Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' was printed as PDF
-INTYG_SIGNED Intyg '%{DATA:intygid}' signed by '%{DATA:signer}' using scheme '%{DATA:scheme}'
-INTYG_REGISTERED Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' registered with Intygstjänsten
-INTYG_SENT Intyg '%{DATA:intygid}' sent to recipient '%{DATA:recipient}'
-INTYG_REVOKED Intyg '%{DATA:intygid}' revoked by '%{DATA:revoker}'
-INTYG_COPIED Utkast '%{DATA:intygid}' created as a copy of '%{DATA:original}'
-UTKAST_READ Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was read
-UTKAST_CREATED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' created by '%{DATA:creator_person}' on unit '%{DATA:creator_unit}'
-UTKAST_EDITED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was edited
-UTKAST_DELETED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was deleted
-UTKAST_PRINT Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' was printed
-WEBCERT__INTYG_PARSE (%{INTYG_READ}|%{INTYG_PRINT_PDF}|%{INTYG_SIGNED}|%{INTYG_REGISTERED}|%{INTYG_SENT}|%{INTYG_REVOKED}|%{INTYG_COPIED}|%{UTKAST_READ}|%{UTKAST_CREATED}|%{UTKAST_EDITED}|%{UTKAST_DELETED}|%{UTKAST_PRINT})
+WC__INTYG_READ Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' was read
+WC__INTYG_PRINT_PDF Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' was printed as PDF
+WC__INTYG_SIGNED Intyg '%{DATA:intygid}' signed by '%{DATA:signer}' using scheme '%{DATA:scheme}'
+WC__INTYG_REGISTERED Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' registered with Intygstjänsten
+WC__INTYG_SENT Intyg '%{DATA:intygid}' sent to recipient '%{DATA:recipient}'
+WC__INTYG_REVOKED Intyg '%{DATA:intygid}' revoked by '%{DATA:revoker}'
+WC__INTYG_COPIED Utkast '%{DATA:intygid}' created as a copy of '%{DATA:original}'
+WC__UTKAST_READ Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was read
+WC__UTKAST_CREATED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' created by '%{DATA:creator_person}' on unit '%{DATA:creator_unit}'
+WC__UTKAST_EDITED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was edited
+WC__UTKAST_DELETED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was deleted
+WC__UTKAST_PRINT Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' was printed
+WC__INTYG_PARSE (%{WC__INTYG_READ}|%{WC__INTYG_PRINT_PDF}|%{WC__INTYG_SIGNED}|%{WC__INTYG_REGISTERED}|%{WC__INTYG_SENT}|%{WC__INTYG_REVOKED}|%{WC__INTYG_COPIED}|%{WC__UTKAST_READ}|%{WC__UTKAST_CREATED}|%{WC__UTKAST_EDITED}|%{WC__UTKAST_DELETED}|%{WC__UTKAST_PRINT})
 
 # ------------------------------------------------------------
-# WEBCERT__MAIL_PARSE
+# WC__MAIL_PARSE
 # ------------------------------------------------------------
-MAIL_SENT Mail sent to unit '%{DATA:mail_unit}' for %{DATA:reason}
-MAIL_MISSING_ADDRESS Mail sent to admin on behalf of unit '%{DATA:mail_unit}' for %{DATA:reason}
-WEBCERT__MAIL_PARSE (%{MAIL_SENT}|%{MAIL_MISSING_ADDRESS})
+WC__MAIL_SENT Mail sent to unit '%{DATA:mail_unit}' for %{DATA:reason}
+WC__MAIL_MISSING_ADDRESS Mail sent to admin on behalf of unit '%{DATA:mail_unit}' for %{DATA:reason}
+WC__MAIL_PARSE (%{WC__MAIL_SENT}|%{WC__MAIL_MISSING_ADDRESS})
 
 # ------------------------------------------------------------
-# WEBCERT__PU_PARSE
+# WC__PU_PARSE
 # ------------------------------------------------------------
-WEBCERT__PU_PARSE Lookup performed on '%{DATA:personnummer}' with result '%{DATA:pu_result}'
+WC__PU_PARSE Lookup performed on '%{DATA:personnummer}' with result '%{DATA:pu_result}'
 
 # ------------------------------------------------------------
-# WEBCERT__PP_TERMS_ACCEPTED_PARSE
+# WC__PP_TERMS_ACCEPTED_PARSE
 # ------------------------------------------------------------
-WEBCERT__PP_TERMS_ACCEPTED_PARSE User '%{DATA:user}', personId '%{DATA:personnummer}' accepted private practitioner terms of version '%{DATA:terms_version}'
+WC__PP_TERMS_ACCEPTED_PARSE User '%{DATA:user}', personId '%{DATA:personnummer}' accepted private practitioner terms of version '%{DATA:terms_version}'
+
+# ------------------------------------------------------------
+# WC__AUTH_PARSE
+# ------------------------------------------------------------
+WC__USER_LOGIN Login user '%{DATA:user}' using scheme '%{DATA:scheme}'
+WC__USER_LOGOUT Logout user '%{DATA:user}' using scheme '%{DATA:scheme}'
+WC__USER_SESSION_EXPIRY Session expired for user '%{DATA:user}' using scheme '%{DATA:scheme}'
+WC__AUTH_PARSE (%{WC__USER_LOGIN}|%{WC__USER_LOGOUT}|%{WC__USER_SESSION_EXPIRY})

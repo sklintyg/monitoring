@@ -27,10 +27,3 @@ USER (?:%{NO_USER}|%{DATA})
 # ------------------------------------------------------------
 LOG_LVL (DEBUG|INFO|WARN|ERROR)
 
-# ------------------------------------------------------------
-# AUTH_PARSE
-# ------------------------------------------------------------
-USER_LOGIN Login user '%{DATA:user}' using scheme '%{DATA:scheme}'
-USER_LOGOUT Logout user '%{DATA:user}' using scheme '%{DATA:scheme}'
-USER_SESSION_EXPIRY Session expired for user '%{DATA:user}' using scheme '%{DATA:scheme}'
-AUTH_PARSE (%{USER_LOGIN}|%{USER_LOGOUT}|%{USER_SESSION_EXPIRY})
