@@ -22,7 +22,8 @@ WC__UTKAST_CREATED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' created b
 WC__UTKAST_EDITED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was edited
 WC__UTKAST_DELETED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was deleted
 WC__UTKAST_PRINT Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' was printed
-WC__INTYG_PARSE (%{WC__INTYG_READ}|%{WC__INTYG_PRINT_PDF}|%{WC__INTYG_SIGNED}|%{WC__INTYG_REGISTERED}|%{WC__INTYG_SENT}|%{WC__INTYG_REVOKED}|%{WC__INTYG_COPIED}|%{WC__UTKAST_READ}|%{WC__UTKAST_CREATED}|%{WC__UTKAST_EDITED}|%{WC__UTKAST_DELETED}|%{WC__UTKAST_PRINT})
+WC__UTKAST_CONCURRENTLY_EDITED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was concurrently edited by multiple users
+WC__INTYG_PARSE (%{WC__INTYG_READ}|%{WC__INTYG_PRINT_PDF}|%{WC__INTYG_SIGNED}|%{WC__INTYG_REGISTERED}|%{WC__INTYG_SENT}|%{WC__INTYG_REVOKED}|%{WC__INTYG_COPIED}|%{WC__UTKAST_READ}|%{WC__UTKAST_CREATED}|%{WC__UTKAST_EDITED}|%{WC__UTKAST_DELETED}|%{WC__UTKAST_PRINT}|%{WC__UTKAST_CONCURRENTLY_EDITED})
 
 # ------------------------------------------------------------
 # WC__MAIL_PARSE
@@ -47,4 +48,15 @@ WC__PP_TERMS_ACCEPTED_PARSE User '%{DATA:user}', personId '%{DATA:personnummer}'
 WC__USER_LOGIN Login user '%{DATA:user}' using scheme '%{DATA:scheme}'
 WC__USER_LOGOUT Logout user '%{DATA:user}' using scheme '%{DATA:scheme}'
 WC__USER_SESSION_EXPIRY Session expired for user '%{DATA:user}' using scheme '%{DATA:scheme}'
-WC__AUTH_PARSE (%{WC__USER_LOGIN}|%{WC__USER_LOGOUT}|%{WC__USER_SESSION_EXPIRY})
+WC__USER_MISSING_MIU No valid MIU was found for user '%{DATA:user}'
+WC__USER_MISSING_MIU_ON_ENHET No valid MIU was found for user '%{DATA:user}' on unit '%{DATA:unit}'
+# !!!
+# Make sure that USER_MISSING_MIU_ON_ENHET is caught before USER_MISSING_MIU because 
+# regex pattern matching of USER_MISSING_MIU_ON_ENHET would match even on USER_MISSING_MIU
+WC__AUTH_PARSE (%{WC__USER_LOGIN}|%{WC__USER_LOGOUT}|%{WC__USER_SESSION_EXPIRY}|%{WC__USER_MISSING_MIU_ON_ENHET}|%{WC__USER_MISSING_MIU})
+
+# ------------------------------------------------------------
+# WC__NOTIFICATION_PARSE
+# ------------------------------------------------------------
+WC__NOTIFICATION_PARSE Sent notification of type '%{DATA:hanType}' to unit '%{DATA:unit}'
+
