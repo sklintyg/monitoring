@@ -1,15 +1,22 @@
 # ------------------------------------------------------------
 # PLK__USER_PARSE
 # ------------------------------------------------------------
-PLK_USER_DELETED User '%{DATA:user}' deleted
-PLK_USER_DETAILS_CHANGED Details for user '%{DATA:user}' changed
-PLK_USER_REGISTERED User '%{DATA:user}' registered with consent version '%{DATA:consent_version}' and hsaId '%{DATA:hsaid}', returned status '%{DATA:status}'
-PLK__USER_PARSE (%{PLK_USER_DELETED}|%{PLK_USER_DETAILS_CHANGED}|%{PLK_USER_REGISTERED})
+PLK__USER_DELETED User '%{DATA:user}' deleted
+PLK__USER_DETAILS_CHANGED Details for user '%{DATA:user}' changed
+PLK__USER_REGISTERED User '%{DATA:user}' registered with consent version '%{DATA:consent_version}' and hsaId '%{DATA:hsaid}', returned status '%{DATA:status}'
+PLK__USER_PARSE (%{PLK__USER_DELETED}|%{PLK__USER_DETAILS_CHANGED}|%{PLK__USER_REGISTERED})
 
 # ------------------------------------------------------------
 # PLK__HOSP_PARSE
 # ------------------------------------------------------------
-PLK_HOSP_AUTHORIZED User '%{DATA:user}' is authorized doctor in HOSP
-PLK_HOSP_NOT_AUTHORIZED User '%{DATA:user}' is not authorized doctor in HOSP
-PLK_HOSP_WAITING User '%{DATA:user}' is waiting for HOSP
-PLK__HOSP_PARSE (%{PLK_HOSP_AUTHORIZED}|%{PLK_HOSP_NOT_AUTHORIZED}|%{PLK_HOSP_WAITING})
+PLK__HOSP_AUTHORIZED User '%{DATA:user}' is authorized doctor in HOSP
+PLK__HOSP_NOT_AUTHORIZED User '%{DATA:user}' is not authorized doctor in HOSP
+PLK__HOSP_WAITING User '%{DATA:user}' is waiting for HOSP
+PLK__HOSP_PARSE (%{PLK__HOSP_AUTHORIZED}|%{PLK__HOSP_NOT_AUTHORIZED}|%{PLK__HOSP_WAITING})
+
+# ------------------------------------------------------------
+# PLK__AUTH_PARSE
+# ------------------------------------------------------------
+PLK__USER_LOGIN Login user '%{DATA:user}' using scheme '%{DATA:scheme}'
+PLK__USER_LOGOUT Logout user '%{DATA:user}' using scheme '%{DATA:scheme}'
+PLK__AUTH_PARSE (%{PLK__USER_LOGIN}|%{PLK__USER_LOGOUT})
