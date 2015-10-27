@@ -28,13 +28,6 @@ USER (?:%{NO_USER}|%{DATA})
 LOG_LVL (DEBUG|INFO|WARN|ERROR)
 
 # ------------------------------------------------------------
-# CONSENT_PARSE
-# ------------------------------------------------------------
-CONSENT_GIVEN Consent given by citizen '%{DATA:user}'
-CONSENT_REVOKED Consent revoked by citizen '%{DATA:user}'
-CONSENT_PARSE (%{CONSENT_GIVEN}|%{CONSENT_REVOKED})
-
-# ------------------------------------------------------------
 # AUTH_PARSE
 # ------------------------------------------------------------
 USER_LOGIN Login user '%{DATA:user}' using scheme '%{DATA:scheme}'
