@@ -7,3 +7,9 @@ CERTIFICATE_ARCHIVED Certificate '%{DATA:intygid}' archived
 CERTIFICATE_RESTORED Certificate '%{DATA:intygid}' restored
 MINAINTYG__CERTIFICATE_PARSE (%{CERTIFICATE_READ}|%{CERTIFICATE_SEND}|%{CERTIFICATE_ARCHIVED}|%{CERTIFICATE_RESTORED})
 
+# ------------------------------------------------------------
+# MINAINTYG__AUTH_PARSE
+# ------------------------------------------------------------
+CITIZEN_LOGIN Citizen '%{DATA:user}' logged in using login method '%{DATA:scheme}'
+CITIZEN_LOGOUT Citizen '%{DATA:user}' logged out using login method '%{DATA:scheme}'
+MINAINTYG__AUTH_PARSE (%{CITIZEN_LOGIN}|%{CITIZEN_LOGOUT})
