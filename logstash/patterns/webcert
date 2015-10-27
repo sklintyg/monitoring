@@ -34,12 +34,9 @@ WEBCERT__MAIL_PARSE (%{MAIL_SENT}|%{MAIL_MISSING_ADDRESS})
 # ------------------------------------------------------------
 # WEBCERT__PU_PARSE
 # ------------------------------------------------------------
-PU_LOOKUP Lookup performed on '%{DATA:personnummer}' with result '%{DATA:pu_result}'
-WEBCERT__PU_PARSE %{PU_LOOKUP}
-
+WEBCERT__PU_PARSE Lookup performed on '%{DATA:personnummer}' with result '%{DATA:pu_result}'
 
 # ------------------------------------------------------------
-# WEBCERT__CONSENT_PARSE
+# WEBCERT__PP_TERMS_ACCEPTED_PARSE
 # ------------------------------------------------------------
-WEBCERT__CONSENT_GIVEN Consent given by user '%{DATA:user}', hsaId '%{DATA:hsaId}', version '%{DATA:consent_version}', date '%{DATA:consent_date}'
-WEBCERT__CONSENT_PARSE %{WEBCERT__CONSENT_GIVEN}
+WEBCERT__PP_TERMS_ACCEPTED_PARSE User '%{DATA:user}', personId '%{DATA:personnummer}' accepted private practitioner terms of version '%{DATA:terms_version}'
