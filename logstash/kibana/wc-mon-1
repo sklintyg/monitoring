@@ -65,6 +65,15 @@
           "type": "lucene",
           "enable": true,
           "query": "TAGS=PLK"
+        },
+        "7": {
+          "id": 7,
+          "color": "#705DA0",
+          "alias": "Notification",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "TAGS=NOTIFICATION"
         }
       },
       "ids": [
