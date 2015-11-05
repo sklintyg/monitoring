@@ -58,5 +58,5 @@ WC__AUTH_PARSE (%{WC__USER_LOGIN}|%{WC__USER_LOGOUT}|%{WC__USER_SESSION_EXPIRY}|
 # ------------------------------------------------------------
 # WC__NOTIFICATION_PARSE
 # ------------------------------------------------------------
-WC__NOTIFICATION_PARSE Sent notification of type '%{DATA:hanType}' to unit '%{DATA:unit}'
+WC__NOTIFICATION_PARSE Sent notification of type '%{DATA:han_type}' to unit '%{DATA:unit}'
 
