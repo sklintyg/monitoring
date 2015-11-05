@@ -1,0 +1,9 @@
+# ------------------------------------------------------------
+# ST__AUTH_PARSE
+# ------------------------------------------------------------
+ST__AUTH_PARSE Login user hsaId '%{DATA:hsaid}', vardgivarId '%{DATA:vardgivare}', vardenhetsId '%{DATA:unit}'
+
+# ------------------------------------------------------------
+# ST__FILE_PARSE
+# ------------------------------------------------------------
+ST__FILE_PARSE User hsaId '%{DATA:hsaid}', vardgivarId '%{DATA:vardgivare}' uploaded file '%{DATA:filename}' with '%{DATA:nbr_rows}' rows

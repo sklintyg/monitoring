@@ -11,8 +11,8 @@ ALL_FILES="logstash-*.conf"
 
 if [[ ${FILE} == "all" ]]; then
     FILE=${ALL_FILES}
-elif [[ ! ( ( ${FILE} == "logstash-mina-intyg.conf" ) || ( ${FILE} == "logstash-webcert-log.conf" ) || ( ${FILE} == "logstash-webcert-monitoring.conf" ) || ( ${FILE} == "logstash-intygstjanst-monitoring.conf" ) || ( ${FILE} == "logstash-privatlakarportal-monitoring.conf" ) ) ]]; then
-    echo "File (${FILE}) need to be either logstash-mina-intyg.conf, logstash-webcert-log.conf, logstash-webcert-monitoring.conf, logstash-intygstjanst-monitoring.conf or logstash-privatlakarportal-monitoring.conf"
+elif [[ ! ( ( ${FILE} == "logstash-mina-intyg.conf" ) || ( ${FILE} == "logstash-webcert-log.conf" ) || ( ${FILE} == "logstash-webcert-monitoring.conf" ) || ( ${FILE} == "logstash-intygstjanst-monitoring.conf" ) || ( ${FILE} == "logstash-privatlakarportal-monitoring.conf" ) || ( ${FILE} == "logstash-statistik-monitoring.conf" ) ) ]]; then
+    echo "File (${FILE}) need to be either logstash-mina-intyg.conf, logstash-webcert-log.conf, logstash-webcert-monitoring.conf, logstash-intygstjanst-monitoring.conf, logstash-privatlakarportal-monitoring.conf or logstash-statistik-monitoring.conf"
     exit -1
 fi
 
