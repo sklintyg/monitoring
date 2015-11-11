@@ -7,3 +7,17 @@ ST__AUTH_PARSE Login user hsaId '%{DATA:hsaid}', vardgivarId '%{DATA:vardgivare}
 # ST__FILE_PARSE
 # ------------------------------------------------------------
 ST__FILE_PARSE User hsaId '%{DATA:hsaid}', vardgivarId '%{DATA:vardgivare}' uploaded file '%{DATA:filename}' with '%{DATA:nbr_rows}' rows
+
+# ------------------------------------------------------------
+# ST__IN_PARSE
+# ------------------------------------------------------------
+ST__IN_FROM_QUEUE Received certificateId '%{DATA:certificate_id}' from queue
+ST__IN_FROM_TABLE Processed batch with '%{DATA:batch_size}' certificates
+ST__IN_PARSE (%{ST__IN_FROM_QUEUE}|%{ST__IN_FROM_TABLE})
+
+# ------------------------------------------------------------
+# ST__TRACK_PARSE
+# ------------------------------------------------------------
+ST__TRACK_ACCESS_PROTECTED_CHART_DATA User hsaId '%{DATA:hsaid}', vardgivarId '%{DATA:vardgivare}' accessed uri '%{DATA:uri}'
+ST__TRACK_ACCESS_ANONYMOUS_CHART_DATA Accessed uri '%{DATA:uri}'
+ST__TRACK_PARSE (%{ST__TRACK_ACCESS_PROTECTED_CHART_DATA}|%{ST__TRACK_ACCESS_ANONYMOUS_CHART_DATA})

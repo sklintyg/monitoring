@@ -21,6 +21,24 @@
           "enable": true,
           "query": "TAGS=OTHER"
         },
+        "2": {
+          "id": 2,
+          "color": "#6ED0E0",
+          "alias": "In",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "TAGS=IN"
+        },
+        "3": {
+          "id": 3,
+          "color": "#EF843C",
+          "alias": "Track",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "TAGS=TRACK"
+        },
         "4": {
           "id": 4,
           "color": "#E24D42",
@@ -34,7 +52,9 @@
       "ids": [
         0,
         1,
-        4
+        4,
+        2,
+        3
       ]
     },
     "filter": {
@@ -94,6 +114,7 @@
             "ids": [
               0,
               1,
+              2,
               4
             ]
           },
@@ -309,6 +330,7 @@
             "ids": [
               0,
               1,
+              2,
               4
             ]
           },
@@ -344,6 +366,7 @@
             "ids": [
               0,
               1,
+              2,
               4
             ]
           },
@@ -379,6 +402,7 @@
             "ids": [
               0,
               1,
+              2,
               4
             ]
           },
@@ -423,7 +447,8 @@
             "msg",
             "hsaid",
             "vardgivare",
-            "unit"
+            "unit",
+            "batch_size"
           ],
           "localTime": true,
           "timeField": "@timestamp",
@@ -437,6 +462,7 @@
             "ids": [
               0,
               1,
+              2,
               4
             ]
           },
@@ -469,15 +495,15 @@
       "pinned": true,
       "history": [
         "TAGS=FILE",
+        "TAGS=IN",
+        "TAGS=OTHER",
         "TAGS=AUTH",
         "TAGS=HOSP",
-        "TAGS=OTHER",
         "TAGS=USER",
         "TAGS=CONSENT",
         "TAGS=INTYG",
         "scheme=FK",
-        "FK",
-        "*"
+        "FK"
       ],
       "remember": 10,
       "enable": true
