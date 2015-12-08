@@ -70,11 +70,11 @@ def qa(files, f):
 
 ### Functions for IO
 
-def get_files(app, days, file_string):
+def get_files(app, days, file_string, delay = 3):
     base = "/mnt/tomcat_logs/ine-pib-app0"
     res = list()
     today = datetime.datetime.today()
-    date_list = [today - datetime.timedelta(days=x) for x in range(1, days + 1)]
+    date_list = [today - datetime.timedelta(days=x + delay) for x in range(1, days + 1)]
 
     for date in date_list:
         res.append(gzip.open(file_string.format(base, app, date)))
