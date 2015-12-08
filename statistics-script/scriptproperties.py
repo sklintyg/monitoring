@@ -1,15 +1,15 @@
 # Database config
-dbname_webcert = "webcert"
-dbuser_webcert = "root"
-dbpass_webcert = "root"
-dbhost_webcert = "localhost"
+dbname_webcert = ""
+dbuser_webcert = ""
+dbpass_webcert = ""
+dbhost_webcert = ""
 
-dbname_intyg = "intyg"
-dbuser_intyg = "root"
-dbpass_intyg = "root"
-dbhost_intyg = "localhost"
+dbname_intyg = ""
+dbuser_intyg = ""
+dbpass_intyg = ""
+dbhost_intyg = ""
 
 # Mail config
 sender = "noreply@intygstjanster.se"
-recipient = "test@example.org"
-smtphost = "localhost"
+recipient = "intyg@inera.se"
+smtphost = ""
