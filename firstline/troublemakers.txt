@@ -1,2 +1,3 @@
 SE2321000115-O25376 'Akuten i Region Halland'
 SE2321000115-O48544 'Capio Familjeläkarna Söderbro'
+SE2321000115-O51692 'Hemsjukvården Halmstad'
