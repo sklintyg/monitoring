@@ -33,6 +33,26 @@
           "nodeUrl": "http://test.rehabstod.intygstjanster.se/services/ping-for-configuration"
         }
       ]
+    },
+    {
+      "serviceName":"intygstjanst",
+      "configurations":["dbStatus", "jmsStatus"],
+      "nodes": [
+        {
+          "nodeName": "node1",
+          "nodeUrl": "http://test.rehabstod.intygstjanster.se/services/ping-for-configuration"
+        }
+      ]
+    },
+    {
+      "serviceName":"privatlakarportal",
+      "configurations":["dbStatus", "hsaStatus"],
+      "nodes": [
+        {
+          "nodeName": "node1",
+          "nodeUrl": "http://test.rehabstod.intygstjanster.se/services/ping-for-configuration"
+        }
+      ]
     }
   ]
 }

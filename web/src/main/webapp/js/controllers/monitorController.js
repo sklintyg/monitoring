@@ -5,7 +5,6 @@ angular.module('MonitorControllers')
     $scope.threshold = 10;
     // Set the time between retiess
     var retryTime = 30000;
-    // Counts the number of retries
 
     $scope.webcert = {
       doneLoading: false,
@@ -22,6 +21,17 @@ angular.module('MonitorControllers')
       fail: 0,
       name: 'rehabstod'
     };
+    $scope.intygstjanst = {
+      doneLoading: false,
+      fail: 0,
+      name: 'intygstjanst'
+    };
+    $scope.privatlakarportal = {
+      doneLoading: false,
+      fail: 0,
+      name: 'privatlakarportal'
+    };
+
 
     $scope.webcert.timer = $interval(function() {
       checkIfDone($scope.webcert)
@@ -32,10 +42,18 @@ angular.module('MonitorControllers')
     $scope.rehabstod.timer = $interval(function() {
       checkIfDone($scope.rehabstod)
     }, retryTime);
+    $scope.intygstjanst.timer = $interval(function() {
+      checkIfDone($scope.intygstjanst)
+    }, retryTime);
+    $scope.privatlakarportal.timer = $interval(function() {
+      checkIfDone($scope.privatlakarportal)
+    }, retryTime);
 
     checkIfDone($scope.webcert);
     checkIfDone($scope.minaintyg);
     checkIfDone($scope.rehabstod);
+    checkIfDone($scope.intygstjanst);
+    checkIfDone($scope.privatlakarportal);
 
     function checkIfDone(service) {
       $http.get('/api/counters/' + service.name)
@@ -71,6 +89,12 @@ angular.module('MonitorControllers')
       }
       if ($scope.rehabstod.timer) {
         $interval.cancel($scope.rehabstod.timer);
+      }
+      if ($scope.intygstjanst.timer) {
+        $interval.cancel($scope.intygstjanst.timer);
+      }
+      if ($scope.privatlakarportal.timer) {
+        $interval.cancel($scope.privatlakarportal.timer);
       }
     });
 }]);

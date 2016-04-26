@@ -59,17 +59,41 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-sm-12">
       <div class="page-header">
         <h2>Intygstjänsten</h2>
       </div>
-      <monitorservices service-name="rehabstod" alertsize="flex-item-big"></monitorservices>
+      <div style="width:100%; text-align: center;"
+           ng-if="!intygstjanst.doneLoading && intygstjanst.fail < threshold">
+        <img src="images/ajax-loader.gif" alt="Loading..."/>
+      </div>
+      <div style="width:100%; text-align: center;"
+           ng-if="!intygstjanst.doneLoading && intygstjanst.fail >= threshold">
+        <div class="alert alert-danger">
+          Kunde inte kontakta Intygstjänsten. Testa ladda om sidan.
+        </div>
+      </div>
+      <div ng-if="intygstjanst.doneLoading">
+        <monitorservices service-name="intygstjanst" alertsize="flex-item-big"></monitorservices>
+      </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 col-sm-12">
       <div class="page-header">
         <h2>Privatläkarportalen</h2>
       </div>
-      <monitorservices service-name="rehabstod" alertsize="flex-item-big"></monitorservices>
+      <div style="width:100%; text-align: center;"
+           ng-if="!privatlakarportal.doneLoading && privatlakarportal.fail < threshold">
+        <img src="images/ajax-loader.gif" alt="Loading..."/>
+      </div>
+      <div style="width:100%; text-align: center;"
+           ng-if="!privatlakarportal.doneLoading && privatlakarportal.fail >= threshold">
+        <div class="alert alert-danger">
+          Kunde inte kontakta Privatläkarportalen. Testa ladda om sidan.
+        </div>
+      </div>
+      <div ng-if="privatlakarportal.doneLoading">
+        <monitorservices service-name="privatlakarportal" alertsize="flex-item-big"></monitorservices>
+      </div>
     </div>
   </div>
 </div>
