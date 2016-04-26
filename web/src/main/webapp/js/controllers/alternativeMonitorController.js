@@ -23,10 +23,10 @@ angular.module('MonitorControllers')
       fail: 0,
       name: 'minaintyg'
     };
-    $scope.privatlakarportalen = {
+    $scope.rehabstod = {
       doneLoading: false,
       fail: 0,
-      name: 'privatlakarportalen'
+      name: 'rehabstod'
     };
 
     $scope.webcert.timer = $interval(function() {
@@ -35,13 +35,13 @@ angular.module('MonitorControllers')
     $scope.minaintyg.timer = $interval(function() {
       checkIfDone($scope.minaintyg)
     }, retryTime);
-    $scope.privatlakarportalen.timer = $interval(function() {
-      checkIfDone($scope.privatlakarportalen)
+    $scope.rehabstod.timer = $interval(function() {
+      checkIfDone($scope.rehabstod)
     }, retryTime);
 
     checkIfDone($scope.webcert);
     checkIfDone($scope.minaintyg);
-    checkIfDone($scope.privatlakarportalen);
+    checkIfDone($scope.rehabstod);
 
     function checkIfDone(service) {
       $http.get('/api/counters/' + service.name)
@@ -75,8 +75,8 @@ angular.module('MonitorControllers')
       if ($scope.minaintyg.timer) {
         $interval.cancel($scope.minaintyg.timer);
       }
-      if ($scope.privatlakarportalen.timer) {
-        $interval.cancel($scope.privatlakarportalen.timer);
+      if ($scope.rehabstod.timer) {
+        $interval.cancel($scope.rehabstod.timer);
       }
     });
 

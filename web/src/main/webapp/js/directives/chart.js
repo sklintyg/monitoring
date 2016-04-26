@@ -149,7 +149,7 @@ angular.module('MonitorDirectives')
             .call(yAxis);
         }
         function fetchData(func) {
-          $http.get('/api/counters/' + scope.chartname).
+          $http.get('/api/counters/' + scope.chartname + '?entries=360').
             success(function(data, status, headers, config) {
               func(data);
             }).

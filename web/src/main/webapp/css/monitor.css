@@ -27,7 +27,7 @@
 }
 
 #webcert,
-#privatlakarportalen,
+#rehabstod,
 #mina-intyg {
   text-align: center;
 }
@@ -35,7 +35,7 @@
   fill: lightblue;
 }
 
-#privatlakarportalen .area {
+#rehabstod .area {
   fill: teal;
 }
 

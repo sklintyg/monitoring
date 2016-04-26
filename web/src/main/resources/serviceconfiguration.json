@@ -2,7 +2,7 @@
   "services": [
     {
       "serviceName":"webcert",
-      "configurations":["dbStatus","hsaStatus","jmsStatus","intygstjanst","signatureQueueSize"],
+      "configurations":["dbStatus","jmsStatus","intygstjanst","signatureQueueSize"],
       "nodes": [
         {
           "nodeName": "node1",
@@ -16,7 +16,7 @@
     },
     {
       "serviceName":"minaintyg",
-      "configurations":["dbStatus","hsaStatus"],
+      "configurations":["intygstjanst"],
       "nodes": [
         {
           "nodeName": "server1",
@@ -25,12 +25,12 @@
       ]
     },
     {
-      "serviceName":"privatlakarportalen",
-      "configurations":["dbStatus","hsaStatus"],
+      "serviceName":"rehabstod",
+      "configurations":["jmsStatus", "intygstjanst"],
       "nodes": [
         {
           "nodeName": "node1",
-          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
+          "nodeUrl": "http://test.rehabstod.intygstjanster.se/services/ping-for-configuration"
         }
       ]
     }

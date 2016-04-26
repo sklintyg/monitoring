@@ -40,22 +40,36 @@
     </div>
     <div class="col-md-4">
       <div class="page-header">
-        <h2>Privatläkarportalen</h2>
+        <h2>Rehabstöd</h2>
       </div>
       <div style="width:100%; text-align: center;"
-           ng-if="!privatlakarportalen.doneLoading && privatlakarportalen.fail < threshold">
+           ng-if="!rehabstod.doneLoading && rehabstod.fail < threshold">
         <img src="images/ajax-loader.gif" alt="Loading..."/>
       </div>
       <div style="width:100%; text-align: center;"
-           ng-if="!privatlakarportalen.doneLoading && privatlakarportalen.fail >= threshold">
+           ng-if="!rehabstod.doneLoading && rehabstod.fail >= threshold">
         <div class="alert alert-danger">
-          Kunde inte kontakta Privatläkarportalen. Testa ladda om sidan.
+          Kunde inte kontakta Rehabstöd. Testa ladda om sidan.
         </div>
       </div>
-      <div ng-if="privatlakarportalen.doneLoading">
-        <chart chartname="privatlakarportalen"></chart>
-        <monitorservices service-name="privatlakarportalen" alertsize="flex-item-big"></monitorservices>
+      <div ng-if="rehabstod.doneLoading">
+        <chart chartname="rehabstod"></chart>
+        <monitorservices service-name="rehabstod" alertsize="flex-item-big"></monitorservices>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="page-header">
+        <h2>Intygstjänsten</h2>
+      </div>
+      <monitorservices service-name="rehabstod" alertsize="flex-item-big"></monitorservices>
+    </div>
+    <div class="col-md-6">
+      <div class="page-header">
+        <h2>Privatläkarportalen</h2>
+      </div>
+      <monitorservices service-name="rehabstod" alertsize="flex-item-big"></monitorservices>
     </div>
   </div>
 </div>
