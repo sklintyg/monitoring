@@ -7,6 +7,7 @@ public class Service {
     private String serviceName;
     private List<String> configurations;
     private List<Node> nodes;
+    private ConfigVersion version;
 
     public Service() {
     }
@@ -33,6 +34,14 @@ public class Service {
 
     public void setNodes(List<Node> nodes) {
         this.nodes = nodes;
+    }
+
+    public ConfigVersion getVersion() {
+        return version;
+    }
+
+    public void setVersion(ConfigVersion version) {
+        this.version = version;
     }
 
 }

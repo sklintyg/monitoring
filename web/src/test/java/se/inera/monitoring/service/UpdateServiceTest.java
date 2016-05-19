@@ -1,15 +1,13 @@
 package se.inera.monitoring.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,10 +19,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import se.inera.monitoring.persistence.ApplicationStatusRepository;
 import se.inera.monitoring.persistence.model.ApplicationStatus;
 import se.inera.monitoring.persistence.model.SubsystemStatus;
-import se.inera.monitoring.service.configuration.Node;
-import se.inera.monitoring.service.configuration.Service;
-import se.inera.monitoring.service.configuration.ServiceConfiguration;
-import se.riv.itintegration.monitoring.v1.PingForConfigurationResponseType;
+import se.inera.monitoring.service.configuration.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UpdateServiceTest {
@@ -70,14 +65,14 @@ public class UpdateServiceTest {
 
     @Test
     public void testAccessedOnceForEachNode() throws ServiceNotReachableException {
-        when(pingFactory.ping(any(String.class))).thenReturn(new PingForConfigurationResponseType());
+        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(new ConfigResponse());
         updateService.update();
-        verify(pingFactory, times(2)).ping(any(String.class));
+        verify(pingFactory, times(2)).ping(any(String.class), any(ConfigVersion.class));
     }
 
     @Test
     public void testSavedOnceForEachNode() throws ServiceNotReachableException {
-        when(pingFactory.ping(any(String.class))).thenReturn(new PingForConfigurationResponseType());
+        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(new ConfigResponse());
         updateService.update();
         verify(repo, times(2)).save(any(ApplicationStatus.class));
     }

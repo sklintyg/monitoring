@@ -3,9 +3,9 @@ plugins {
 }
 allprojects {
     group = 'se.inera.monitoring'
-    ext.revision = 'git rev-list --count HEAD'.execute().text.trim()
     ext.major = '1'
-    ext.minor = '0'
+    ext.minor = '1'
+    ext.revision = "git rev-list --count v${major}.${minor}..HEAD".execute().text.trim()
     version = "${major}.${minor}.${revision}"
 
 
@@ -24,6 +24,6 @@ allprojects {
 subprojects {
     apply plugin: 'java'
 
-    sourceCompatibility = "1.7"
-    targetCompatibility = "1.7"
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
 }

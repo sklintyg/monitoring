@@ -2,6 +2,7 @@
   "services": [
     {
       "serviceName":"webcert",
+      "version": "PING_FOR_CONFIGURATION",
       "configurations":["dbStatus","jmsStatus","intygstjanst","signatureQueueSize"],
       "nodes": [
         {
@@ -16,6 +17,7 @@
     },
     {
       "serviceName":"minaintyg",
+      "version": "PING_FOR_CONFIGURATION",
       "configurations":["intygstjanst"],
       "nodes": [
         {
@@ -26,31 +28,34 @@
     },
     {
       "serviceName":"rehabstod",
+      "version": "INTERNAL_PING_FOR_CONFIGURATION",
       "configurations":["jmsStatus", "intygstjanst"],
       "nodes": [
         {
           "nodeName": "node1",
-          "nodeUrl": "http://test.rehabstod.intygstjanster.se/services/ping-for-configuration"
+          "nodeUrl": "http://test.rehabstod.intygstjanster.se/services/internal-ping-for-configuration"
         }
       ]
     },
     {
       "serviceName":"intygstjanst",
+      "version": "PING_FOR_CONFIGURATION",
       "configurations":["dbStatus", "jmsStatus"],
       "nodes": [
         {
           "nodeName": "node1",
-          "nodeUrl": "http://test.rehabstod.intygstjanster.se/services/ping-for-configuration"
+          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         }
       ]
     },
     {
       "serviceName":"privatlakarportal",
+      "version": "PING_FOR_CONFIGURATION",
       "configurations":["dbStatus", "hsaStatus"],
       "nodes": [
         {
           "nodeName": "node1",
-          "nodeUrl": "http://test.rehabstod.intygstjanster.se/services/ping-for-configuration"
+          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         }
       ]
     }

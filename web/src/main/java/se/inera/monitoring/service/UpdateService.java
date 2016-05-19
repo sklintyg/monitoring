@@ -1,9 +1,7 @@
 package se.inera.monitoring.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import javax.xml.ws.WebServiceException;
 
@@ -20,13 +18,11 @@ import se.inera.monitoring.persistence.model.ApplicationStatus;
 import se.inera.monitoring.persistence.model.SubsystemStatus;
 import se.inera.monitoring.service.configuration.Node;
 import se.inera.monitoring.service.configuration.ServiceConfiguration;
-import se.riv.itintegration.monitoring.v1.ConfigurationType;
-import se.riv.itintegration.monitoring.v1.PingForConfigurationResponseType;
 
 /**
  * Service which handles updating the monitored services. The configuration of nodes and url's are found by the
  * {@link ServiceConfiguration}
- * 
+ *
  * @author kaan
  *
  */
@@ -58,7 +54,7 @@ public class UpdateService {
 
     /**
      * Updates the services defined in the configuration file
-     * 
+     *
      * The cron expression should not be more than once every minute
      */
     @Scheduled(cron = "${ping.cron}")
@@ -70,10 +66,10 @@ public class UpdateService {
             for (Node node : config.getService(service.getServiceName()).getNodes()) {
 
                 StopWatch stopWatch = new StopWatch();
-                PingForConfigurationResponseType response = null;
+                ConfigResponse response = null;
                 try {
                     stopWatch.start();
-                    response = pingFactory.ping(node.getNodeUrl());
+                    response = pingFactory.ping(node.getNodeUrl(), service.getVersion());
                     stopWatch.stop();
 
                     // Convert the statuses to our internal SubsystemStatus model
@@ -101,15 +97,15 @@ public class UpdateService {
     /**
      * The number of current users are presented as one of the subsystem status. This is not ideal and we want to
      * present it as a mandatory field for the status of the node.
-     * 
+     *
      * This is why we loop through the available configurations (which are around 5-8) until we find the configuration
      * with the name of {@linkplain UpdateService#CURRENT_USERS_NAME}
-     * 
+     *
      * @param configurations
      * @return
      */
-    private int getCurrentUsers(List<ConfigurationType> configurations) {
-        for (ConfigurationType config : configurations) {
+    private int getCurrentUsers(List<Configuration> configurations) {
+        for (Configuration config : configurations) {
             if (CURRENT_USERS_NAME.equals(config.getName())) {
                 return Integer.parseInt(config.getValue());
             }
@@ -119,7 +115,7 @@ public class UpdateService {
 
     /**
      * Retrieves the relevant subsystems defined in the configuration in {@linkplain ServiceConfiguration}
-     * 
+     *
      * @param serviceName
      * @param statuses
      * @return
@@ -136,16 +132,16 @@ public class UpdateService {
 
     /**
      * Returns the configurations acquired from the server but converted to statuses we can save in our database
-     * 
+     *
      * @param configurations
      *            The configurations
      * @param now
      *            The time (we want to use the same time for each status acquired by the same PingFor.. call
      * @return An HashMap with the subservice name as key and the new status as value
      */
-    protected HashMap<String, SubsystemStatus> getStatuses(List<ConfigurationType> configurations) {
+    protected HashMap<String, SubsystemStatus> getStatuses(List<Configuration> configurations) {
         HashMap<String, SubsystemStatus> res = new HashMap<>();
-        for (ConfigurationType config : configurations) {
+        for (Configuration config : configurations) {
             SubsystemStatus status = new SubsystemStatus();
             status.setSubsystem(config.getName());
             status.setStatus(config.getValue());
@@ -157,11 +153,11 @@ public class UpdateService {
 
     /**
      * Updates the severity of a status. We do not want to do this for statuses we are not interested in.
-     * 
+     *
      * If the status is some variant of "ok" we deem the status to be OK, if it is some variant of "fail" we deem it to
      * be of status FAIL. If the status contain the word queue we classify the status as a measure of an queue size.
      * Here we have a threshold for FAIL and WARN.
-     * 
+     *
      * @param status
      *            The status to be changed
      * @return The same status but with updated severity
