@@ -44,7 +44,7 @@
       "nodes": [
         {
           "nodeName": "node1",
-          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
+          "nodeUrl": "http://10.250.34.20:8080/inera-certificate/ping-for-configuration/v1.0"
         }
       ]
     },
@@ -55,7 +55,7 @@
       "nodes": [
         {
           "nodeName": "node1",
-          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
+          "nodeUrl": "http://test.privatlakarportal.intygstjanster.se/services/ping-for-configuration"
         }
       ]
     }
