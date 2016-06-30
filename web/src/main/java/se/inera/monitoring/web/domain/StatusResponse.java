@@ -9,7 +9,6 @@ public class StatusResponse {
     private String server;
     private long responsetime;
     private String timestamp;
-    private int userCount;
     private String version;
     private boolean reachable = true;
     private List<Status> statuses = new ArrayList<>();
@@ -23,11 +22,10 @@ public class StatusResponse {
         this.server = server;
         this.responsetime = responsetime;
         this.timestamp = timestamp;
-        this.userCount = userCount;
         this.version = version;
         this.statuses = statuses;
     }
-    
+
     public static StatusResponse getUnreachable(String application, String server) {
         StatusResponse response = new StatusResponse();
         response.setApplication(application);
@@ -66,14 +64,6 @@ public class StatusResponse {
 
     public void setResponsetime(long responsetime) {
         this.responsetime = responsetime;
-    }
-
-    public int getUserCount() {
-        return userCount;
-    }
-
-    public void setUserCount(int userCount) {
-        this.userCount = userCount;
     }
 
     public String getApplication() {

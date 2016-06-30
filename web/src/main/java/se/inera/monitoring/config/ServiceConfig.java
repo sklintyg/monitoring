@@ -16,7 +16,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
-@ComponentScan("se.inera.monitoring.service")
+@ComponentScan("se.inera.monitoring")
 @EnableAsync
 @EnableScheduling
 public class ServiceConfig {

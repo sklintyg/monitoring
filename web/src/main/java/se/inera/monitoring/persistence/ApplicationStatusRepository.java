@@ -2,13 +2,14 @@ package se.inera.monitoring.persistence;
 
 import java.util.List;
 
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
+import se.inera.monitoring.web.domain.StatusResponse;
+import se.inera.monitoring.web.domain.UserCount;
 
-import se.inera.monitoring.persistence.model.ApplicationStatus;
+public interface ApplicationStatusRepository {
 
-public interface ApplicationStatusRepository extends JpaRepository<ApplicationStatus, Long> {
+    void save(UserCount userCount, String system);
+    void save(StatusResponse status);
+    List<UserCount> getUserCount(String system);
+    List<StatusResponse> getStatus(String system);
 
-    List<ApplicationStatus> findByApplicationOrderByTimestampDescServerDesc(String application, Pageable pageable);
-    List<ApplicationStatus> findByApplicationAndServerOrderByTimestampDesc(String application, String server, Pageable pageRequest);
 }

@@ -77,4 +77,8 @@ public class UserCount {
     public String toString() {
         return "UserCount [server=" + server + ", count=" + count + ", timeStamp=" + timeStamp + "]";
     }
+
+    public static UserCount getUnreachable(String server, String timestamp) {
+        return new UserCount(server, 0, timestamp);
+    }
 }

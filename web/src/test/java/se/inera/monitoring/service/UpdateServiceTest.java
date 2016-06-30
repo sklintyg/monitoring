@@ -2,6 +2,7 @@ package se.inera.monitoring.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -9,21 +10,26 @@ import static org.mockito.Mockito.when;
 
 import java.util.*;
 
+import org.joda.time.DateTimeUtils;
+import org.joda.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import se.inera.monitoring.persistence.ApplicationStatusRepository;
-import se.inera.monitoring.persistence.model.ApplicationStatus;
-import se.inera.monitoring.persistence.model.SubsystemStatus;
 import se.inera.monitoring.service.configuration.*;
+import se.inera.monitoring.web.domain.StatusResponse;
+import se.inera.monitoring.web.domain.UserCount;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UpdateServiceTest {
 
+    private static final String CONFIGURATION_NAME_QUEUE = "queue";
+    private static final String CONFIGURATION_NAME_STANDARD = "hsa";
+    private static final String SERVER_NAME = "node1";
+    private static final String TIME_STRING = "2016-01-02 11:23";
     private static final String SERVICE = "test_service";
 
     @Mock
@@ -42,90 +48,157 @@ public class UpdateServiceTest {
     public void init() {
         Service service = new Service();
         service.setServiceName(SERVICE);
-        service.setConfigurations(Arrays.asList("hsa", "db"));
+        service.setConfigurations(Arrays.asList(CONFIGURATION_NAME_STANDARD, "db", CONFIGURATION_NAME_QUEUE));
 
         List<Node> nodes = new ArrayList<>();
 
         Node node1 = new Node();
-        node1.setNodeName("node1");
+        node1.setNodeName(SERVER_NAME);
         node1.setNodeUrl("/dev/null");
         nodes.add(node1);
-
-        Node node2 = node1;
-        nodes.add(node2);
 
         service.setNodes(nodes);
 
         ArrayList<Service> serviceList = new ArrayList<>();
         serviceList.add(service);
 
-        when(config.getService(eq(SERVICE))).thenReturn(service);
         when(config.getServices()).thenReturn(serviceList);
-    }
-
-    @Test
-    public void testAccessedOnceForEachNode() throws ServiceNotReachableException {
-        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(new ConfigResponse());
-        updateService.update();
-        verify(pingFactory, times(2)).ping(any(String.class), any(ConfigVersion.class));
+        LocalDateTime date = LocalDateTime.parse(TIME_STRING, UpdateService.formatter);
+        DateTimeUtils.setCurrentMillisFixed(date.toDateTime().getMillis());
     }
 
     @Test
     public void testSavedOnceForEachNode() throws ServiceNotReachableException {
         when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(new ConfigResponse());
         updateService.update();
-        verify(repo, times(2)).save(any(ApplicationStatus.class));
+        verify(repo, times(1)).save(any(UserCount.class), anyString());
+        verify(repo, times(1)).save(any(StatusResponse.class));
+        verify(pingFactory, times(1)).ping(any(String.class), any(ConfigVersion.class));
     }
 
     @Test
-    public void testUpdateSeverityOk() {
-        SubsystemStatus status = new SubsystemStatus();
-        status.setStatus("ok");
-        status.setSubsystem("test");
-        assertEquals("ok in status should equal a severity of OK", UpdateService.OK, updateService.updateSeverity(status).getSeverity());
+    public void testUpdateSavesCounter() throws ServiceNotReachableException {
+        ConfigResponse configResponse = new ConfigResponse();
+        Configuration configuration = new Configuration();
+        configuration.setName(UpdateService.CURRENT_USERS_NAME);
+        configuration.setValue("123");
+        configResponse.setConfiguration(Arrays.asList(configuration));
+        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(configResponse);
+
+        updateService.update();
+
+        ArgumentCaptor<UserCount> captor = ArgumentCaptor.forClass(UserCount.class);
+        verify(repo, times(1)).save(captor.capture(), eq(SERVICE));
+        assertEquals(SERVER_NAME, captor.getValue().getServer());
+        assertEquals(123, captor.getValue().getCount());
+        assertEquals(TIME_STRING, captor.getValue().getTimeStamp());
     }
 
     @Test
-    public void testUpdateSeverityFail() {
-        SubsystemStatus status = new SubsystemStatus();
-        status.setStatus("fail");
-        status.setSubsystem("test");
-        assertEquals("fail in status should equal a severity of FAIL", UpdateService.FAIL, updateService.updateSeverity(status).getSeverity());
+    public void testUpdateSavesStatusResponse() throws ServiceNotReachableException {
+        ConfigResponse configResponse = new ConfigResponse();
+        Configuration configuration = new Configuration();
+        configuration.setName(CONFIGURATION_NAME_STANDARD);
+        configuration.setValue("ok");
+        configResponse.setConfiguration(Arrays.asList(configuration));
+        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(configResponse);
+        updateService.update();
+        ArgumentCaptor<StatusResponse> captor = ArgumentCaptor.forClass(StatusResponse.class);
+        verify(repo, times(1)).save(captor.capture());
+        assertEquals(SERVER_NAME, captor.getValue().getServer());
+        assertEquals(SERVICE, captor.getValue().getApplication());
+        assertEquals(TIME_STRING, captor.getValue().getTimestamp());
+        assertEquals(1, captor.getValue().getStatuses().size());
+        assertEquals(CONFIGURATION_NAME_STANDARD, captor.getValue().getStatuses().get(0).getServiceName());
+        assertEquals("ok", captor.getValue().getStatuses().get(0).getStatuscode());
+        assertEquals(UpdateService.OK, captor.getValue().getStatuses().get(0).getSeverity());
     }
 
     @Test
-    public void testUpdateSeverityQueueWarn() {
-        SubsystemStatus status = new SubsystemStatus();
-        status.setSubsystem("randomqueue");
-        status.setStatus(Integer.toString(UpdateService.queueWarnThreshold + 1));
-        assertEquals("Higher queue size than queueWarnThreshold should return WARN", UpdateService.WARN, updateService.updateSeverity(status)
-                .getSeverity());
+    public void testUpdateSavesStatusResponseFail() throws ServiceNotReachableException {
+        ConfigResponse configResponse = new ConfigResponse();
+        Configuration configuration = new Configuration();
+        configuration.setName(CONFIGURATION_NAME_STANDARD);
+        configuration.setValue("fail");
+        configResponse.setConfiguration(Arrays.asList(configuration));
+        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(configResponse);
+        updateService.update();
+        ArgumentCaptor<StatusResponse> captor = ArgumentCaptor.forClass(StatusResponse.class);
+        verify(repo, times(1)).save(captor.capture());
+        assertEquals(SERVER_NAME, captor.getValue().getServer());
+        assertEquals(SERVICE, captor.getValue().getApplication());
+        assertEquals(TIME_STRING, captor.getValue().getTimestamp());
+        assertEquals(1, captor.getValue().getStatuses().size());
+        assertEquals(CONFIGURATION_NAME_STANDARD, captor.getValue().getStatuses().get(0).getServiceName());
+        assertEquals("fail", captor.getValue().getStatuses().get(0).getStatuscode());
+        assertEquals(UpdateService.FAIL, captor.getValue().getStatuses().get(0).getSeverity());
     }
 
     @Test
-    public void testUpdateSeverityQueueOk() {
-        SubsystemStatus status = new SubsystemStatus();
-        status.setSubsystem("randomqueue");
-        status.setStatus(Integer.toString(UpdateService.queueWarnThreshold - 1));
-        assertEquals("lower queue size than queueWarnThreshold should return OK", UpdateService.OK, updateService.updateSeverity(status)
-                .getSeverity());
+    public void testUpdateSavesStatusResponseQueue() throws ServiceNotReachableException {
+        ConfigResponse configResponse = new ConfigResponse();
+        Configuration configuration = new Configuration();
+        configuration.setName(CONFIGURATION_NAME_QUEUE);
+        configuration.setValue("1");
+        configResponse.setConfiguration(Arrays.asList(configuration));
+        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(configResponse);
+        updateService.update();
+        ArgumentCaptor<StatusResponse> captor = ArgumentCaptor.forClass(StatusResponse.class);
+        verify(repo, times(1)).save(captor.capture());
+        assertEquals(SERVER_NAME, captor.getValue().getServer());
+        assertEquals(SERVICE, captor.getValue().getApplication());
+        assertEquals(TIME_STRING, captor.getValue().getTimestamp());
+        assertEquals(1, captor.getValue().getStatuses().size());
+        assertEquals(CONFIGURATION_NAME_QUEUE, captor.getValue().getStatuses().get(0).getServiceName());
+        assertEquals("1", captor.getValue().getStatuses().get(0).getStatuscode());
+        assertEquals(UpdateService.OK, captor.getValue().getStatuses().get(0).getSeverity());
     }
 
     @Test
-    public void testUpdateSeverityQueueFail() {
-        SubsystemStatus status = new SubsystemStatus();
-        status.setSubsystem("randomqueue");
-        status.setStatus(Integer.toString(UpdateService.queueFailThreshold + 1));
-        assertEquals("higher queuesize than queueFailThreshold should return FAIL", UpdateService.FAIL, updateService.updateSeverity(status)
-                .getSeverity());
+    public void testUpdateSavesStatusResponseQueueHalfFull() throws ServiceNotReachableException {
+        ConfigResponse configResponse = new ConfigResponse();
+        Configuration configuration = new Configuration();
+        configuration.setName(CONFIGURATION_NAME_QUEUE);
+        configuration.setValue("6");
+        configResponse.setConfiguration(Arrays.asList(configuration));
+        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(configResponse);
+        updateService.update();
+        ArgumentCaptor<StatusResponse> captor = ArgumentCaptor.forClass(StatusResponse.class);
+        verify(repo, times(1)).save(captor.capture());
+        assertEquals(SERVER_NAME, captor.getValue().getServer());
+        assertEquals(SERVICE, captor.getValue().getApplication());
+        assertEquals(TIME_STRING, captor.getValue().getTimestamp());
+        assertEquals(1, captor.getValue().getStatuses().size());
+        assertEquals(CONFIGURATION_NAME_QUEUE, captor.getValue().getStatuses().get(0).getServiceName());
+        assertEquals("6", captor.getValue().getStatuses().get(0).getStatuscode());
+        assertEquals(UpdateService.WARN, captor.getValue().getStatuses().get(0).getSeverity());
     }
 
     @Test
-    public void testUpdateSeverityUnkownShouldNotUpdate() {
-        SubsystemStatus status = new SubsystemStatus();
-        status.setSubsystem("unknown_service");
-        status.setStatus("unknown_status");
-        status.setSeverity(-1);
-        assertEquals("Unkown substatus should leave severity unchanged", -1, updateService.updateSeverity(status).getSeverity());
+    public void testUpdateSavesStatusResponseQueueFull() throws ServiceNotReachableException {
+        ConfigResponse configResponse = new ConfigResponse();
+        Configuration configuration = new Configuration();
+        configuration.setName(CONFIGURATION_NAME_QUEUE);
+        configuration.setValue("11");
+        configResponse.setConfiguration(Arrays.asList(configuration));
+        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(configResponse);
+        updateService.update();
+        ArgumentCaptor<StatusResponse> captor = ArgumentCaptor.forClass(StatusResponse.class);
+        verify(repo, times(1)).save(captor.capture());
+        assertEquals(SERVER_NAME, captor.getValue().getServer());
+        assertEquals(SERVICE, captor.getValue().getApplication());
+        assertEquals(TIME_STRING, captor.getValue().getTimestamp());
+        assertEquals(1, captor.getValue().getStatuses().size());
+        assertEquals(CONFIGURATION_NAME_QUEUE, captor.getValue().getStatuses().get(0).getServiceName());
+        assertEquals("11", captor.getValue().getStatuses().get(0).getStatuscode());
+        assertEquals(UpdateService.FAIL, captor.getValue().getStatuses().get(0).getSeverity());
+    }
+
+    @Test
+    public void testUpdateServiceNotReachable() throws ServiceNotReachableException {
+        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenThrow(new ServiceNotReachableException());
+        updateService.update();
+        verify(repo, times(1)).save(any(StatusResponse.class));
+        verify(repo, times(1)).save(any(UserCount.class), eq(SERVICE));
     }
 }
