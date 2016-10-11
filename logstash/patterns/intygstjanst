@@ -10,13 +10,19 @@ IT__STATISTICS_PARSE (%{IT__STATISTICS_REVOKED}|%{IT__STATISTICS_SENT})
 # ------------------------------------------------------------
 IT__CERTIFICATE_REGISTERED Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - registered
 IT__CERTIFICATE_SENT Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - sent to '%{DATA:recipient}'
-IT__CERTIFICATE_SENT_AND_NOTIFIED_BY_WIRETAPPING Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - sent to '%{DATA:recipient}' (notification received by wiretapping)
 IT__CERTIFICATE_REVOKED Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - revoked
 IT__CERTIFICATE_REVOKE_SENT Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - revoke sent to '%{DATA:recipient}'
 IT__CERTIFICATE_LISTED_BY_CITIZEN Certificates for citizen '%{DATA:user}' - listed by citizen
 IT__CERTIFICATE_LISTED_BY_CARE Certificates for citizen '%{DATA:user}' - listed by care
 IT__CERTIFICATE_STATUS_CHANGED Certificate '%{DATA:intygid}' - changed to status '%{DATA:status}'
-IT__CERTIFICATE_PARSE (%{IT__CERTIFICATE_REGISTERED}|%{IT__CERTIFICATE_SENT}|%{IT__CERTIFICATE_SENT_AND_NOTIFIED_BY_WIRETAPPING}|%{IT__CERTIFICATE_REVOKED}|%{IT__CERTIFICATE_REVOKE_SENT}|%{IT__CERTIFICATE_LISTED_BY_CITIZEN}|%{IT__CERTIFICATE_LISTED_BY_CARE}|%{IT__CERTIFICATE_STATUS_CHANGED})
+IT__CERTIFICATE_PARSE (%{IT__CERTIFICATE_REGISTERED}|%{IT__CERTIFICATE_SENT}|%{IT__CERTIFICATE_REVOKED}|%{IT__CERTIFICATE_REVOKE_SENT}|%{IT__CERTIFICATE_LISTED_BY_CITIZEN}|%{IT__CERTIFICATE_LISTED_BY_CARE}|%{IT__CERTIFICATE_STATUS_CHANGED})
+
+# ------------------------------------------------------------
+# IT__SEND_MESSAGE_PARSE
+# ------------------------------------------------------------
+IT__SEND_MESSAGE_TO_CARE_RECEIVED Message with id '%{DATA:messageId}', care unit recipient '%{DATA:recipient}' - was received and forwarded to its recipient.
+IT__SEND_MESSAGE_TO_RECIPIENT Message with id '%{DATA:messageId}' sent to recipient '%{DATA:recipient}'
+IT__SEND_MESSAGE_PARSE (%{IT__SEND_MESSAGE_TO_CARE_RECEIVED}|%{IT__SEND_MESSAGE_TO_RECIPIENT})
 
 # ------------------------------------------------------------
 # IT__CONSENT_PARSE
