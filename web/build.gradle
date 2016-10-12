@@ -53,8 +53,9 @@ task copydeps(type: Copy) {
     include '**/*.js.map'
     include '**/fonts/*'
 }
-task bower(type: Exec){
-    commandLine 'bower', 'install'
+task bower(type: NodeTask, dependsOn:npmInstall) {
+    script = file('node_modules/bower/bin/bower')
+    args = ['install']
 }
 
 copydeps.dependsOn bower

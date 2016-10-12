@@ -2,6 +2,7 @@
   "name": "monitoring",
   "version": "0.0.1",
   "dependencies": {
+    "bower": "^1.7.9",
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
     "grunt-cli": "^0.1.13",
