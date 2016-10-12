@@ -19,10 +19,10 @@
         <tr ng-repeat="server in servers" ng-class="{danger: !server.reachable}">
           <td>{{server.server}}</td>
           <td ng-repeat="status in server.statuses">
-            <div ng-if="status.serviceName.indexOf('Queue') != -1">
+            <div ng-if="status.type === 'VALUE'">
                 {{status.statuscode}}
             </div>
-            <div ng-if="status.serviceName.indexOf('Queue') == -1">
+            <div ng-if="status.type !== 'VALUE'">
               <div ng-if="status.severity == 0">
                 <span class="glyphicon glyphicon-ok"
                       aria-hidden="true"

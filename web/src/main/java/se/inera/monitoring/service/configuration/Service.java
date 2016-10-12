@@ -5,7 +5,7 @@ import java.util.List;
 public class Service {
 
     private String serviceName;
-    private List<String> configurations;
+    private List<Config> configurations;
     private List<Node> nodes;
     private ConfigVersion version;
 
@@ -20,11 +20,11 @@ public class Service {
         this.serviceName = serviceName;
     }
 
-    public List<String> getConfigurations() {
+    public List<Config> getConfigurations() {
         return configurations;
     }
 
-    public void setConfigurations(List<String> configurations) {
+    public void setConfigurations(List<Config> configurations) {
         this.configurations = configurations;
     }
 
@@ -44,4 +44,11 @@ public class Service {
         this.version = version;
     }
 
+    public boolean hasConfig(String configName) {
+        return configurations.stream().anyMatch(c -> c.getName().equals(configName));
+    }
+
+    public ConfigType getType(String configName) {
+        return configurations.stream().filter(c -> c.getName().equals(configName)).findAny().map(Config::getType).orElse(null);
+    }
 }

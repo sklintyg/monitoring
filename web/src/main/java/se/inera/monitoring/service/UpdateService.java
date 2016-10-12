@@ -36,9 +36,6 @@ public class UpdateService {
 
     private static final Logger log = LoggerFactory.getLogger(UpdateService.class);
 
-    protected static final int queueWarnThreshold = 5;
-    protected static final int queueFailThreshold = 10;
-
     public static final int OK = 0;
     public static final int FAIL = 1;
     public static final int WARN = 2;
@@ -111,9 +108,10 @@ public class UpdateService {
     protected List<Status> getStatuses(se.inera.monitoring.service.configuration.Service service, List<Configuration> configurations) {
         ArrayList<Status> res = new ArrayList<>();
         for (Configuration configuration : configurations) {
-            if (service.getConfigurations().contains(configuration.getName())) {
+            if (service.hasConfig(configuration.getName())) {
                 res.add(new Status(configuration.getName(), configuration.getValue(),
-                        getSeverity(configuration.getName(), configuration.getValue())));
+                        getSeverity(configuration.getName(), configuration.getValue()),
+                        service.getType(configuration.getName())));
             }
         }
         return res;
@@ -126,18 +124,7 @@ public class UpdateService {
         case "fail":
             return FAIL;
         default:
-            // Now it gets trickier. We want to warn when queuesize is too high. When is the queue size too high?
-            if (name.toLowerCase().contains("queue")) {
-                int queueSize = Integer.parseInt(status);
-                if (queueSize >= queueFailThreshold)
-                    return FAIL;
-                else if (queueSize >= queueWarnThreshold)
-                    return WARN;
-                else
-                    return OK;
-            } else { // We cant parse it
-                return OK;
-            }
+            return OK;
         }
     }
 }

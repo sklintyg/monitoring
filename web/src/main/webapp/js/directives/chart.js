@@ -11,9 +11,9 @@ angular.module('MonitorDirectives')
 
       // Once d3 is loaded we can start drawing the chart
       d3Service.d3().then(function(d3) {
-        var margin = {top: 20, right: 20, bottom: 20, left: 50},
+        var margin = {top: 10, right: 20, bottom: 20, left: 50},
         width = (scope.chartwidth ? scope.chartwidth : 600) - margin.left - margin.right,
-        height = (scope.chartheight ? scope.chartheight :  400) - margin.top - margin.bottom;
+        height = (scope.chartheight ? scope.chartheight :  200) - margin.top - margin.bottom;
 
         var parseDate = d3.time.format("%Y-%m-%d %H:%M").parse;
 
@@ -27,7 +27,7 @@ angular.module('MonitorDirectives')
 
         var xAxis = d3.svg.axis()
           .scale(x)
-          .ticks(5) // TODO: Should it really be 5 here? Maybe a few more?
+          .ticks(5)
           .orient("bottom")
           .tickFormat(d3.time.format("%H:%M"));
 

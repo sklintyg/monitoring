@@ -48,7 +48,8 @@ public class UpdateServiceTest {
     public void init() {
         Service service = new Service();
         service.setServiceName(SERVICE);
-        service.setConfigurations(Arrays.asList(CONFIGURATION_NAME_STANDARD, "db", CONFIGURATION_NAME_QUEUE));
+        service.setConfigurations(Arrays.asList(buildConfig(CONFIGURATION_NAME_STANDARD, ConfigType.NORMAL), buildConfig("db", ConfigType.NORMAL),
+                buildConfig(CONFIGURATION_NAME_QUEUE, ConfigType.NORMAL)));
 
         List<Node> nodes = new ArrayList<>();
 
@@ -155,50 +156,17 @@ public class UpdateServiceTest {
     }
 
     @Test
-    public void testUpdateSavesStatusResponseQueueHalfFull() throws ServiceNotReachableException {
-        ConfigResponse configResponse = new ConfigResponse();
-        Configuration configuration = new Configuration();
-        configuration.setName(CONFIGURATION_NAME_QUEUE);
-        configuration.setValue("6");
-        configResponse.setConfiguration(Arrays.asList(configuration));
-        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(configResponse);
-        updateService.update();
-        ArgumentCaptor<StatusResponse> captor = ArgumentCaptor.forClass(StatusResponse.class);
-        verify(repo, times(1)).save(captor.capture());
-        assertEquals(SERVER_NAME, captor.getValue().getServer());
-        assertEquals(SERVICE, captor.getValue().getApplication());
-        assertEquals(TIME_STRING, captor.getValue().getTimestamp());
-        assertEquals(1, captor.getValue().getStatuses().size());
-        assertEquals(CONFIGURATION_NAME_QUEUE, captor.getValue().getStatuses().get(0).getServiceName());
-        assertEquals("6", captor.getValue().getStatuses().get(0).getStatuscode());
-        assertEquals(UpdateService.WARN, captor.getValue().getStatuses().get(0).getSeverity());
-    }
-
-    @Test
-    public void testUpdateSavesStatusResponseQueueFull() throws ServiceNotReachableException {
-        ConfigResponse configResponse = new ConfigResponse();
-        Configuration configuration = new Configuration();
-        configuration.setName(CONFIGURATION_NAME_QUEUE);
-        configuration.setValue("11");
-        configResponse.setConfiguration(Arrays.asList(configuration));
-        when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenReturn(configResponse);
-        updateService.update();
-        ArgumentCaptor<StatusResponse> captor = ArgumentCaptor.forClass(StatusResponse.class);
-        verify(repo, times(1)).save(captor.capture());
-        assertEquals(SERVER_NAME, captor.getValue().getServer());
-        assertEquals(SERVICE, captor.getValue().getApplication());
-        assertEquals(TIME_STRING, captor.getValue().getTimestamp());
-        assertEquals(1, captor.getValue().getStatuses().size());
-        assertEquals(CONFIGURATION_NAME_QUEUE, captor.getValue().getStatuses().get(0).getServiceName());
-        assertEquals("11", captor.getValue().getStatuses().get(0).getStatuscode());
-        assertEquals(UpdateService.FAIL, captor.getValue().getStatuses().get(0).getSeverity());
-    }
-
-    @Test
     public void testUpdateServiceNotReachable() throws ServiceNotReachableException {
         when(pingFactory.ping(any(String.class), any(ConfigVersion.class))).thenThrow(new ServiceNotReachableException());
         updateService.update();
         verify(repo, times(1)).save(any(StatusResponse.class));
         verify(repo, times(1)).save(any(UserCount.class), eq(SERVICE));
+    }
+
+    private Config buildConfig(String name, ConfigType type) {
+        Config config = new Config();
+        config.setName(name);
+        config.setType(type);
+        return config;
     }
 }

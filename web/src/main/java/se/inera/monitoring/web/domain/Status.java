@@ -1,39 +1,34 @@
 package se.inera.monitoring.web.domain;
 
+import se.inera.monitoring.service.configuration.ConfigType;
+
 public class Status {
 
-    private String servicename;
-    private String statuscode;
-    private int severity;
+    private final String servicename;
+    private final String statuscode;
+    private final int severity;
+    private final ConfigType type;
 
-    public Status(String servicename, String statusCode, int severity) {
+    public Status(String servicename, String statusCode, int severity, ConfigType type) {
         this.servicename = servicename;
         this.statuscode = statusCode;
         this.severity = severity;
+        this.type = type;
     }
 
     public String getServiceName() {
         return servicename;
     }
 
-    public void setServiceName(String servicename) {
-        this.servicename = servicename;
-    }
-
     public String getStatuscode() {
         return statuscode;
-    }
-
-    public void setStatuscode(String statuscode) {
-        this.statuscode = statuscode;
     }
 
     public int getSeverity() {
         return severity;
     }
 
-    public void setSeverity(int severity) {
-        this.severity = severity;
+    public ConfigType getType() {
+        return type;
     }
-
 }

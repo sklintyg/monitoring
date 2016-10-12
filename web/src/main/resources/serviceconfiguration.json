@@ -1,61 +1,107 @@
 {
-  "services": [
-    {
-      "serviceName":"webcert",
-      "version": "PING_FOR_CONFIGURATION",
-      "configurations":["dbStatus","jmsStatus","intygstjanst","signatureQueueSize"],
-      "nodes": [
-        {
-          "nodeName": "node1",
-          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
-        },
-        {
-          "nodeName": "node2",
-          "nodeUrl": "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
+  "services" : [{
+      "serviceName" : "webcert",
+      "version" : "PING_FOR_CONFIGURATION",
+      "configurations" : [{
+          "name" : "dbStatus",
+          "type" : "NORMAL"
+        }, {
+          "name" : "jmsStatus",
+          "type" : "NORMAL"
+        }, {
+          "name" : "intygstjanst",
+          "type" : "NORMAL"
+        }, {
+          "name" : "signatureQueueSize",
+          "type" : "VALUE"
+        }
+      ],
+      "nodes" : [{
+          "nodeName" : "node1",
+          "nodeUrl" : "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
+        }, {
+          "nodeName" : "node2",
+          "nodeUrl" : "http://test.webcert.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         }
       ]
-    },
-    {
-      "serviceName":"minaintyg",
-      "version": "PING_FOR_CONFIGURATION",
-      "configurations":["intygstjanst"],
-      "nodes": [
-        {
-          "nodeName": "server1",
-          "nodeUrl": "http://test.minaintyg.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
+    }, {
+      "serviceName" : "minaintyg",
+      "version" : "PING_FOR_CONFIGURATION",
+      "configurations" : [{
+          "name" : "intygstjanst",
+          "type" : "NORMAL"
+        }
+      ],
+      "nodes" : [{
+          "nodeName" : "server1",
+          "nodeUrl" : "http://test.minaintyg.intygstjanster.se/monitoring/ping-for-configuration/v1.0"
         }
       ]
-    },
-    {
-      "serviceName":"rehabstod",
-      "version": "INTERNAL_PING_FOR_CONFIGURATION",
-      "configurations":["jmsStatus", "intygstjanst"],
-      "nodes": [
-        {
-          "nodeName": "node1",
-          "nodeUrl": "http://test.rehabstod.intygstjanster.se/services/internal-ping-for-configuration"
+    }, {
+      "serviceName" : "rehabstod",
+      "version" : "INTERNAL_PING_FOR_CONFIGURATION",
+      "configurations" : [{
+          "name" : "jmsStatus",
+          "type" : "NORMAL"
+        }, {
+          "name" : "intygstjanst",
+          "type" : "NORMAL"
+        }
+      ],
+      "nodes" : [{
+          "nodeName" : "node1",
+          "nodeUrl" : "http://test.rehabstod.intygstjanster.se/services/internal-ping-for-configuration"
         }
       ]
-    },
-    {
-      "serviceName":"intygstjanst",
-      "version": "PING_FOR_CONFIGURATION",
-      "configurations":["dbStatus", "jmsStatus"],
-      "nodes": [
-        {
-          "nodeName": "node1",
-          "nodeUrl": "http://10.250.34.20:8080/inera-certificate/ping-for-configuration/v1.0"
+    }, {
+      "serviceName" : "intygstjanst",
+      "version" : "PING_FOR_CONFIGURATION",
+      "configurations" : [{
+          "name" : "dbStatus",
+          "type" : "NORMAL"
+        }, {
+          "name" : "jmsStatus",
+          "type" : "NORMAL"
+        }
+      ],
+      "nodes" : [{
+          "nodeName" : "node1",
+          "nodeUrl" : "http://10.250.34.20:8080/inera-certificate/ping-for-configuration/v1.0"
         }
       ]
-    },
-    {
-      "serviceName":"privatlakarportal",
-      "version": "PING_FOR_CONFIGURATION",
-      "configurations":["dbStatus", "hsaStatus"],
-      "nodes": [
-        {
-          "nodeName": "node1",
-          "nodeUrl": "http://test.privatlakarportal.intygstjanster.se/services/ping-for-configuration"
+    }, {
+      "serviceName" : "privatlakarportal",
+      "version" : "PING_FOR_CONFIGURATION",
+      "configurations" : [{
+          "name" : "dbStatus",
+          "type" : "NORMAL"
+        }, {
+          "name" : "hsaStatus",
+          "type" : "NORMAL"
+        }
+      ],
+      "nodes" : [{
+          "nodeName" : "node1",
+          "nodeUrl" : "http://test.privatlakarportal.intygstjanster.se/services/ping-for-configuration"
+        }
+      ]
+    }, {
+      "serviceName" : "statistik",
+      "version" : "INTERNAL_PING_FOR_CONFIGURATION",
+      "configurations" : [{
+          "name" : "dbStatus",
+          "type" : "NORMAL"
+        }, {
+          "name" : "highchartExportStatus",
+          "type" : "NORMAL"
+        }, {
+          "name" : "nbrOfLoggedInUsers",
+          "type" : "VALUE"
+        }
+      ],
+      "nodes" : [{
+          "nodeName" : "node1",
+          "nodeUrl" : "http://test.statistik.intygstjanster.sjunet.org/services/internal-ping-for-configuration/v1.0"
         }
       ]
     }

@@ -28,7 +28,8 @@
 
 #webcert,
 #rehabstod,
-#minaintyg {
+#minaintyg,
+#statistik {
   text-align: center;
 }
 #webcert .area {
@@ -79,7 +80,7 @@
     height: 100%;
 }
 .status-version {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 20px;
     margin-right: 20px;
     font-weight: bold;

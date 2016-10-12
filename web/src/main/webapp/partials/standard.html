@@ -59,7 +59,26 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 col-sm-12">
+    <div class="col-md-4 col-sm-12">
+      <div class="page-header">
+        <h2>Statistiktjänsten</h2>
+      </div>
+      <div style="width:100%; text-align: center;"
+           ng-if="!statistik.doneLoading && statistik.fail < threshold">
+        <img src="images/ajax-loader.gif" alt="Loading..."/>
+      </div>
+      <div style="width:100%; text-align: center;"
+           ng-if="!statistik.doneLoading && statistik.fail >= threshold">
+        <div class="alert alert-danger">
+          Kunde inte kontakta Statistiktjänsten. Testa ladda om sidan.
+        </div>
+      </div>
+      <div ng-if="statistik.doneLoading">
+        <chart chartname="statistik"></chart>
+        <monitorservices service-name="statistik" alertsize="flex-item-big"></monitorservices>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
       <div class="page-header">
         <h2>Intygstjänsten</h2>
       </div>
@@ -77,7 +96,7 @@
         <monitorservices service-name="intygstjanst" alertsize="flex-item-big"></monitorservices>
       </div>
     </div>
-    <div class="col-md-6 col-sm-12">
+    <div class="col-md-4 col-sm-12">
       <div class="page-header">
         <h2>Privatläkarportalen</h2>
       </div>
