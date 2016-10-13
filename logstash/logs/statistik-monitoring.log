@@ -1,6 +1,12 @@
-2015-11-11 12:43:23,685 NO SESSION NO USER - USER_LOGIN Login user hsaId 'HSA_USER', vardgivarId 'HSA_VARDGIVARE', vardenhetsId 'HSA_ENHET', isVardgivarProcessledare 'true'
-2015-11-11 12:43:23,685 NO SESSION NO USER - FILE_UPLOAD User hsaId 'HSA_USER', vardgivarId 'HSA_VARDGIVARE' uploaded file 'FILE_NAME' with '99' rows
+2015-11-11 12:43:23,685 NO SESSION NO USER - USER_LOGIN Login user hsaId 'HSA_ID', vardgivarId 'VARDGIVARE', vardenhetsId 'UNIT_HSA_ID', isVardgivarProcessledare 'IS_VARDGIVARPROCESSLEDARE'
+2015-11-11 12:43:23,685 NO SESSION NO USER - FILE_UPLOAD User hsaId 'HSA_ID', vardgivarId 'VARDGIVARE' uploaded file 'FILE_NAME' with 'ROWS' rows
 2015-11-11 12:43:23,685 NO SESSION NO USER - IN_FROM_QUEUE Received certificateId 'CERTIFICATE_ID' from queue
-2015-11-11 12:43:23,685 NO SESSION NO USER - IN_FROM_TABLE Processed batch with '98' certificates
+2015-11-11 12:43:23,685 NO SESSION NO USER - IN_FROM_TABLE Processed batch with 'BATCH_SIZE' certificates
 2015-11-11 12:43:23,685 NO SESSION NO USER - TRACK_ACCESS_ANONYMOUS_CHART_DATA Accessed uri 'URI'
-2015-11-11 12:43:23,685 NO SESSION NO USER - TRACK_ACCESS_PROTECTED_CHART_DATA User hsaId 'HSA_USER', vardgivarId 'HSA_VARDGIVARE' accessed uri 'URI'
+2015-11-11 12:43:23,685 NO SESSION NO USER - TRACK_ACCESS_PROTECTED_CHART_DATA User hsaId 'HSA_ID', vardgivarId 'VARDGIVARE' accessed uri 'URI'
+2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - USER_LOGIN Login user hsaId 'HSA_ID', vardgivarId 'VARDGIVARE', vardenhetsId 'UNIT_HSA_ID', isVardgivarProcessledare 'IS_VARDGIVARPROCESSLEDARE'
+2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - FILE_UPLOAD User hsaId 'HSA_ID', vardgivarId 'VARDGIVARE' uploaded file 'FILE_NAME' with 'ROWS' rows
+2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - IN_FROM_QUEUE Received certificateId 'CERTIFICATE_ID' from queue
+2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - IN_FROM_TABLE Processed batch with 'BATCH_SIZE' certificates
+2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - TRACK_ACCESS_PROTECTED_CHART_DATA User hsaId 'HSA_ID', vardgivarId 'VARDGIVARE' accessed uri 'URI'
+2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - TRACK_ACCESS_ANONYMOUS_CHART_DATA Accessed uri 'URI'
