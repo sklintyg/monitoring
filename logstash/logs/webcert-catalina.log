@@ -5173,3 +5173,4 @@
         at java.lang.Thread.run(Thread.java:722)
 2015-06-22 09:51:48,213 [main] INFO  s.i.w.p.l.DbChecker [NO USER NO SESSION] - Checking database: H2 URL:jdbc:h2:mem:dataSource
 2015-06-22 09:51:48,213 [main] INFO  s.i.w.p.l.DbChecker [NO USER NO SESSION] - Checking database: H2 URL:jdbc:h2:mem:dataSource
+2015-06-22 09:51:48,213 [main] INFO  s.i.w.p.l.DbChecker [NO USER NO SESSION] - Checking database: H2 URL:jdbc:h2:mem:dataSource
