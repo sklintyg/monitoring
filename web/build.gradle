@@ -29,8 +29,8 @@ dependencies {
     compile 'ch.qos.logback:logback-classic:1.0.13'
     compile 'wsdl4j:wsdl4j:1.6.3'
 
-    compile 'se.riv.itintegration.monitoring:itintegration-monitoring-interactions:0-SNAPSHOT'
-    compile 'se.riv.clinicalprocess.healthcond.monitoring:clinicalprocess-healthcond-monitoring-schemas:0-SNAPSHOT'
+    compile 'se.riv.itintegration.monitoring:itintegration-monitoring-schemas:1.0.0.4'
+    compile 'se.riv.clinicalprocess.healthcond.monitoring:clinicalprocess-healthcond-monitoring-schemas:1.0.3'
 
     compile 'org.apache.cxf:cxf-rt-frontend-jaxws:3.0.4'
     compile 'org.apache.cxf:cxf-rt-transports-http:3.0.4'
