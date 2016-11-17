@@ -77,7 +77,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url:"https://build-inera.nordicmedtest.se/nexus/content/repositories/releases/") {
-                authentication(userName: "<username>", password: "<password>")
+                authentication(userName: System.properties['nexusUsername'], password: System.properties['nexusPassword'])
             }
         }
     }
