@@ -74,6 +74,24 @@
           "type": "lucene",
           "enable": true,
           "query": "TAGS=NOTIFICATION"
+        },
+        "8": {
+          "id": 8,
+          "color": "#508642",
+          "alias": "SJF",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "TAGS=SJF"
+        },
+        "9": {
+          "id": 9,
+          "color": "#CCA300",
+          "alias": "Arende",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "TAGS=ARENDE"
         }
       },
       "ids": [
@@ -84,7 +102,9 @@
         4,
         5,
         6,
-        7
+        7,
+        8,
+        9
       ]
     },
     "filter": {
@@ -148,7 +168,10 @@
               3,
               4,
               5,
-              6
+              6,
+              7,
+              8,
+              9
             ]
           },
           "annotate": {
@@ -219,46 +242,8 @@
           "type": "terms",
           "loadingEditor": false,
           "field": "user.raw",
-          "exclude": [],
-          "missing": false,
-          "other": false,
-          "size": 20,
-          "order": "count",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "chart": "table",
-          "counter_pos": "above",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": "user.raw",
-          "title": "User"
-        },
-        {
-          "error": false,
-          "span": 4,
-          "editable": true,
-          "type": "terms",
-          "loadingEditor": false,
-          "field": "unit",
           "exclude": [
-            "NO UNIT",
-            "NO USER NO UNIT"
+            "NO USER"
           ],
           "missing": false,
           "other": false,
@@ -281,7 +266,58 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "user.raw",
+          "title": "User"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "unit",
+          "exclude": [
+            "NO UNIT",
+            "NO USER NO UNIT",
+            "null"
+          ],
+          "missing": false,
+          "other": false,
+          "size": 20,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
             ]
           },
           "tmode": "terms",
@@ -318,7 +354,12 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
             ]
           },
           "tmode": "terms",
@@ -369,7 +410,10 @@
               3,
               4,
               5,
-              6
+              6,
+              7,
+              8,
+              9
             ]
           },
           "tmode": "terms",
@@ -408,7 +452,10 @@
               3,
               4,
               5,
-              6
+              6,
+              7,
+              8,
+              9
             ]
           },
           "tmode": "terms",
@@ -447,7 +494,10 @@
               3,
               4,
               5,
-              6
+              6,
+              7,
+              8,
+              9
             ]
           },
           "tmode": "terms",
@@ -490,6 +540,8 @@
             "event",
             "unit",
             "user",
+            "role",
+            "origin",
             "msg",
             "intygid"
           ],
@@ -509,10 +561,13 @@
               3,
               4,
               5,
-              6
+              6,
+              7,
+              8,
+              9
             ]
           },
-          "field_list": false,
+          "field_list": true,
           "status": "Stable",
           "trimFactor": 300,
           "normTimes": true,
@@ -535,29 +590,29 @@
   "pulldowns": [
     {
       "type": "query",
-      "collapse": false,
+      "collapse": true,
       "notice": false,
       "query": "*",
       "pinned": true,
       "history": [
+        "TAGS=ARENDE",
+        "TAGS=SJF",
+        "TAGS=NOTIFICATION",
         "TAGS=PLK",
         "TAGS=MAIL",
         "TAGS=PU",
         "TAGS=OTHER",
         "TAGS=AUTH",
         "TAGS=QA",
-        "TAGS=INTYG",
-        "",
-        "intygid = 'e45*'",
-        "*"
+        "TAGS=INTYG"
       ],
       "remember": 10,
       "enable": true
     },
     {
       "type": "filtering",
-      "collapse": false,
-      "notice": true,
+      "collapse": true,
+      "notice": false,
       "enable": true
     }
   ],
