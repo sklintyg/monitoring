@@ -9,11 +9,47 @@
 ### Prerequisites:
 ### VPN access to Basefarm activated
 
+function show_help() {
+    echo "Usage:"
+    echo "    ./signedCertificatesWebcert.sh [OPTION]... BASEFARM-USERNAME START-DATE END-DATE"
+    echo ""
+    echo "OPTIONS:"
+    echo "    -- No more arguments after this"
+    echo "    -t Only get certificates of specific types (use regex)."
+    echo "       PLEASE NOTE: Webcert 5.2 is the first version to use intyg_type in loggpost of signed certificates"
+    echo "    -o Only get certificates signed from certain origin (use regex)"
+}
+
+# Reset in case getopts has been used previously in the shell.
+OPTIND=1
+
+# Default all
+origin=''
+intyg_type=''
+
+while getopts "ht:o:" opt; do
+    case "$opt" in
+    h|\?)
+        show_help
+        exit 0
+        ;;
+    o)  origin=$OPTARG
+        ;;
+    t)  intyg_type=$OPTARG
+        ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+[ "$1" = "--" ] && shift
+
 if [ $# -lt 3 ]; then
-    echo "Wrong syntax. Correct syntax is ./signedCertificatesWebcert.sh <basefarm-username> <start-date> <end-date>"
+    show_help
     exit 1
 fi
 
+USERNAME=$1
 STARTDATE=$2
 ENDDATE=$3
 
@@ -25,9 +61,9 @@ DATES=`sed 's/ /,/g' <<< $DATES`
 DATES="{$DATES}"
 
 
-ssh $1@ine-pei-misc01.sth.basefarm.net 2>/dev/null << EOF
+ssh $USERNAME@ine-pei-misc01.sth.basefarm.net 2>/dev/null << EOF
 
     printf "antal,läkare,enhet,inloggningssätt\n"
-    zgrep INTYG_SIGNED /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/archive/$DATES/webcert-monitoring* | sed 's/NO /NO_/g' | cut -d" " -f4,5,6 | sort | uniq -c | sed -r 's/^\s+//' | sed 's/ /,/g'
+    zgrep INTYG_SIGNED /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/archive/$DATES/webcert-monitoring* | sed 's/NO /NO_/g' | grep "$origin" | grep "of type '$intyg_type" | cut -d" " -f4,5,6 | sort | uniq -c | sed -r 's/^\s+//' | sed 's/ /,/g'
 
 EOF
