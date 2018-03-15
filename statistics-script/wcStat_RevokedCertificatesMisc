@@ -1,0 +1,55 @@
+#!/bin/bash
+
+### To execute this script use it as follows ./wcStat_RevokedCertificatesMisc.sh <start-date> <end-date>
+###
+### Where:
+### start-date and end-date are the dates you are interested in (inclusive) in the format YYYY-mm-dd
+###
+
+### We have to use eval here as {}-expansion is performed before variable-evaluation. This is not ideal.
+
+function show_help() {
+    echo "Usage:"
+    echo "    $0 START-DATE END-DATE"
+    echo ""
+}
+
+# Reset in case getopts has been used previously in the shell.
+OPTIND=1
+
+while getopts "ht:o:" opt; do
+    case "$opt" in
+    h|\?)
+        show_help
+        exit 0
+        ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+[ "$1" = "--" ] && shift
+
+if [ $# -lt 2 ]; then
+    show_help
+    exit 1
+fi
+
+STARTDATE=$1
+ENDDATE=$2
+
+DATES=$STARTDATE
+d=; n=0; until [ "$d" = "$ENDDATE" ]; do ((n++)); d=$(date -d "$STARTDATE + $n days" +%Y-%m-%d); DATES+=" $d"; done
+
+DATES=`sed 's/-/\//g' <<< $DATES`
+DATES=`sed 's/ /,/g' <<< $DATES`
+DATES="{$DATES}"
+
+declare -a origins=("NORMAL" "DJUPINTEGRATION" "UTHOPP" "WEBCERT")
+
+echo "antal, läkare, enhet, inloggningssätt, vårdgivare"
+
+for origin in "${origins[@]}"
+do
+    eval zgrep INTYG_REVOKED /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/archive/$DATES/webcert-monitoring*.log.gz 2>/dev/null | sed 's/NO /NO_/g' | grep "$origin" | cut -d" " -f4,5,6,14 | sort | uniq -c | sed -r 's/^\s+//' | sed 's/ /,/g' | sed "s/'//g" | if [[ $origin == "NORMAL" ]]; then grep -v WEBCERT; else cat | sed 's/NORMAL/PRIVAT/g'; fi | sed 's/-/__/3' | sed 's/__.*//'
+done

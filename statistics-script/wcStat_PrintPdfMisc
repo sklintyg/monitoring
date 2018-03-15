@@ -1,0 +1,55 @@
+#!/bin/bash
+
+### To execute this script use it as follows ./wcStat_LoginMisc <start-date> <end-date>
+###
+### Where:
+### basefarm-username is the username which have VPN access to the misc-server
+###
+
+### We have to use eval here as {}-expansion is performed before variable-evaluation. This is not ideal.
+
+function show_help() {
+    echo "Usage:"
+    echo "    $0 START-DATE END-DATE"
+    echo ""
+}
+
+# Reset in case getopts has been used previously in the shell.
+OPTIND=1
+
+while getopts "ht:o:" opt; do
+    case "$opt" in
+    h|\?)
+        show_help
+        exit 0
+        ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+[ "$1" = "--" ] && shift
+
+if [ $# -lt 2 ]; then
+    show_help
+    exit 1
+fi
+
+STARTDATE=$1
+ENDDATE=$2
+
+DATES=$STARTDATE
+d=; n=0; until [ "$d" = "$ENDDATE" ]; do ((n++)); d=$(date -d "$STARTDATE + $n days" +%Y-%m-%d); DATES+=" $d"; done
+
+DATES=`sed 's/-/\//g' <<< $DATES`
+DATES=`sed 's/ /,/g' <<< $DATES`
+DATES="{$DATES}"
+
+eval zgrep -c INTYG_PRINT_PDF /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/archive/$DATES/webcert-monitoring*.log.gz 2>/dev/null | sed 's/.*://' >> tmpfile
+count=0
+while read -r line
+do
+    count=$(($count + $line))
+done < tmpfile
+echo "Totalt antal utskrivna pdf under "$STARTDATE" till "$ENDDATE" är "$count
+rm -f tmpfile
