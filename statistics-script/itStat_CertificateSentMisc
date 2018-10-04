@@ -1,0 +1,55 @@
+#!/bin/bash
+
+### To execute this script use it as follows ./wcStat_signedCertificatesMisc.sh <start-date> <end-date>
+###
+### Where:
+### start-date and end-date are the dates you are interested in (inclusive) in the format YYYY-mm-dd
+###
+
+### We have to use eval here as {}-expansion is performed before variable-evaluation. This is not ideal.
+
+function show_help() {
+    echo "Usage:"
+    echo "    $0 START-DATE END-DATE"
+    echo ""
+}
+
+# Reset in case getopts has been used previously in the shell.
+OPTIND=1
+
+while getopts "ht:o:" opt; do
+    case "$opt" in
+    h|\?)
+        show_help
+        exit 0
+        ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+[ "$1" = "--" ] && shift
+
+if [ $# -lt 2 ]; then
+    show_help
+    exit 1
+fi
+
+STARTDATE=$1
+ENDDATE=$2
+
+DATES=$STARTDATE
+d=; n=0; until [ "$d" = "$ENDDATE" ]; do ((n++)); d=$(date -d "$STARTDATE + $n days" +%Y-%m-%d); DATES+=" $d"; done
+
+DATES=`sed 's/-/\//g' <<< $DATES`
+DATES=`sed 's/ /,/g' <<< $DATES`
+DATES="{$DATES}"
+
+declare -a intygstypes=("fk7263" "lisjp" "luse" "luae_na" "luae_fs" "ts-bas" "ts-diabetes" "db" "doi")
+
+echo "antal, intygstyp, enhet, vårdgivare"
+
+for intygstype in "${intygstypes[@]}"
+do
+    eval zgrep CERTIFICATE_SENT /mnt/tomcat_logs/ine-pib-app0{1,2}/minaintyg/archive/$DATES/monitoring*.log.gz 2>/dev/null | grep $intygstype | cut -d" " -f11,14 | sort | uniq -c | sed "s/'//g" | sed 's/,//' | sed -r 's/^\s+//' | sed 's/ /,/g' | awk -F "," '{print $1","$2","$3","$3}' | sed 's/ts-bas/ts_bas/' | sed 's/ts-diabetes/ts_diabetes/' | sed -r 's/-/__/2' | sed 's/__.*//'
+done
