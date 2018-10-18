@@ -1,0 +1,303 @@
+#!/bin/bash
+
+function show_help() {
+    echo "Usage:"
+    echo "    classify needs a file 'classification_needed' with intygsid, one on each row, in order to function."
+    echo "    The result is put in a file namned 'classified_file'."
+    echo "    The file 'classification_known_units' contains units that is known to be used but should not, these messages can be thrown away directly."
+    echo ""
+    echo "    -d  debug flag"
+    echo ""
+    echo "    -h  shows this message"
+    echo ""
+}
+
+# Check if file classification_needed exits if not print message and exit
+if [[ ! -f classification_needed ]]
+then
+    show_help
+    exit 1
+fi
+
+# Debug or not?
+# Reset in case getopts has been used previously in the shell.
+OPTIND=1
+debug=0
+
+while getopts "dh" opt; do
+    case "$opt" in
+    d)
+        debug=1
+	PS4='$LINENO: '
+	set -x
+        ;;
+    h)
+        show_help
+	exit 0
+	;;
+    *)
+	show_help
+	exit 1
+	;;
+    esac
+done
+
+# Only check in current year and current month
+YEAR=$(date +%Y)
+MONTH=$(date +%m)
+
+# Read in file with intygsid, classification_needed
+IFS=$'\r\n' GLOBIGNORE='*' command eval 'ID_ARRAY=($(cat classification_needed | sort | uniq))'
+# Read in file with known_units, classification_known_units
+IFS=$'\r\n' GLOBIGNORE='*' command eval 'KU_ARRAY=($(cat classification_known_units))'
+
+# Remove classified_file
+rm -f classified_file
+
+# For each intygsid check type error B or C append Cosmic fel [B|C] = <intygsid> and append to classified_file
+# Uses grep -m 5 since some errors appears different the first 2-3 rows in the log, then the right error message occurs - so it's a lifeline, nothing else
+# For some error we also use -A3 in order to get several lines to find the right error
+for ID in "${ID_ARRAY[@]}"
+do
+    if [[ debug -gt 0 ]]; then echo $ID; fi
+    found=0
+
+    #
+    # Cosmic fel C
+    #
+    resultCurrentDir=$(grep -m 5 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/webcert.log | 
+	               grep "Temporary exception for intygs-id:" | 
+		       grep "with message: javax.xml.ws.soap.SOAPFaultException: java.lang.NullPointerException")
+    sizeCurrentDir=${#resultCurrentDir}
+    resultArchiveDir=$(zgrep -m 5 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/archive/$YEAR/$MONTH/*/webcert.*.log.gz | 
+	                grep "Temporary exception for intygs-id:" | 
+			grep "with message: javax.xml.ws.soap.SOAPFaultException: java.lang.NullPointerException")
+    sizeArchiveDir=${#resultArchiveDir}
+    if [[ sizeCurrentDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "C CurrentDir: "$resultCurrentDir; echo "C CurrentSize: " $sizeCurrentDir; fi
+	echo "Cosmic fel C = "$ID >> classified_file
+	found=1
+	continue
+    elif [[ sizeArchiveDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "C ArchiveDir: "$resultArchiveDir; echo "C ArchiveSize: " $sizeArchiveDir; fi
+	echo "Cosmic fel C = "$ID >> classified_file
+	found=1
+	continue
+    fi
+
+    #
+    # Cosmic fel B
+    #
+    resultCurrentDir=$(grep -m 5 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/webcert.log | 
+	               grep "Temporary exception for intygs-id:" | 
+		       grep "with message: NotificationWSClient failed with error code: TECHNICAL_ERROR and message Certificate not found in COSMIC and ref field is missing, cannot store certificate. Possible race condition. Retry later when the certificate may have been stored in COSMIC.")
+    sizeCurrentDir=${#resultCurrentDir}
+    resultArchiveDir=$(zgrep -m 5 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/archive/$YEAR/$MONTH/*/webcert.*.log.gz | 
+	                grep "Temporary exception for intygs-id:" | 
+			grep "with message: NotificationWSClient failed with error code: TECHNICAL_ERROR and message Certificate not found in COSMIC and ref field is missing, cannot store certificate. Possible race condition. Retry later when the certificate may have been stored in COSMIC.")
+    sizeArchiveDir=${#resultArchiveDir}
+    if [[ sizeCurrentDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "B CurrentDir: "$resultCurrentDir; echo "B CurrentSize: " $sizeCurrentDir; fi
+	echo "Cosmic fel B = "$ID >> classified_file
+	found=1
+	continue
+    elif [[ sizeArchiveDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "B ArchiveDir: "$resultArchiveDir; echo "B ArchiveSize: " $sizeArchiveDir; fi
+	echo "Cosmic fel B = "$ID >> classified_file
+	found=1
+	continue
+    fi
+
+    #
+    # VP009, send again when JS faults been handled
+    #
+    resultCurrentDir=$(grep -m 5 -A3 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/webcert.log | 
+	               grep -A3 "Temporary exception for intygs-id:" | 
+		       grep -E "with message: javax.xml.ws.soap.SOAPFaultException: VP009 Error connecting to service producer at adress https://|VP009 Service unavailable")
+    sizeCurrentDir=${#resultCurrentDir}
+    resultArchiveDir=$(zgrep -m 5 -A3 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/archive/$YEAR/$MONTH/*/webcert.*.log.gz | 
+	               grep -A3 "Temporary exception for intygs-id:" | 
+		       grep -E "with message: javax.xml.ws.soap.SOAPFaultException: VP009 Error connecting to service producer at adress https://|VP009 Service unavailable")
+    sizeArchiveDir=${#resultArchiveDir}
+    if [[ sizeCurrentDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "VP009 CurrentDir: "$resultCurrentDir; echo "VP009 CurrentSize: " $sizeCurrentDir; fi
+	echo "Skicka igen (VP009) = "$ID >> classified_file
+	found=1
+	continue
+    elif [[ sizeArchiveDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "VP009 ArchiveDir: "$resultArchiveDir; echo "VP009 ArchiveSize: " $sizeArchiveDir; fi
+	echo "Skicka igen (VP009) = "$ID >> classified_file
+	found=1
+	continue
+    fi
+
+    #
+    # VP004, if receiverID is known (erase the message) if not then notify the party that the intyg must be redone
+    #
+    resultCurrentDir=$(grep -m 5 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/webcert.log | 
+	               grep "Temporary exception for intygs-id:" | 
+		       grep "with message: javax.xml.ws.soap.SOAPFaultException: VP004 No Logical Adress found for serviceNamespace:urn:riv:clinicalprocess:healthcond:certificate")
+    sizeCurrentDir=${#resultCurrentDir}
+    resultArchiveDir=$(zgrep -m 5 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/archive/$YEAR/$MONTH/*/webcert.*.log.gz | 
+	                grep "Temporary exception for intygs-id:" |
+			grep "with message: javax.xml.ws.soap.SOAPFaultException: VP004 No Logical Adress found for serviceNamespace:urn:riv:clinicalprocess:healthcond:certificate")
+    sizeArchiveDir=${#resultArchiveDir}
+
+    # Must check if the receiverId is known then the message should be thrown away
+    is_known_unit=0
+    for known_units in "${KU_ARRAY[@]}"
+    do
+	if [[ ! -z $resultCurrentDir ]]
+	then
+	    receiver=$(echo $resultCurrentDir | sed 's/.*receiverId://' | sed 's/,.*//')
+	    if [[ debug -gt 0 ]]; then echo "VP004 receiver: "$receiver; fi
+	    if [ "$receiver" == "$known_units" ]
+	    then
+		is_known_unit=1
+	    fi
+	fi
+
+	if [[ ! -z $resultArchiveDir ]]
+	then
+	    receiver=$(echo $resultArchiveDir | sed 's/.*receiverId://' | sed 's/,.*//')
+	    if [[ debug -gt 0 ]]; then echo "VP004 receiver: "$receiver; fi
+	    if [ "$receiver" == "$known_units" ]
+	    then
+		is_known_unit=1
+	    fi
+	fi
+    done
+
+    if [[ sizeCurrentDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "VP004 CurrentDir: "$resultCurrentDir; echo "VP004 CurrentSize: " $sizeCurrentDir; fi
+	if [[ $is_known_unit -gt 0 ]]
+	then
+	    echo "Radera = "$ID >> classified_file
+	else
+	    echo "Spara med andra VP004 = "$ID >> classified_file
+	fi
+	found=1
+	continue
+    elif [[ sizeArchiveDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "VP004 ArchiveDir: "$resultArchiveDir; echo "VP004 ArchiveSize: " $sizeArchiveDir; fi	
+	if [[ $is_known_unit -gt 0 ]]
+	then
+	    echo "Radera = "$ID >> classified_file
+	else
+	    echo "Spara med andra VP004 = "$ID >> classified_file
+	fi
+	found=1
+	continue
+    fi
+
+    #
+    # VP007, authorization missing for serviceNamespace - save and send later ...
+    #
+    resultCurrentDir=$(grep -m 5 -A3 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/webcert.log | 
+	               grep -A3 "Temporary exception for intygs-id:" | 
+		       grep "with message: javax.xml.ws.soap.SOAPFaultException: VP007 Authorization missing for serviceNamespace: urn:riv:clinicalprocess:healthcond:certificate:")
+    sizeCurrentDir=${#resultCurrentDir}
+    resultArchiveDir=$(zgrep -m 5 -A3 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/archive/$YEAR/$MONTH/*/webcert.*.log.gz | 
+	               grep -A3 "Temporary exception for intygs-id:" | 
+		       grep "with message: javax.xml.ws.soap.SOAPFaultException: VP007 Authorization missing for serviceNamespace: urn:riv:clinicalprocess:healthcond:certificate:")
+    sizeArchiveDir=${#resultArchiveDir}
+    if [[ sizeCurrentDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "VP007 CurrentDir: "$resultCurrentDir; echo "VP007 CurrentSize: " $sizeCurrentDir; fi
+	echo "Spara med andra VP007 = "$ID >> classified_file
+	found=1
+	continue
+    elif [[ sizeArchiveDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "VP007 ArchiveDir: "$resultArchiveDir; echo "VP007 ArchiveSize: " $sizeArchiveDir; fi
+	echo "Spara med andra VP007 = "$ID >> classified_file
+	found=1
+	continue
+    fi
+
+    #
+    # Halland/NLL/... error - save and send later ...
+    #
+    resultCurrentDir=$(grep -m 5 -A3 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/webcert.log | 
+	               grep -A3 "Temporary exception for intygs-id:" | 
+		       grep "with message: NotificationWSClient failed with error code: TECHNICAL_ERROR and message Unspecified service error")
+    sizeCurrentDir=${#resultCurrentDir}
+    resultArchiveDir=$(zgrep -m 5 -A3 $ID /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/archive/$YEAR/$MONTH/*/webcert.*.log.gz | 
+	               grep -A3 "Temporary exception for intygs-id:" | 
+		       grep "with message: NotificationWSClient failed with error code: TECHNICAL_ERROR and message Unspecified service error")
+    sizeArchiveDir=${#resultArchiveDir}
+    if [[ sizeCurrentDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "Halland CurrentDir: "$resultCurrentDir; echo "Halland CurrentSize: " $sizeCurrentDir; fi
+	echo "Spara och skicka senare = "$ID >> classified_file
+	found=1
+	continue
+    elif [[ sizeArchiveDir -gt 0 ]]
+    then
+	if [[ debug -gt 0 ]]; then echo "Halland ArchiveDir: "$resultArchiveDir; echo "Halland ArchiveSize: " $sizeArchiveDir; fi
+	echo "Spara och skicka senare = "$ID >> classified_file
+	found=1
+	continue
+    fi
+
+    # Default handling
+    # Skicka igen, since no faults were found
+    if [[ debug -gt 0 ]]; then echo "Found: "$found; fi
+    if [[ found -eq 0 ]]; then echo "Okänt skicka igen = "$ID >> classified_file; fi
+
+done
+
+# Verify that all intygsid has been handled, otherwise new checks has to be added
+noToHandle=$(sort classification_needed | uniq | wc -l | sed 's/ .*//')
+noHandled=$(wc -l classified_file | sed 's/ .*//')
+if [ "$noToHandle" == "$noHandled" ]
+then
+    echo "All intygsid handled"
+else
+    echo "NB! Not all handled - new error need to be added"
+fi
+
+exit
+
+#
+# Documentation of the different error that occur and how it can be found
+#
+
+# DONE Cosmic fel C
+grep "Temporary exception for intygs-id: c46f1689-1ade-4844-884d-64c36a93282d, with message: javax.xml.ws.soap.SOAPFaultException: java.lang.NullPointerException" /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/webcert.log
+
+# DONE Cosmic fel B
+grep "Temporary exception for intygs-id: d4ce6ea1-2e89-49ad-adf3-760ecd458043, with message: NotificationWSClient failed with error code: TECHNICAL_ERROR and message Certificate not found in COSMIC and ref field is missing, cannot store certificate. Possible race condition. Retry later when the certificate may have been stored in COSMIC." /mnt/tomcat_logs/ine-pib-app0{1,2}/webcert/webcert.log
+
+# DONE "Skicka igen" has to be provided, i.e. no hit then send again
+
+# DONE due to VP004 Takningsfel must be handled
+
+# DONE VP007(spara) must be handled
+Temporary exception for intygs-id: e645c357-618f-47bc-95e0-b27ff9e7053b, with message: javax.xml.ws.soap.SOAPFaultException: VP007 Authorization missing for serviceNamespace: urn:riv:clinicalprocess:healthcond:certificate:
+
+# DONE Halland/NLL fel A must be handled - send again
+Temporary exception for intygs-id: 1126c1e1-2524-4846-95e8-75c027622248, with message: NotificationWSClient failed with error code: TECHNICAL_ERROR and message Unspecified service error
+
+# DONE VP009, fel i kommunikation med journalsystem
+Temporary exception for intygs-id: 0c847483-a7be-4332-8ccc-49424686b357, with message: javax.xml.ws.soap.SOAPFaultException: VP009 Error connecting to service producer at adress https://tph2.liv.sjunet.org:50001/WebCertFormStatusUpdateWebService/FormStatusUpdate/3_0/rivtabp21
+
+eller
+
+Temporary exception for intygs-id: d1832a9e-6cdc-49a4-853d-aeb0de350b06, with message: javax.xml.ws.soap.SOAPFaultException: Response was of unexpected text/html ContentType.  Incoming portion of HTML stream: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Header/>  <soapenv:Body>    <soap:Fault xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+      <faultcode>soap:Server</faultcode>
+      <faultstring>VP009 Service unavailable! Server responded with status code: 502</faultstring>
+
+# DONE VP004, takningsfel
+Temporary exception for intygs-id: 29e8baf8-1b84-43a8-a88f-735de4730083, with message: javax.xml.ws.soap.SOAPFaultException: VP004 No Logical Adress found for serviceNamespace:urn:riv:clinicalprocess:healthcond:certificate:CertificateStatusUpdateForCareResponder:1, receiverId:SE2321000115-O67448, From:NTjP_HSASERVICES-106J
+
+sed 's/.*receiverId://' | sed 's/,.*//'

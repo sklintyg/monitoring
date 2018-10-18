@@ -1,0 +1,23 @@
+Cosmic fel C = 04195bc4-ad0c-4706-878b-4e74e06198ae
+Cosmic fel B = 537a9d9e-3dac-4868-be34-bdffc3184329
+
+VP009 (DLL) = 1bcb1129-f51a-4f50-817d-dd8dc00f2269
+VP009 (DLL) = 29f13c87-1f1e-458e-95d4-e25dc29b0a5c
+
+VP004 = afa2bdf3-7034-4379-9d61-4c8c8f634ed9
+
+Halland fel A = c588a1f7-bd63-4079-b4b5-60f42e81811a
+/mnt/tomcat_logs/ine-pib-app02/webcert/archive/2018/10/01/webcert.2018-10-01.log.gz:2018-10-01 14:42:00,973 [Camel (webcertNotification) thread #7 - JmsConsumer[jms/NotificationWSQueue]] WARN  s.i.i.w.n.n.r.NotificationRouteBuilder [NO USER NO SESSION] - Temporary exception for intygs-id: c588a1f7-bd63-4079-b4b5-60f42e81811a, with message: NotificationWSClient failed with error code: TECHNICAL_ERROR and message Unspecified service error
+
+NLL fel A = 1126c1e1-2524-4846-95e8-75c027622248
+
+Skicka igen = 398eeb28-5400-456e-86dd-8dc5d13f635
+
+TAKningsfel (4ZFT) = 41bd83e0-ef0f-419b-8eb4-fd575077e719
+TAKningsfel (C3N3) = bb61f1b2-5087-4083-9e70-5dda6bdfdb76
+TAKningsfel (delete) = 51b44a6d-0507-4d67-9193-90c4ca5cd09f
+
+VP007 = e645c357-618f-47bc-95e0-b27ff9e7053b
+VP007 (spara) = 6c3248d1-6606-4776-a428-c8cfe0ce9739
+/mnt/tomcat_logs/ine-pib-app01/webcert/archive/2018/09/18/webcert.2018-09-18.log.gz:2018-09-18 08:52:17,001 [Camel (webcertNotification) thread #8 - JmsConsumer[jms/NotificationWSQueue]] WARN  s.i.i.w.n.n.r.NotificationRouteBuilder [NO USER NO SESSION] - Temporary exception for intygs-id: e645c357-618f-47bc-95e0-b27ff9e7053b, with message: javax.xml.ws.soap.SOAPFaultException: VP007 Authorization missing for serviceNamespace: urn:riv:clinicalprocess:healthcond:certificate:CertificateStatusUpdateForCareResponder:3, receiverId: SE2321000016-4TPS, senderId: HSASERVICES-106J
+/mnt/tomcat_logs/ine-pib-app02/webcert/archive/2018/09/17/webcert.2018-09-17.log.gz:2018-09-17 11:45:25,547 [Camel (webcertNotification) thread #6 - JmsConsumer[jms/NotificationWSQueue]] ERROR s.i.i.w.n.n.r.NotificationRouteBuilder [NO USER NO SESSION] - Temporary exception for intygs-id: 6c3248d1-6606-4776-a428-c8cfe0ce9739, with message: javax.xml.ws.soap.SOAPFaultException: VP007 Authorization missing for serviceNamespace: urn:riv:clinicalprocess:healthcond:certificate:CertificateStatusUpdateForCareResponder:3, receiverId: SE2321000016-4TPS, senderId: HSASERVICES-106J
