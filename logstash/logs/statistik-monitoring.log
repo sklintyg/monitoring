@@ -1,12 +1,48 @@
-2015-11-11 12:43:23,685 NO SESSION NO USER - USER_LOGIN Login user hsaId 'HSA_ID', vardgivarId 'VARDGIVARE', vardenhetsId 'UNIT_HSA_ID', isVardgivarProcessledare 'IS_VARDGIVARPROCESSLEDARE'
-2015-11-11 12:43:23,685 NO SESSION NO USER - FILE_UPLOAD User hsaId 'HSA_ID', vardgivarId 'VARDGIVARE' uploaded file 'FILE_NAME' with 'ROWS' rows
-2015-11-11 12:43:23,685 NO SESSION NO USER - IN_FROM_QUEUE Received certificateId 'CERTIFICATE_ID' from queue
-2015-11-11 12:43:23,685 NO SESSION NO USER - IN_FROM_TABLE Processed batch with 'BATCH_SIZE' certificates
-2015-11-11 12:43:23,685 NO SESSION NO USER - TRACK_ACCESS_ANONYMOUS_CHART_DATA Accessed uri 'URI'
-2015-11-11 12:43:23,685 NO SESSION NO USER - TRACK_ACCESS_PROTECTED_CHART_DATA User hsaId 'HSA_ID', vardgivarId 'VARDGIVARE' accessed uri 'URI'
-2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - USER_LOGIN Login user hsaId 'HSA_ID', vardgivarId 'VARDGIVARE', vardenhetsId 'UNIT_HSA_ID', isVardgivarProcessledare 'IS_VARDGIVARPROCESSLEDARE'
-2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - FILE_UPLOAD User hsaId 'HSA_ID', vardgivarId 'VARDGIVARE' uploaded file 'FILE_NAME' with 'ROWS' rows
-2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - IN_FROM_QUEUE Received certificateId 'CERTIFICATE_ID' from queue
-2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - IN_FROM_TABLE Processed batch with 'BATCH_SIZE' certificates
-2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - TRACK_ACCESS_PROTECTED_CHART_DATA User hsaId 'HSA_ID', vardgivarId 'VARDGIVARE' accessed uri 'URI'
-2015-11-11 12:43:23,685 [http-bio-8083-exec-11] INFO  s.i.s.w.s.m.MonitoringLogService - TRACK_ACCESS_ANONYMOUS_CHART_DATA Accessed uri 'URI'
+2019-02-19 15:23:22.262 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.s.m.MonitoringLogService : IN_FROM_QUEUE Received certificateId 'CERTIFICATE_ID' from queue
+2019-02-19 15:23:22.500 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.s.m.MonitoringLogService : IN_FROM_TABLE Processed batch with '97' certificates
+2019-02-19 15:33:51.790 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : TRACK_ACCESS_ANONYMOUS_CHART_DATA Accessed uri 'URI'
+2019-02-19 15:33:51.829 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : USER_LOGIN Login user hsaId 'HSA_USER'
+2019-02-19 15:33:51.838 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : TRACK_ACCESS_PROTECTED_CHART_DATA User hsaId 'HSA_USER', vardgivarId 'HSA_VARDGIVARE' accessed uri 'URI'
+2019-02-19 15:33:51.851 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : FILE_UPLOAD User hsaId 'HSA_USER', vardgivarId 'HSA_VARDGIVARE' uploaded file 'FILE_NAME' with '99' rows
+2019-02-19 16:01:02.001 INFO  [access,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ProtectedChartDataService : User HSA_USER accessed verksamhet VERKSAMHET (/api/verksamhet/getOverview) session CERTIFICATE_ID
+2019-02-19 16:01:02.002 INFO  [access,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ProtectedLandstingService : User HSA_USER accessed vg HSA_VARDGIVARE (/api/landsting/landstingFilterInfo) session CERTIFICATE_ID
+2019-02-19 16:01:02.003 WARN  [access,-,-] --- s.i.s.w.s.e.ProtectedLandstingService : A user without processledar-status tried to update landstingsdata :
+2019-02-19 16:01:02.004 INFO  [process,-,-] --- s.i.s.s.h.HSAServiceImpl : VardgivarId mismatch found for enhet: HSA_UNIT. Expected VARDGIVARE_ON_INTYG from intyg but was HSA_VARDGIVARE in HSA
+2019-02-19 16:01:02.005 INFO  [process,-,-] --- s.i.s.s.h.HSAServiceImpl : VardgivarId mismatch found for enhet: HSA_UNIT. Expected VARDGIVARE_ON_INTYG from intyg but was null in HSA
+2019-02-19 16:01:02.006 WARN  [process,-,-] --- s.i.s.s.h.HSAServiceImpl : No statistics person 'HSA_USER' found
+2019-02-19 16:01:02.007 WARN  [process,-,tRaCeId1] --- s.i.s.s.h.HSAServiceImpl : No care giver 'HSA_VARDGIVARE' found
+2019-02-19 16:01:02.008 WARN  [process,-,tRaCeId1] --- s.i.s.s.h.HSAServiceImpl : No unit 'HSA_UNIT' found
+2019-02-19 16:01:02.009 INFO  [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Processed log id 9475912
+2019-02-19 16:01:02.010 WARN  [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Failed to unmarshal intyg xml
+2019-02-19 16:01:02.011 ERROR [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Failed to process intyg 9475318 (CERTIFICATE_ID)
+2019-02-19 16:01:02.012 WARN  [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Register certificate validation failed: [TEST: count(../../gn:svar[@id='1']/gn:delsvar[@id='1.1' and matches(normalize-space(./tp:cv/tp:code), '^IAV[1-9]$')]) ge 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.4']) = 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.5']) = 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.6']) = 1, MSG: #015        Om DFR 1.1 besvarats med något av valen 'C1, C1E, C, CE, D1, D1E, D, DE eller Taxi'#015        OCH frågan DFR 8.1 har besvarats med ett värde som är mindre än 0,8#015        OCH frågan DFR 8.2 har besvarats med ett värde som är mindre än 0,8#015        är DFR 8.4, DFR 8.5 och DFR 8.6 obligatoriska att besvara.#015      , ROLE: null, LOCATION: /*:RegisterCertificate[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:RegisterCertificateResponder:3'][1]/*:intyg[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:RegisterCertificateResponder:3'][1]/*:svar[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:3'][8]/*:delsvar[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:3'][1], ALL: [SVRLFailedAssert@0x149a10dd: diagnosticRefs=[]; text=#015        Om DFR 1.1 besvarats med något av valen 'C1, C1E, C, CE, D1, D1E, D, DE eller Taxi'#015        OCH frågan DFR 8.1 har besvarats med ett värde som är mindre än 0,8#015        OCH frågan DFR 8.2 har besvarats med ett värde som är mindre än 0,8#015        är DFR 8.4, DFR 8.5 och DFR 8.6 obligatoriska att besvara.#015      ; location=/*:RegisterCertificate[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:RegisterCertificateResponder:3'][1]/*:intyg[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:RegisterCertificateResponder:3'][1]/*:svar[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:3'][8]/*:delsvar[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:3'][1]; test=count(../../gn:svar[@id='1']/gn:delsvar[@id='1.1' and matches(normalize-space(./tp:cv/tp:code), '^IAV[1-9]$')]) ge 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.4']) = 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.5']) = 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.6']) = 1; flag=ERROR]]
+2019-02-19 16:01:02.013 ERROR [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Could not process intyg 4582437 (CERTIFICATE_ID). Invalid value for MonthOfYear: 16
+2019-02-19 16:01:02.014 INFO  [process,-,tRaCeId1] --- s.i.s.s.p.m.MessageLogConsumerImpl : Processed message batch with 10 entries
+2019-02-19 16:01:02.015 INFO  [process,-,tRaCeId1] --- s.i.s.s.p.m.MessageLogConsumerImpl : Processed message log id 50338
+2019-02-19 16:01:02.016 INFO  [process,-,tRaCeId1] --- s.i.s.s.a.LogJob : LogJob.run
+2019-02-19 16:01:02.017 INFO  [process,-,tRaCeId1] --- s.i.s.s.a.LogJob : Processed message batch from id 0 to 50319
+2019-02-19 16:01:02.018 INFO  [process,-,tRaCeId1] --- s.i.s.s.a.LogJob : Processed sent batch with 8 entries
+2019-02-19 16:01:02.019 INFO  [process,-,tRaCeId1] --- s.i.s.s.a.LogJob : Processed batch with 19 entries
+2019-02-19 16:01:02.020 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : National data requested
+2019-02-19 16:01:02.021 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : National data fetched 14
+2019-02-19 16:01:02.022 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling get FilterData: 93545b6e4cd3df8b62c52f9d938df106
+2019-02-19 16:01:02.023 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling post FilterHash: {"enheter":["HSA_UNIT"],"sjukskrivningslangd":[],"aldersgrupp":[],"intygstyper":[],"diagnoser":[],"fromDate":null,"toDate":null,"useDefaultPeriod":true}
+2019-02-19 16:01:02.024 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling getIntygPerTyp for national
+2019-02-19 16:01:02.025 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling getDiagnosisKapitelAndAvsnittAndKategori
+2019-02-19 16:01:02.026 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling getDiagnosavsnittstatistik for national with groupId: F00-F99
+2019-02-19 16:01:02.027 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : National cache population is already ongoing. This population request is therefore skipped
+2019-02-19 16:01:02.028 INFO  [console,-,-] --- s.i.s.s.q.JmsReceiver : Received intyg CERTIFICATE_ID
+2019-02-19 16:01:02.029 INFO  [console,-,-] --- s.i.s.s.q.JmsReceiver : Received intyg sent event for CERTIFICATE_ID to FKASSA
+2019-02-19 16:01:02.030 INFO  [console,-,-] --- s.i.s.s.h.HSADecorator : Fetching HSA data for CERTIFICATE_ID
+2019-02-19 16:01:02.031 INFO  [console,-,tRaCeId1] --- s.i.s.s.w.IntygCommonManager : Intyg sent accepted: CERTIFICATE_ID
+2019-02-19 16:01:02.032 INFO  [console,-,tRaCeId1] --- s.i.s.s.p.i.IntygsentLogConsumerImpl : Processed intyg sent id 8553494
+2019-02-19 16:01:02.033 INFO  [console,-,tRaCeId1] --- s.i.s.s.w.IntygCommonManager : Could not accept intyg sent. Intyg not found: CERTIFICATE_ID
+2019-02-19 16:01:02.034 ERROR [console,-,tRaCeId1] --- s.i.s.s.w.IntygCommonManager : Faulty intyg logid 9476721 id CERTIFICATE_ID error count 268#015VardgivareId not found.
+2019-02-19 16:01:02.035 INFO  [console,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.s.c.Cache : Matching value found in cache for key='INTYGSSTATISTIK_a1b2c3d4-a1b2-c3d4-a1b2-c3d4a1b2c3d4VGENHET_' and hk='HSA_VARDGIVARE'
+2019-02-19 17:01:02,036 [ThreadPoolTaskScheduler-5] INFO  org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl- HHH000010: On release of batch it still contained JDBC statements
+2019-02-19 17:01:02,037 [ThreadPoolTaskScheduler-5] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper- Duplicate entry 'CERTIFICATE_ID' for key 'PRIMARY'
+2019-02-19 17:01:02,038 [main] INFO  org.apache.catalina.startup.Catalina- Initialization processed in 1560 ms
+2019-02-19 17:01:02,039 [main] INFO  org.apache.catalina.core.StandardService- Starting service Catalina
+2019-02-19 17:01:02,040 [localhost-startStop-1] INFO  org.apache.catalina.startup.HostConfig- Deploying web application archive /deployments/ROOT.war
+Feb 19, 2019 05:04:26 PM redis.clients.jedis.JedisSentinelPool initSentinels
+INFO: Trying to find master from available Sentinels...

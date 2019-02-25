@@ -1,6 +1,29 @@
-2015-10-19 08:43:23,685 NO SESSION NO USER - USER_LOGIN Login user 'HSA_ID' using scheme 'AUTH_SCHEME'
-2015-10-19 08:43:23,768 NO SESSION NO USER - USER_LOGOUT Logout user 'HSA_ID' using scheme 'AUTH_SCHEME'
-2015-10-19 08:43:23,753 NO SESSION NO USER - USER_VIEWED_SJUKFALL User 'HSA_ID' viewed NBR_OF_SJUKFALL sjukfall on enhet 'UNIT_HSA_ID'
-2015-10-19 08:43:23,755 NO SESSION NO USER - USER_SESSION_EXPIRY Session expired for user 'HSA_ID' using scheme 'AUTH_SCHEME'
-2015-10-19 08:43:23,766 NO SESSION NO USER - USER_MISSING_MIU No valid MIU was found for user 'HSA_ID'
-2015-10-19 08:43:40,251 NO SESSION NO USER - USER_MISSING_MIU_ON_ENHET No valid MIU was found for user 'HSA_ID' on unit 'UNIT_HSA_ID'
+2019-02-20 18:18:19.001 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,noUser] --- s.i.i.r.s.m.MonitoringLogService         : USER_LOGIN Login user 'HSA_ID_IN_LOG' using scheme 'AUTH_SCHEME'
+2019-02-20 18:18:20.002 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,HSA_ID,noUnit,noOrigin,REHABKOORDINATOR] --- s.i.i.r.s.m.MonitoringLogService         : USER_LOGOUT Logout user 'HSA_ID_IN_LOG' using scheme 'AUTH_SCHEME'
+2019-02-20 18:18:21.003 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,HSA_ID,UNIT_HSA_ID,noOrigin,LAKARE] --- s.i.i.r.s.m.MonitoringLogService         : USER_LOGOUT Logout user 'HSA_ID_IN_LOG' using scheme 'urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient'
+2019-02-20 18:18:22.004 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,HSA_ID,UNIT_HSA_ID,noOrigin,LAKARE] --- s.i.i.r.s.m.MonitorogService         : USER_VIEWED_SJUKFALL User 'HSA_ID_IN_LOG' viewed 6 sjukfall on enhet 'UNIT_HSA_ID_IN_LOG'
+2019-02-20 18:18:23.005 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,HSA_ID,UNIT_HSA_ID,noOrigin,REHABKOORDINATOR] --- s.i.i.r.s.m.MonitoringLogService         : USER_VIEWED_SJUKFALL User 'HSA_ID_IN_LOG' viewed 140 sjukfall on enhet 'UNIT_HSA_ID_IN_LOG'
+2019-02-20 18:18:24.006 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,HSA_ID,UNIT_HSA_ID,noOrigin,REHABKOORDINATOR] --- s.i.i.r.s.m.MonitoringLogService         : USER_SESSION_EXPIRY Session expired for user 'HSA_ID_IN_LOG' using scheme 'AUTH_SCHEME'
+2019-02-20 18:18:25.007 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,noUser] --- s.i.i.r.s.m.MonitoringLogService         : USER_MISSING_MIU No valid MIU was found for user 'HSA_ID_IN_LOG'
+2019-02-20 18:18:26.008 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,HSA_ID,noUnit,noOrigin,REHABKOORDINATOR] --- s.i.i.r.s.m.MonitoringLogService         : USER_MISSING_MIU_ON_ENHET No valid MIU was found for user 'HSA_ID_IN_LOG' on unit 'UNIT_HSA_ID_IN_LOG'
+2019-02-20 18:18:27.009 ERROR [console,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.i.i.i.h.s.HsaEmployeeServiceImpl     : PRODUKTION;Fel;GetEmployeeIncludingProtectedPerson;2; Det går inte att hitta något personobjekt med angivet HSA-id: HSA_ID
+2019-02-20 18:18:27.010 ERROR [console,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.i.i.i.h.client.EmployeeServiceBean   : Failed getting employee information from HSA; personHsaId = 'HSA_ID'. Result text: PRODUKTION;Fel;GetEmployeeIncludingProtectedPerson;2; Det går inte att hitta något personobjekt med angivet HSA-id: HSA_ID
+2019-02-20 18:18:28.011 WARN  [console,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- .i.i.i.i.h.c.OrganizationUnitServiceBean : Continuing anyway because information was delivered with the ERROR code.
+2019-02-20 18:18:28.012 WARN  [console,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- .i.i.i.i.h.c.OrganizationUnitServiceBean : Error received when calling GetUnit for UNIT_HSA_ID, result text: PRODUKTION;Varning;GetUnit;10; Enhetens verksamhetskod följer inte gällande värdemängd klartexten finns inte i värdemängden: Akutverksamhet, primärvårdsjour. Gäller enheten ou=Jourcentral,ou=Område V666,ou=Närhälsan,o=Regionen,l=Ett län,c=SE###PRODUKTION;Varning;GetUnit;10; Enhetens verksamhetskod följer inte gällande värdemängd (koden: 1500 stämmer inte med någon klartext). Gäller enheten ou=Jourcentral,ou=Område V666,ou=Närhälsan,o=Regionen,l=Ett län,c=SE###PRODUKTION;Varning;GetUnit;50; Enhetens åldersintervall för patienter följer inte gällande syntax: 0-99. Gäller enheten ou=Jourcentral,ou=Område V666,ou=Närhälsan,o=Regionen,l=Ett län,c=SE
+2019-02-20 18:18:31.013 WARN  [console,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.i.i.i.pu.services.PUServiceImpl      : One or more personnummer did not yield a response from our PU cache or the PU-service. They have been added as NOT_FOUND entries.
+2019-02-20 18:18:32.014 WARN  [console,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- o.s.s.s.websso.SingleLogoutProfileImpl   : Received LogoutResponse has invalid status code
+2019-02-20 18:18:33.015 INFO  [console,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.i.i.i.pu.services.PUServiceImpl      : Cannot look up persons when argument personIds is null or empty
+2019-02-20 18:18:34.016 INFO  [console,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.i.i.s.e.SjukfallIntygEnhetResolver   : There was no in-data! Returning empty list
+2019-02-20 18:18:35.017 ERROR [console,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.i.i.s.siths.BaseUserDetailsService   : End user authentication...FAIL
+2019-02-20 18:40:00.011 INFO  [console,-,-] --- .i.i.r.s.d.DiagnosBeskrivningServiceImpl : Loaded 36340 diagnosBeskrivning definitions
+2019-02-20 19:41:11,231 [main] INFO  org.apache.coyote.http11.Http11AprProtocol- Initializing ProtocolHandler ["http-apr-8080"]
+2019-02-20 19:41:11,263 [main] INFO  org.apache.catalina.startup.Catalina- Initialization processed in 913 ms
+2019-02-20 19:41:11,280 [main] INFO  org.apache.catalina.core.StandardService- Starting service Catalina
+2019-02-20 19:41:11,302 [localhost-startStop-1] INFO  org.apache.catalina.startup.HostConfig- Deploying web application archive /deployments/ROOT.war
+19:41:25.582 [localhost-startStop-1] DEBUG org.apache.cxf.common.logging.LogUtils - Using org.apache.cxf.common.logging.Slf4jLogger for logging.
+2019-02-20 19:41:36,488 [localhost-startStop-1] INFO  org.hibernate.jpa.internal.util.LogHelper- HHH000204: Processing PersistenceUnitInfo [
+Feb 20, 2019 7:41:43 PM redis.clients.jedis.JedisSentinelPool initSentinels
+INFO: Trying to find master from available Sentinels...
+INFO: Redis master running at 127.0.0.1:6379, starting Sentinel listeners...
+INFO 2/20/19 7:41 PM: liquibase: Successfully acquired change log lock
+INFO 2/20/19 7:41 PM: liquibase: Reading from rehabstod.DATABASECHANGELOG

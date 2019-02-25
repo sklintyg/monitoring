@@ -13,10 +13,3 @@ MI__CERTIFICATE_PARSE (%{MI__CERTIFICATE_READ}|%{MI__CERTIFICATE_SEND}|%{MI__CER
 MI__CITIZEN_LOGIN Citizen '%{DATA:user}' logged in using login method '%{DATA:scheme}'
 MI__CITIZEN_LOGOUT Citizen '%{DATA:user}' logged out using login method '%{DATA:scheme}'
 MI__AUTH_PARSE (%{MI__CITIZEN_LOGIN}|%{MI__CITIZEN_LOGOUT})
-
-# ------------------------------------------------------------
-# MI__CONSENT_PARSE
-# ------------------------------------------------------------
-MI__CONSENT_GIVEN Consent given by citizen '%{DATA:user}'
-MI__CONSENT_REVOKED Consent revoked by citizen '%{DATA:user}'
-MI__CONSENT_PARSE (%{MI__CONSENT_GIVEN}|%{MI__CONSENT_REVOKED})

@@ -1,8 +1,23 @@
-2015-10-18 12:59:33,893 1h38rt3882qcb6sp8jflcds0l - CITIZEN_LOGIN Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged in using login method 'MVK'
-2015-10-18 12:59:36,882 1h38rt3882qcb6sp8jflcds0l - CONSENT_GIVEN Consent given by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
-2015-10-18 12:59:46,905 1h38rt3882qcb6sp8jflcds0l - CONSENT_REVOKED Consent revoked by citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a'
-2015-10-18 13:00:05,378 1h38rt3882qcb6sp8jflcds0l - CITIZEN_LOGOUT Citizen 'c57913dd217a462baf479ec80c0f4ce93494dbc71df41ee1b6e746393cfced7a' logged out using login method 'MVK'
-2015-10-18 13:11:48,492 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_ARCHIVED Certificate 'intyg-2' archived
-2015-10-18 13:11:57,923 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_RESTORED Certificate 'intyg-4-revoked' restored
-2015-10-18 13:12:14,337 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_SEND Certificate 'intyg-2' sent to 'FK'
-2015-10-18 13:12:15,274 1xebvwfiz80f71h9xla98tqvs2 - CERTIFICATE_READ Certificate 'intyg-2' of type 'fk7263' was read
+2019-02-18 13:30:24.584 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1,noUser] --- s.i.i.m.w.s.MonitoringLogService : CITIZEN_LOGIN Citizen 'aa9f5f25483e54eedd25f7a2a225b7834e54db9ee39695cf1c49881cf2bca381' logged in using login method 'LOGIN_METHOD'
+2019-02-18 13:30:24.650 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1,noUser] --- s.i.i.m.w.s.MonitoringLogService : CITIZEN_LOGOUT Citizen 'aa9f5f25483e54eedd25f7a2a225b7834e54db9ee39695cf1c49881cf2bca381' logged out using login method 'LOGIN_METHOD'
+2019-02-18 13:30:24.664 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1,noUser] --- s.i.i.m.w.s.MonitoringLogService : CERTIFICATE_ARCHIVED Certificate 'CERTIFICATE_ID' archived
+2019-02-18 13:30:24.668 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1,noUser] --- s.i.i.m.w.s.MonitoringLogService : CERTIFICATE_RESTORED Certificate 'CERTIFICATE_ID' restored
+2019-02-18 13:30:24.674 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1,noUser] --- s.i.i.m.w.s.MonitoringLogService : CERTIFICATE_SEND Certificate 'CERTIFICATE_ID' sent to 'RECIPIENT_ID'
+2019-02-18 13:30:24.678 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1,noUser] --- s.i.i.m.w.s.MonitoringLogService : CERTIFICATE_READ Certificate 'CERTIFICATE_ID' of type 'CERTIFICATE_TYPE' was read
+2019-02-18 14:30:24.584 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1] --- s.i.i.m.w.s.MonitoringLogService : CITIZEN_LOGIN Citizen 'aa9f5f25483e54eedd25f7a2a225b7834e54db9ee39695cf1c49881cf2bca381' logged in using login method 'LOGIN_METHOD'
+2019-02-18 14:30:24.650 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1] --- s.i.i.m.w.s.MonitoringLogService : CITIZEN_LOGOUT Citizen 'aa9f5f25483e54eedd25f7a2a225b7834e54db9ee39695cf1c49881cf2bca381' logged out using login method 'LOGIN_METHOD'
+2019-02-18 14:30:24.664 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1] --- s.i.i.m.w.s.MonitoringLogService : CERTIFICATE_ARCHIVED Certificate 'CERTIFICATE_ID' archived
+2019-02-18 14:30:24.668 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1] --- s.i.i.m.w.s.MonitoringLogService : CERTIFICATE_RESTORED Certificate 'CERTIFICATE_ID' restored
+2019-02-18 14:30:24.674 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1] --- s.i.i.m.w.s.MonitoringLogService : CERTIFICATE_SEND Certificate 'CERTIFICATE_ID' sent to 'RECIPIENT_ID'
+2019-02-18 14:30:24.678 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1] --- s.i.i.m.w.s.MonitoringLogService : CERTIFICATE_READ Certificate 'CERTIFICATE_ID' of type 'CERTIFICATE_TYPE' was read
+2019-02-18 15:17:01.883 WARN  [console,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1] --- s.i.i.m.w.s.BrowserClosedInterceptor     : Browser closed and protected page revisited, user logged out
+2019-02-18 15:24:00.170 WARN  [console,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1] --- o.a.c.j.i.WebApplicationExceptionMapper  : javax.ws.rs.ClientErrorException: HTTP 405 Method Not Allowed#015#011at org.apache.cxf.jaxrs.utils.SpecExceptions.toHttpException(SpecExceptions.java:117)#015#011at org.apache.cxf.jaxrs.utils.ExceptionUtils.toHttpException(ExceptionUtils.java:162)#015#011at org.apache.cxf.jaxrs.utils.JAXRSUtils.findTargetMethod(JAXRSUtils.java:528)#015#011at org.apache.cxf.jaxrs.interceptor.JAXRSInInterceptor.processRequest(JAXRSInInterceptor.java:177)#015#011at org.apache.cxf.jaxrs.interceptor.JAXRSInInterceptor.handleMessage(JAXRSInInterceptor.java:77)
+2019-02-18 15:27:36.514 WARN  [console,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1] --- org.apache.cxf.jaxrs.utils.JAXRSUtils    : No operation matching request path "/moduleapi/certificate/fk7263/1.0/CERTIFICATE_ID/pdf/arbetsgivarutskrift" is found, Relative Path: /fk7263/1.0/a1b2c3d4-a1b2-c3d4-a1b2-c3d4a1b2c3d4/pdf/arbetsgivarutskrift, HTTP Method: GET, ContentType: */*, Accept: text/html,application/xhtml+xml,image/webp,image/apng,application/xml;q=0.9,*/*;q=0.8,. Please enable FINE/TRACE log level for more details.
+2019-02-18 15:52:47.222 ERROR [console,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1] --- org.apache.cxf.jaxrs.utils.JAXRSUtils    : Problem with writing the data, class java.util.ArrayList, ContentType: application/json;charset=utf-8
+2019-02-18 15:53:29.389 ERROR [console,sEsSiOnShAsHsEsSiOnShAsHsEsSiOnS,tRaCeId1] --- s.i.i.c.s.t.repo.IntygTextsRepository    : Tried to access texts for intyg of type luse and version 1.2, but this does not exist
+2019-02-18 16:09:48,402 [main] INFO  org.apache.catalina.startup.VersionLoggerListener- CATALINA_HOME:         /opt/webserver
+2019-02-18 16:09:48,593 [main] INFO  org.apache.catalina.core.StandardService- Starting service Catalina
+2019-02-18 16:09:48,616 [localhost-startStop-1] INFO  org.apache.catalina.startup.HostConfig- Deploying web application archive /deployments/ROOT.war
+2019-02-18 16:10:40,092 [main] INFO  org.apache.catalina.startup.Catalina- Server startup in 51519 ms
+Feb 18, 2019 16:10:50 PM redis.clients.jedis.JedisSentinelPool initSentinels
+INFO: Redis master running at 127.0.0.1:6379, starting Sentinel listeners...

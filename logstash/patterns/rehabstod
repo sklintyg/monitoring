@@ -5,5 +5,6 @@ RHS__USER_MISSING_MIU No valid MIU was found for user '%{DATA:user}'
 RHS__USER_MISSING_MIU_ON_ENHET No valid MIU was found for user '%{DATA:user}' on unit '%{DATA:unit}'
 RHS__USER_VIEWED_SJUKFALL User '%{DATA:user}' viewed %{DATA:count} sjukfall on enhet '%{DATA:unit}'
 
+# Make sure that USER_MISSING_MIU_ON_ENHET is caught before USER_MISSING_MIU in RHS__AUTH_PARSE
 RHS__AUTH_PARSE (%{RHS__USER_LOGIN}|%{RHS__USER_LOGOUT}|%{RHS__USER_SESSION_EXPIRY}|%{RHS__USER_MISSING_MIU_ON_ENHET}|%{RHS__USER_MISSING_MIU})
 RHS__SJUKFALL_PARSE (%{RHS__USER_VIEWED_SJUKFALL})

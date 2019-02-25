@@ -1,7 +1,7 @@
 # ------------------------------------------------------------
 # ST__AUTH_PARSE
 # ------------------------------------------------------------
-ST__USER_LOGIN Login user hsaId '%{DATA:user}', vardgivarId '%{DATA:vardgivare}', vardenhetsId '%{DATA:unit}', isVardgivarProcessledare '%{DATA:vargivarProcessLedare}'
+ST__USER_LOGIN Login user hsaId '%{DATA:user}'
 ST__AUTH_PARSE (%{ST__USER_LOGIN})
 
 # ------------------------------------------------------------

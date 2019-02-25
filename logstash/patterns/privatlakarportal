@@ -12,7 +12,9 @@ PLK__USER_PARSE (%{PLK__USER_DELETED}|%{PLK__USER_DETAILS_CHANGED}|%{PLK__USER_R
 PLK__HOSP_AUTHORIZED User '%{DATA:user}' is authorized doctor in HOSP
 PLK__HOSP_NOT_AUTHORIZED User '%{DATA:user}' is not authorized doctor in HOSP
 PLK__HOSP_WAITING User '%{DATA:user}' is waiting for HOSP
-PLK__HOSP_PARSE (%{PLK__HOSP_AUTHORIZED}|%{PLK__HOSP_NOT_AUTHORIZED}|%{PLK__HOSP_WAITING})
+PLK__REGISTRATION_REMOVED User '%{DATA:user}' exceeded number of registration attempts, removing user
+PLK__HOSP_PARSE (%{PLK__HOSP_AUTHORIZED}|%{PLK__HOSP_NOT_AUTHORIZED}|%{PLK__HOSP_WAITING}|%{PLK__REGISTRATION_REMOVED})
+
 
 # ------------------------------------------------------------
 # PLK__AUTH_PARSE

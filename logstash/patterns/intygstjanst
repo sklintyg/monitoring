@@ -2,8 +2,10 @@
 # IT__STATISTICS_PARSE
 # ------------------------------------------------------------
 IT__STATISTICS_REVOKED Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - revoke sent to statistics
+IT__STATISTICS_CREATED Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - sent to statistics
 IT__STATISTICS_SENT Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - sent to statistics
-IT__STATISTICS_PARSE (%{IT__STATISTICS_REVOKED}|%{IT__STATISTICS_SENT})
+IT__STATISTICS_MESSAGE_SENT Message with topic '%{DATA:amne}' for certificate '%{DATA:intygid}' - sent to statistics
+IT__STATISTICS_PARSE (%{IT__STATISTICS_REVOKED}|%{IT__STATISTICS_CREATED}|%{IT__STATISTICS_SENT}|%{IT__STATISTICS_MESSAGE_SENT})
 
 # ------------------------------------------------------------
 # IT__CERTIFICATE_PARSE
@@ -15,7 +17,8 @@ IT__CERTIFICATE_REVOKE_SENT Certificate '%{DATA:intygid}' with type '%{DATA:inty
 IT__CERTIFICATE_LISTED_BY_CITIZEN Certificates for citizen '%{DATA:user}' - listed by citizen
 IT__CERTIFICATE_LISTED_BY_CARE Certificates for citizen '%{DATA:user}' - listed by care
 IT__CERTIFICATE_STATUS_CHANGED Certificate '%{DATA:intygid}' - changed to status '%{DATA:status}'
-IT__CERTIFICATE_PARSE (%{IT__CERTIFICATE_REGISTERED}|%{IT__CERTIFICATE_SENT}|%{IT__CERTIFICATE_REVOKED}|%{IT__CERTIFICATE_REVOKE_SENT}|%{IT__CERTIFICATE_LISTED_BY_CITIZEN}|%{IT__CERTIFICATE_LISTED_BY_CARE}|%{IT__CERTIFICATE_STATUS_CHANGED})
+IT__APPROVED_RECEIVER_REGISTERED Approved receiver '%{DATA:recipient}' registered for certificate '%{DATA:intygid}'
+IT__CERTIFICATE_PARSE (%{IT__CERTIFICATE_REGISTERED}|%{IT__CERTIFICATE_SENT}|%{IT__CERTIFICATE_REVOKED}|%{IT__CERTIFICATE_REVOKE_SENT}|%{IT__CERTIFICATE_LISTED_BY_CITIZEN}|%{IT__CERTIFICATE_LISTED_BY_CARE}|%{IT__CERTIFICATE_STATUS_CHANGED}|%{IT__APPROVED_RECEIVER_REGISTERED})
 
 # ------------------------------------------------------------
 # IT__SEND_MESSAGE_PARSE
@@ -23,10 +26,3 @@ IT__CERTIFICATE_PARSE (%{IT__CERTIFICATE_REGISTERED}|%{IT__CERTIFICATE_SENT}|%{I
 IT__SEND_MESSAGE_TO_CARE_RECEIVED Message with id '%{DATA:messageId}', care unit recipient '%{DATA:recipient}' - was received and forwarded to its recipient.
 IT__SEND_MESSAGE_TO_RECIPIENT Message with id '%{DATA:messageId}' sent to recipient '%{DATA:recipient}'
 IT__SEND_MESSAGE_PARSE (%{IT__SEND_MESSAGE_TO_CARE_RECEIVED}|%{IT__SEND_MESSAGE_TO_RECIPIENT})
-
-# ------------------------------------------------------------
-# IT__CONSENT_PARSE
-# ------------------------------------------------------------
-IT__CONSENT_GIVEN Consent given by citizen '%{DATA:user}'
-IT__CONSENT_REVOKED Consent revoked by citizen '%{DATA:user}'
-IT__CONSENT_PARSE (%{IT__CONSENT_GIVEN}|%{IT__CONSENT_REVOKED})
