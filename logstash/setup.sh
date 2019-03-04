@@ -11,8 +11,8 @@ ALL_FILES="logstash-*.conf"
 
 if [[ ${FILE} == "all" ]]; then
     FILE=${ALL_FILES}
-elif [[ ! ( ( ${FILE} == "logstash-rehabstod-monitoring.conf" ) || ( ${FILE} == "logstash-mina-intyg.conf" ) || ( ${FILE} == "logstash-error-log.conf" ) || ( ${FILE} == "logstash-webcert-monitoring.conf" ) || ( ${FILE} == "logstash-intygstjanst-monitoring.conf" ) || ( ${FILE} == "logstash-privatlakarportal-monitoring.conf" ) || ( ${FILE} == "logstash-statistik-monitoring.conf" ) ) ]]; then
-    echo "File (${FILE}) need to be either logstash-mina-intyg.conf, logstash-error-log.conf, logstash-webcert-monitoring.conf, logstash-intygstjanst-monitoring.conf, logstash-privatlakarportal-monitoring.conf, logstash-rehabstod-monitoring.conf or logstash-statistik-monitoring.conf"
+elif [[ ! ( ( ${FILE} == "logstash-rehabstod.conf" ) || ( ${FILE} == "logstash-minaintyg.conf" ) || ( ${FILE} == "logstash-error-log.conf" ) || ( ${FILE} == "logstash-webcert.conf" ) || ( ${FILE} == "logstash-intygstjanst.conf" ) || ( ${FILE} == "logstash-privatlakarportal.conf" ) || ( ${FILE} == "logstash-statistik.conf" ) ) ]]; then
+    echo "File (${FILE}) need to be either logstash-minaintyg.conf, logstash-error-log.conf, logstash-webcert.conf, logstash-intygstjanst.conf, logstash-privatlakarportal.conf, logstash-rehabstod.conf or logstash-statistik.conf"
     exit -1
 fi
 
