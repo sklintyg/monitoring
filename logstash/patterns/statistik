@@ -1,25 +1,25 @@
 # ------------------------------------------------------------
 # ST__AUTH_PARSE
 # ------------------------------------------------------------
-ST__USER_LOGIN Login user hsaId '%{DATA:user}'
+ST__USER_LOGIN Login user hsaId '%{USER:user}'
 ST__AUTH_PARSE (%{ST__USER_LOGIN})
 
 # ------------------------------------------------------------
 # ST__FILE_PARSE
 # ------------------------------------------------------------
-ST__FILE_UPLOAD User hsaId '%{DATA:user}', vardgivarId '%{DATA:vardgivare}' uploaded file '%{DATA:filename}' with '%{DATA:nbr_rows}' rows
+ST__FILE_UPLOAD User hsaId '%{USER:user}', vardgivarId '%{UNIT:vardgivare}' uploaded file '%{DATA:filename}' with '%{NUMBER:nbr_rows}' rows
 ST__FILE_PARSE (%{ST__FILE_UPLOAD})
 
 # ------------------------------------------------------------
 # ST__IN_PARSE
 # ------------------------------------------------------------
-ST__IN_FROM_QUEUE Received certificateId '%{DATA:intygid}' from queue
-ST__IN_FROM_TABLE Processed batch with '%{DATA:batch_size}' certificates
+ST__IN_FROM_QUEUE Received certificateId '%{UUID:intygid}' from queue
+ST__IN_FROM_TABLE Processed batch with '%{NUMBER:batch_size}' certificates
 ST__IN_PARSE (%{ST__IN_FROM_QUEUE}|%{ST__IN_FROM_TABLE})
 
 # ------------------------------------------------------------
 # ST__TRACK_PARSE
 # ------------------------------------------------------------
-ST__TRACK_ACCESS_PROTECTED_CHART_DATA User hsaId '%{DATA:user}', vardgivarId '%{DATA:vardgivare}' accessed uri '%{DATA:uri}'
+ST__TRACK_ACCESS_PROTECTED_CHART_DATA User hsaId '%{USER:user}', vardgivarId '%{UNIT:vardgivare}' accessed uri '%{DATA:uri}'
 ST__TRACK_ACCESS_ANONYMOUS_CHART_DATA Accessed uri '%{DATA:uri}'
 ST__TRACK_PARSE (%{ST__TRACK_ACCESS_PROTECTED_CHART_DATA}|%{ST__TRACK_ACCESS_ANONYMOUS_CHART_DATA})

@@ -1,45 +1,46 @@
 # ------------------------------------------------------------
 # WC__QA_PARSE
 # ------------------------------------------------------------
-WC__QUESTION_RECEIVED Received question from '%{DATA:questioner}' with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
-WC__QUESTION_RECEIVED_COMPLETION Received completion question from '%{DATA:questioner}' with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with completion for questions '%{DATA:questions}'
-WC__ANSWER_RECEIVED Received answer to question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
-WC__QUESTION_SENT Sent question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
-WC__ANSWER_SENT Sent answer to question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{DATA:intygid}' to unit '%{DATA:unit}' with subject '%{DATA:subject}'
+WC__QUESTION_RECEIVED Received question from '%{DATA:questioner}' with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{UUID:intygid}' to unit '%{UNIT:unit}' with subject '%{DATA:subject}'
+WC__QUESTION_RECEIVED_COMPLETION Received completion question from '%{DATA:questioner}' with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{UUID:intygid}' to unit '%{UNIT:unit}' with completion for questions '%{DATA:questions}'
+WC__ANSWER_RECEIVED Received answer to question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{UUID:intygid}' to unit '%{UNIT:unit}' with subject '%{DATA:subject}'
+WC__ANSWER_RECEIVED Received answer to question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{UUID:intygid}' to unit '%{UNIT:unit}' with subject '%{DATA:subject}'
+WC__QUESTION_SENT Sent question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{UUID:intygid}' to unit '%{UNIT:unit}' with subject '%{DATA:subject}'
+WC__ANSWER_SENT Sent answer to question with external reference '%{DATA:external_id}' and internal reference '%{DATA:internal_id}' regarding intyg '%{UUID:intygid}' to unit '%{UNIT:unit}' with subject '%{DATA:subject}'
 WC__QA_PARSE (%{WC__QUESTION_RECEIVED}|%{WC__QUESTION_RECEIVED_COMPLETION}|%{WC__ANSWER_RECEIVED}|%{WC__QUESTION_SENT}|%{WC__ANSWER_SENT})
 
 # ------------------------------------------------------------
 # WC__INTYG_PARSE
 # ------------------------------------------------------------
-WC__INTYG_READ Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' was read
-WC__INTYG_REVOKE_STATUS_READ Revoke status of Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' was read.
-WC__INTYG_PRINT_PDF Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' was printed as PDF
-WC__INTYG_SIGNED Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' signed by '%{DATA:signer}' using scheme '%{DATA:scheme}' and relation code '%{DATA:relation}'
-WC__INTYG_REGISTERED Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' registered with Intygstjänsten
-WC__INTYG_SENT Intyg '%{DATA:intygid}' sent to recipient '%{DATA:recipient}'
-WC__INTYG_REVOKED Intyg '%{DATA:intygid}' revoked by '%{DATA:revoker}' reason '%{DATA:reason}'
-WC__INTYG_COPIED Utkast '%{DATA:intygid}' created as a copy of '%{DATA:original}'
-WC__INTYG_COPIED_RENEWAL Utkast '%{DATA:intygid}' created as a renewal copy of '%{DATA:original}'
-WC__INTYG_COPIED_REPLACEMENT Utkast '%{DATA:intygid}' created as a replacement copy of '%{DATA:original}'
-WC__INTYG_COPIED_COMPLETION Utkast '%{DATA:intygid}' created as a completion copy of '%{DATA:original}'
-WC__UTKAST_READ Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was read
-WC__UTKAST_CREATED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' created by '%{DATA:creator_person}' on unit '%{DATA:creator_unit}'
-WC__UTKAST_EDITED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was edited
-WC__UTKAST_PATIENT_UPDATED Patient details for utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' updated
-WC__UTKAST_DELETED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was deleted
-WC__UTKAST_PRINT Intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' was printed
-WC__UTKAST_CONCURRENTLY_EDITED Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was concurrently edited by multiple users
-WC__UTKAST_REVOKED Utkast '%{DATA:intygid}' revoked by '{}' reason '%{DATA:reason}' message '{}'
-WC__UTKAST_READY_NOTIFICATION_SENT Utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}' was marked as ready and notification was sent
-WC__REVOKED_PRINT Revoked intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' printed
-WC__DIAGNOSKODVERK_CHANGED Diagnoskodverk changed for utkast '%{DATA:intygid}' of type '%{DATA:intygtyp}'
+WC__INTYG_READ Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was read
+WC__INTYG_REVOKE_STATUS_READ Revoke status of Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was read.
+WC__INTYG_PRINT_PDF Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was printed as PDF
+WC__INTYG_SIGNED Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' signed by '%{USER:signer}' using scheme '%{DATA:scheme}' and relation code '%{DATA:relation}'
+WC__INTYG_REGISTERED Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' registered with Intygstjänsten
+WC__INTYG_SENT Intyg '%{UUID:intygid}' sent to recipient '%{DATA:recipient}'
+WC__INTYG_REVOKED Intyg '%{UUID:intygid}' revoked by '%{USER:revoker}' reason '%{DATA:reason}'
+WC__INTYG_COPIED Utkast '%{UUID:intygid}' created as a copy of '%{UUID:original}'
+WC__INTYG_COPIED_RENEWAL Utkast '%{UUID:intygid}' created as a renewal copy of '%{UUID:original}'
+WC__INTYG_COPIED_REPLACEMENT Utkast '%{UUID:intygid}' created as a replacement copy of '%{UUID:original}'
+WC__INTYG_COPIED_COMPLETION Utkast '%{UUID:intygid}' created as a completion copy of '%{UUID:original}'
+WC__UTKAST_READ Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was read
+WC__UTKAST_CREATED Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' created by '%{USER:creator_person}' on unit '%{UNIT:creator_unit}'
+WC__UTKAST_EDITED Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was edited
+WC__UTKAST_PATIENT_UPDATED Patient details for utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' updated
+WC__UTKAST_DELETED Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was deleted
+WC__UTKAST_PRINT Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was printed
+WC__UTKAST_CONCURRENTLY_EDITED Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was concurrently edited by multiple users
+WC__UTKAST_REVOKED Utkast '%{UUID:intygid}' revoked by '%{USER:revoker}' reason '%{DATA:reason}' message '%{DATA:message}'
+WC__UTKAST_READY_NOTIFICATION_SENT Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was marked as ready and notification was sent
+WC__REVOKED_PRINT Revoked intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' printed
+WC__DIAGNOSKODVERK_CHANGED Diagnoskodverk changed for utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}'
 WC__INTYG_PARSE (%{WC__INTYG_READ}|%{WC__INTYG_REVOKE_STATUS_READ}|%{WC__INTYG_PRINT_PDF}|%{WC__INTYG_SIGNED}|%{WC__INTYG_REGISTERED}|%{WC__INTYG_SENT}|%{WC__INTYG_REVOKED}|%{WC__INTYG_COPIED}|%{WC__INTYG_COPIED_RENEWAL}|%{WC__INTYG_COPIED_REPLACEMENT}|%{WC__INTYG_COPIED_COMPLETION}|%{WC__UTKAST_READ}|%{WC__UTKAST_CREATED}|%{WC__UTKAST_EDITED}|%{WC__UTKAST_PATIENT_UPDATED}|%{WC__UTKAST_DELETED}|%{WC__UTKAST_PRINT}|%{WC__UTKAST_CONCURRENTLY_EDITED}|%{WC__UTKAST_REVOKED}|%{WC__UTKAST_READY_NOTIFICATION_SENT}|%{WC__REVOKED_PRINT}|%{WC__DIAGNOSKODVERK_CHANGED})
 
 # ------------------------------------------------------------
 # WC__MAIL_PARSE
 # ------------------------------------------------------------
-WC__MAIL_SENT Mail sent to unit '%{DATA:mail_unit}' for %{GREEDYDATA:reason}
-WC__MAIL_MISSING_ADDRESS Mail sent to admin on behalf of unit '%{DATA:mail_unit}' for %{GREEDYDATA:reason}
+WC__MAIL_SENT Mail sent to unit '%{UNIT:mail_unit}' for %{GREEDYDATA:reason}
+WC__MAIL_MISSING_ADDRESS Mail sent to admin on behalf of unit '%{UNIT:mail_unit}' for %{GREEDYDATA:reason}
 WC__MAIL_PARSE (%{WC__MAIL_SENT}|%{WC__MAIL_MISSING_ADDRESS})
 
 # ------------------------------------------------------------
@@ -50,17 +51,17 @@ WC__PU_PARSE Lookup performed on '%{DATA:personnummer}' with result '%{DATA:pu_r
 # ------------------------------------------------------------
 # WC__PP_TERMS_ACCEPTED_PARSE
 # ------------------------------------------------------------
-WC__PP_TERMS_ACCEPTED_PARSE User '%{DATA:user}', personId '%{DATA:personnummer}' accepted private practitioner terms of version '%{DATA:terms_version}'
+WC__PP_TERMS_ACCEPTED_PARSE User '%{USER:user}', personId '%{DATA:personnummer}' accepted private practitioner terms of version '%{DATA:terms_version}'
 
 # ------------------------------------------------------------
 # WC__AUTH_PARSE
 # ------------------------------------------------------------
-WC__USER_LOGIN Login user '%{DATA:user}' using scheme '%{DATA:scheme}' with origin '%{DATA:origin}'
-WC__USER_LOGOUT Logout user '%{DATA:user}' using scheme '%{DATA:scheme}'
-WC__USER_SESSION_EXPIRY Session expired for user '%{DATA:user}' using scheme '%{DATA:scheme}'
-WC__USER_MISSING_MIU No valid MIU was found for user '%{DATA:user}'
-WC__USER_MISSING_MIU_ON_ENHET No valid MIU was found for user '%{DATA:user}' on unit '%{DATA:unit}'
-WC__SCREEN_RESOLUTION Width '%{DATA:screen_width}', height '%{DATA:screen_height}'
+WC__USER_LOGIN Login user '%{USER:user}' using scheme '%{DATA:scheme}' with origin '%{ORIGIN:origin}'
+WC__USER_LOGOUT Logout user '%{USER:user}' using scheme '%{DATA:scheme}'
+WC__USER_SESSION_EXPIRY Session expired for user '%{USER:user}' using scheme '%{DATA:scheme}'
+WC__USER_MISSING_MIU No valid MIU was found for user '%{USER:user}'
+WC__USER_MISSING_MIU_ON_ENHET No valid MIU was found for user '%{USER:user}' on unit '%{UNIT:unit}'
+WC__SCREEN_RESOLUTION Width '%{NUMBER:screen_width}', height '%{NUMBER:screen_height}'
 # !!!
 # Make sure that USER_MISSING_MIU_ON_ENHET is caught before USER_MISSING_MIU because 
 # regex pattern matching of USER_MISSING_MIU_ON_ENHET would match even on USER_MISSING_MIU
@@ -69,23 +70,23 @@ WC__AUTH_PARSE (%{WC__USER_LOGIN}|%{WC__USER_LOGOUT}|%{WC__USER_SESSION_EXPIRY}|
 # ------------------------------------------------------------
 # WC__NOTIFICATION_PARSE
 # ------------------------------------------------------------
-WC__NOTIFICATION_PARSE Sent notification of type '%{DATA:han_type}' to unit '%{DATA:unit}' for '%{DATA:intygid}'
+WC__NOTIFICATION_PARSE Sent notification of type '%{DATA:han_type}' to unit '%{UNIT:unit}' for '%{UUID:intygid}'
 
 # ------------------------------------------------------------
 # WC__ARENDE_PARSE
 # ------------------------------------------------------------
-WC__ARENDE_RECEIVED_ANSWER Received arende with amne '%{DATA:amne}' for '%{DATA:intygid}' of type '%{DATA:intygtyp}' for unit '%{DATA:unit}'
-WC__ARENDE_RECEIVED_QUESTION Received arende with amne '%{DATA:amne}' for '%{DATA:intygid}' of type '%{DATA:intygtyp}' for unit '%{DATA:unit}'
-WC__MEDICINSKT_ARENDE_RECEIVED Received medicinskt arende for '%{DATA:intygid}' of type '%{DATA:intygtyp}' for unit '%{DATA:unit}' on questions '%{DATA:questions}'
-WC__ARENDE_CREATED_QUESTION Created arende with amne '%{DATA:amne}' for '%{DATA:intygid}' of type '%{DATA:intygtyp}' for unit '%{DATA:unit}'
-WC__ARENDE_CREATED_ANSWER Created arende with amne '%{DATA:amne}' for '%{DATA:intygid}' of type '%{DATA:intygtyp}' for unit '%{DATA:unit}'
+WC__ARENDE_RECEIVED_ANSWER Received arende with amne '%{DATA:amne}' for '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' for unit '%{UNIT:unit}'
+WC__ARENDE_RECEIVED_QUESTION Received arende with amne '%{DATA:amne}' for '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' for unit '%{UNIT:unit}'
+WC__MEDICINSKT_ARENDE_RECEIVED Received medicinskt arende for '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' for unit '%{UNIT:unit}' on questions '%{DATA:questions}'
+WC__ARENDE_CREATED_QUESTION Created arende with amne '%{DATA:amne}' for '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' for unit '%{UNIT:unit}'
+WC__ARENDE_CREATED_ANSWER Created arende with amne '%{DATA:amne}' for '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' for unit '%{UNIT:unit}'
 WC__ARENDE_PARSE (%{WC__ARENDE_RECEIVED_ANSWER}|%{WC__ARENDE_RECEIVED_QUESTION}|%{WC__MEDICINSKT_ARENDE_RECEIVED}|%{WC__ARENDE_CREATED_QUESTION}|%{WC__ARENDE_CREATED_ANSWER})
 
 # ------------------------------------------------------------
 # WC__SJF_PARSE
 # ------------------------------------------------------------
-WC__LOGIN_OTHER_UNIT Viewed intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' on other unit '%{DATA:otherunit}'
-WC__LOGIN_OTHER_CAREGIVER Viewed intyg '%{DATA:intygid}' of type '%{DATA:intygtyp}' on other caregiver '%{DATA:othercaregiver}' unit '%{DATA:otherunit}'
+WC__LOGIN_OTHER_UNIT Viewed intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' on other unit '%{DATA:otherunit}'
+WC__LOGIN_OTHER_CAREGIVER Viewed intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' on other caregiver '%{UNIT:othercaregiver}' unit '%{UNIT:otherunit}'
 WC__SJF_PARSE (%{WC__LOGIN_OTHER_UNIT}|%{WC__LOGIN_OTHER_CAREGIVER})
 
 # ------------------------------------------------------------
@@ -93,7 +94,7 @@ WC__SJF_PARSE (%{WC__LOGIN_OTHER_UNIT}|%{WC__LOGIN_OTHER_CAREGIVER})
 # ------------------------------------------------------------
 WC__SRS_CONSENT_SET Consent set for '%{DATA:personnummer}' to '%{DATA:consent}'
 WC__SRS_QUESTIONS_LISTED Questions listed for diagnosis code '%{DATA:diagnosis_code}'
-WC__SRS_INFORMATION_RETREIVED SRS information retreived for certifiacte '%{DATA:intygid}' for diagnosis code '%{DATA:diagnosis_code}'
+WC__SRS_INFORMATION_RETREIVED SRS information retreived for certifiacte '%{UUID:intygid}' for diagnosis code '%{DATA:diagnosis_code}'
 WC__SRS_SHOWN SRS shown
 WC__SRS_ATGARD_CLICKED SRS atgard clicked
 WC__SRS_STATISTIK_CLICKED SRS statistik clicked

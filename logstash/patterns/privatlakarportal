@@ -1,24 +1,24 @@
 # ------------------------------------------------------------
 # PLK__USER_PARSE
 # ------------------------------------------------------------
-PLK__USER_DELETED User '%{DATA:user}' deleted
-PLK__USER_DETAILS_CHANGED Details for user '%{DATA:user}' changed
-PLK__USER_REGISTERED User '%{DATA:user}' registered with consent version '%{DATA:consent_version}' and hsaId '%{DATA:hsaid}', returned status '%{DATA:status}'
+PLK__USER_DELETED User '%{NOTSPACE:user}' deleted
+PLK__USER_DETAILS_CHANGED Details for user '%{NOTSPACE:user}' changed
+PLK__USER_REGISTERED User '%{NOTSPACE:user}' registered with consent version '%{NOTSPACE:consent_version}' and hsaId '%{NOTSPACE:hsaid}', returned status '%{NOTSPACE:status}'
 PLK__USER_PARSE (%{PLK__USER_DELETED}|%{PLK__USER_DETAILS_CHANGED}|%{PLK__USER_REGISTERED})
 
 # ------------------------------------------------------------
 # PLK__HOSP_PARSE
 # ------------------------------------------------------------
-PLK__HOSP_AUTHORIZED User '%{DATA:user}' is authorized doctor in HOSP
-PLK__HOSP_NOT_AUTHORIZED User '%{DATA:user}' is not authorized doctor in HOSP
-PLK__HOSP_WAITING User '%{DATA:user}' is waiting for HOSP
-PLK__REGISTRATION_REMOVED User '%{DATA:user}' exceeded number of registration attempts, removing user
+PLK__HOSP_AUTHORIZED User '%{NOTSPACE:user}' is authorized doctor in HOSP
+PLK__HOSP_NOT_AUTHORIZED User '%{NOTSPACE:user}' is not authorized doctor in HOSP
+PLK__HOSP_WAITING User '%{NOTSPACE:user}' is waiting for HOSP
+PLK__REGISTRATION_REMOVED User '%{NOTSPACE:user}' exceeded number of registration attempts, removing user
 PLK__HOSP_PARSE (%{PLK__HOSP_AUTHORIZED}|%{PLK__HOSP_NOT_AUTHORIZED}|%{PLK__HOSP_WAITING}|%{PLK__REGISTRATION_REMOVED})
 
 
 # ------------------------------------------------------------
 # PLK__AUTH_PARSE
 # ------------------------------------------------------------
-PLK__USER_LOGIN Login user '%{DATA:user}' using scheme '%{DATA:scheme}'
-PLK__USER_LOGOUT Logout user '%{DATA:user}' using scheme '%{DATA:scheme}'
+PLK__USER_LOGIN Login user '%{NOTSPACE:user}' using scheme '%{NOTSPACE:scheme}'
+PLK__USER_LOGOUT Logout user '%{NOTSPACE:user}' using scheme '%{NOTSPACE:scheme}'
 PLK__AUTH_PARSE (%{PLK__USER_LOGIN}|%{PLK__USER_LOGOUT})

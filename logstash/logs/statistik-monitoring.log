@@ -1,42 +1,42 @@
-2019-02-19 15:23:22.262 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.s.m.MonitoringLogService : IN_FROM_QUEUE Received certificateId 'CERTIFICATE_ID' from queue
-2019-02-19 15:23:22.500 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.s.m.MonitoringLogService : IN_FROM_TABLE Processed batch with '97' certificates
-2019-02-19 15:33:51.790 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : TRACK_ACCESS_ANONYMOUS_CHART_DATA Accessed uri 'URI'
-2019-02-19 15:33:51.829 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : USER_LOGIN Login user hsaId 'HSA_USER'
-2019-02-19 15:33:51.838 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : TRACK_ACCESS_PROTECTED_CHART_DATA User hsaId 'HSA_USER', vardgivarId 'HSA_VARDGIVARE' accessed uri 'URI'
-2019-02-19 15:33:51.851 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : FILE_UPLOAD User hsaId 'HSA_USER', vardgivarId 'HSA_VARDGIVARE' uploaded file 'FILE_NAME' with '99' rows
-2019-02-19 16:01:02.001 INFO  [access,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ProtectedChartDataService : User HSA_USER accessed verksamhet VERKSAMHET (/api/verksamhet/getOverview) session CERTIFICATE_ID
-2019-02-19 16:01:02.002 INFO  [access,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ProtectedLandstingService : User HSA_USER accessed vg HSA_VARDGIVARE (/api/landsting/landstingFilterInfo) session CERTIFICATE_ID
+2019-02-19 15:23:22.262 INFO  [monitoring,a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9,tRaCeId1] --- s.i.s.s.m.MonitoringLogService : IN_FROM_QUEUE Received certificateId '11111111-1111-aaaa-1111-111111111111' from queue
+2019-02-19 15:23:22.500 INFO  [monitoring,a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9,tRaCeId1] --- s.i.s.s.m.MonitoringLogService : IN_FROM_TABLE Processed batch with '97' certificates
+2019-02-19 15:33:51.790 INFO  [monitoring,a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : TRACK_ACCESS_ANONYMOUS_CHART_DATA Accessed uri 'URI'
+2019-02-19 15:33:51.829 INFO  [monitoring,a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : USER_LOGIN Login user hsaId 'SE00000-USER0001'
+2019-02-19 15:33:51.838 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : TRACK_ACCESS_PROTECTED_CHART_DATA User hsaId 'SE00000-USER0001', vardgivarId 'SE00000-ENHET0001' accessed uri '/api/verksamhet/getOverview'
+2019-02-19 15:33:51.851 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : FILE_UPLOAD User hsaId 'SE00000-USER0001', vardgivarId 'SE00000-VG0001' uploaded file 'FILE_NAME.ext' with '99' rows
+2019-02-19 16:01:02.001 INFO  [access,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ProtectedChartDataService : User SE00000-USER0001 accessed verksamhet VERKSAMHET (/api/verksamhet/getOverview) session 11111111-1111-aaaa-1111-111111111111
+2019-02-19 16:01:02.002 INFO  [access,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ProtectedLandstingService : User SE00000-USER0001 accessed vg HSA_VARDGIVARE (/api/landsting/landstingFilterInfo) session 11111111-1111-aaaa-1111-111111111111
 2019-02-19 16:01:02.003 WARN  [access,-,-] --- s.i.s.w.s.e.ProtectedLandstingService : A user without processledar-status tried to update landstingsdata :
-2019-02-19 16:01:02.004 INFO  [process,-,-] --- s.i.s.s.h.HSAServiceImpl : VardgivarId mismatch found for enhet: HSA_UNIT. Expected VARDGIVARE_ON_INTYG from intyg but was HSA_VARDGIVARE in HSA
-2019-02-19 16:01:02.005 INFO  [process,-,-] --- s.i.s.s.h.HSAServiceImpl : VardgivarId mismatch found for enhet: HSA_UNIT. Expected VARDGIVARE_ON_INTYG from intyg but was null in HSA
+2019-02-19 16:01:02.004 INFO  [process,-,-] --- s.i.s.s.h.HSAServiceImpl : VardgivarId mismatch found for enhet: SE00000-ENHET0001. Expected SE00000-VG0002 from intyg but was SE00000-VG0001 in HSA
+2019-02-19 16:01:02.005 INFO  [process,-,-] --- s.i.s.s.h.HSAServiceImpl : VardgivarId mismatch found for enhet: SE00000-ENHET0001. Expected VARDGIVARE_ON_INTYG from intyg but was null in HSA
 2019-02-19 16:01:02.006 WARN  [process,-,-] --- s.i.s.s.h.HSAServiceImpl : No statistics person 'HSA_USER' found
-2019-02-19 16:01:02.007 WARN  [process,-,tRaCeId1] --- s.i.s.s.h.HSAServiceImpl : No care giver 'HSA_VARDGIVARE' found
-2019-02-19 16:01:02.008 WARN  [process,-,tRaCeId1] --- s.i.s.s.h.HSAServiceImpl : No unit 'HSA_UNIT' found
+2019-02-19 16:01:02.007 WARN  [process,-,tRaCeId1] --- s.i.s.s.h.HSAServiceImpl : No care giver 'SE00000-VG0001' found
+2019-02-19 16:01:02.008 WARN  [process,-,tRaCeId1] --- s.i.s.s.h.HSAServiceImpl : No unit 'SE00000-ENHET0001' found
 2019-02-19 16:01:02.009 INFO  [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Processed log id 9475912
 2019-02-19 16:01:02.010 WARN  [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Failed to unmarshal intyg xml
-2019-02-19 16:01:02.011 ERROR [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Failed to process intyg 9475318 (CERTIFICATE_ID)
+2019-02-19 16:01:02.011 ERROR [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Failed to process intyg 9475318 (11111111-1111-aaaa-1111-111111111111)
 2019-02-19 16:01:02.012 WARN  [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Register certificate validation failed: [TEST: count(../../gn:svar[@id='1']/gn:delsvar[@id='1.1' and matches(normalize-space(./tp:cv/tp:code), '^IAV[1-9]$')]) ge 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.4']) = 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.5']) = 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.6']) = 1, MSG: #015        Om DFR 1.1 besvarats med något av valen 'C1, C1E, C, CE, D1, D1E, D, DE eller Taxi'#015        OCH frågan DFR 8.1 har besvarats med ett värde som är mindre än 0,8#015        OCH frågan DFR 8.2 har besvarats med ett värde som är mindre än 0,8#015        är DFR 8.4, DFR 8.5 och DFR 8.6 obligatoriska att besvara.#015      , ROLE: null, LOCATION: /*:RegisterCertificate[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:RegisterCertificateResponder:3'][1]/*:intyg[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:RegisterCertificateResponder:3'][1]/*:svar[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:3'][8]/*:delsvar[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:3'][1], ALL: [SVRLFailedAssert@0x149a10dd: diagnosticRefs=[]; text=#015        Om DFR 1.1 besvarats med något av valen 'C1, C1E, C, CE, D1, D1E, D, DE eller Taxi'#015        OCH frågan DFR 8.1 har besvarats med ett värde som är mindre än 0,8#015        OCH frågan DFR 8.2 har besvarats med ett värde som är mindre än 0,8#015        är DFR 8.4, DFR 8.5 och DFR 8.6 obligatoriska att besvara.#015      ; location=/*:RegisterCertificate[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:RegisterCertificateResponder:3'][1]/*:intyg[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:RegisterCertificateResponder:3'][1]/*:svar[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:3'][8]/*:delsvar[namespace-uri()='urn:riv:clinicalprocess:healthcond:certificate:3'][1]; test=count(../../gn:svar[@id='1']/gn:delsvar[@id='1.1' and matches(normalize-space(./tp:cv/tp:code), '^IAV[1-9]$')]) ge 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.4']) = 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.5']) = 1 and count(../../gn:svar[@id='8']/gn:delsvar[@id='8.6']) = 1; flag=ERROR]]
-2019-02-19 16:01:02.013 ERROR [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Could not process intyg 4582437 (CERTIFICATE_ID). Invalid value for MonthOfYear: 16
+2019-02-19 16:01:02.013 ERROR [process,-,tRaCeId1] --- s.i.s.s.p.LogConsumerImpl : Could not process intyg 4582437 (11111111-1111-aaaa-1111-111111111111). Invalid value for MonthOfYear: 16
 2019-02-19 16:01:02.014 INFO  [process,-,tRaCeId1] --- s.i.s.s.p.m.MessageLogConsumerImpl : Processed message batch with 10 entries
 2019-02-19 16:01:02.015 INFO  [process,-,tRaCeId1] --- s.i.s.s.p.m.MessageLogConsumerImpl : Processed message log id 50338
 2019-02-19 16:01:02.016 INFO  [process,-,tRaCeId1] --- s.i.s.s.a.LogJob : LogJob.run
 2019-02-19 16:01:02.017 INFO  [process,-,tRaCeId1] --- s.i.s.s.a.LogJob : Processed message batch from id 0 to 50319
 2019-02-19 16:01:02.018 INFO  [process,-,tRaCeId1] --- s.i.s.s.a.LogJob : Processed sent batch with 8 entries
 2019-02-19 16:01:02.019 INFO  [process,-,tRaCeId1] --- s.i.s.s.a.LogJob : Processed batch with 19 entries
-2019-02-19 16:01:02.020 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : National data requested
-2019-02-19 16:01:02.021 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : National data fetched 14
-2019-02-19 16:01:02.022 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling get FilterData: 93545b6e4cd3df8b62c52f9d938df106
-2019-02-19 16:01:02.023 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling post FilterHash: {"enheter":["HSA_UNIT"],"sjukskrivningslangd":[],"aldersgrupp":[],"intygstyper":[],"diagnoser":[],"fromDate":null,"toDate":null,"useDefaultPeriod":true}
+2019-02-19 16:01:02.020 INFO  [process,a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : National data requested
+2019-02-19 16:01:02.021 INFO  [process,a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : National data fetched 14
+2019-02-19 16:01:02.022 INFO  [process,a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling get FilterData: 93545b6e4cd3df8b62c52f9d938df106
+2019-02-19 16:01:02.023 INFO  [process,a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling post FilterHash: {"enheter":["HSA_UNIT"],"sjukskrivningslangd":[],"aldersgrupp":[],"intygstyper":[],"diagnoser":[],"fromDate":null,"toDate":null,"useDefaultPeriod":true}
 2019-02-19 16:01:02.024 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling getIntygPerTyp for national
 2019-02-19 16:01:02.025 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling getDiagnosisKapitelAndAvsnittAndKategori
 2019-02-19 16:01:02.026 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : Calling getDiagnosavsnittstatistik for national with groupId: F00-F99
 2019-02-19 16:01:02.027 INFO  [process,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.w.s.e.ChartDataService : National cache population is already ongoing. This population request is therefore skipped
-2019-02-19 16:01:02.028 INFO  [console,-,-] --- s.i.s.s.q.JmsReceiver : Received intyg CERTIFICATE_ID
-2019-02-19 16:01:02.029 INFO  [console,-,-] --- s.i.s.s.q.JmsReceiver : Received intyg sent event for CERTIFICATE_ID to FKASSA
-2019-02-19 16:01:02.030 INFO  [console,-,-] --- s.i.s.s.h.HSADecorator : Fetching HSA data for CERTIFICATE_ID
-2019-02-19 16:01:02.031 INFO  [console,-,tRaCeId1] --- s.i.s.s.w.IntygCommonManager : Intyg sent accepted: CERTIFICATE_ID
+2019-02-19 16:01:02.028 INFO  [console,-,-] --- s.i.s.s.q.JmsReceiver : Received intyg 11111111-1111-aaaa-1111-111111111111
+2019-02-19 16:01:02.029 INFO  [console,-,-] --- s.i.s.s.q.JmsReceiver : Received intyg sent event for 11111111-1111-aaaa-1111-111111111111 to FKASSA
+2019-02-19 16:01:02.030 INFO  [console,-,-] --- s.i.s.s.h.HSADecorator : Fetching HSA data for 11111111-1111-aaaa-1111-111111111111
+2019-02-19 16:01:02.031 INFO  [console,-,tRaCeId1] --- s.i.s.s.w.IntygCommonManager : Intyg sent accepted: 11111111-1111-aaaa-1111-111111111111
 2019-02-19 16:01:02.032 INFO  [console,-,tRaCeId1] --- s.i.s.s.p.i.IntygsentLogConsumerImpl : Processed intyg sent id 8553494
-2019-02-19 16:01:02.033 INFO  [console,-,tRaCeId1] --- s.i.s.s.w.IntygCommonManager : Could not accept intyg sent. Intyg not found: CERTIFICATE_ID
+2019-02-19 16:01:02.033 INFO  [console,-,tRaCeId1] --- s.i.s.s.w.IntygCommonManager : Could not accept intyg sent. Intyg not found: 11111111-1111-aaaa-1111-111111111111
 2019-02-19 16:01:02.034 ERROR [console,-,tRaCeId1] --- s.i.s.s.w.IntygCommonManager : Faulty intyg logid 9476721 id CERTIFICATE_ID error count 268#015VardgivareId not found.
 2019-02-19 16:01:02.035 INFO  [console,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1] --- s.i.s.s.c.Cache : Matching value found in cache for key='INTYGSSTATISTIK_a1b2c3d4-a1b2-c3d4-a1b2-c3d4a1b2c3d4VGENHET_' and hk='HSA_VARDGIVARE'
 2019-02-19 17:01:02,036 [ThreadPoolTaskScheduler-5] INFO  org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl- HHH000010: On release of batch it still contained JDBC statements

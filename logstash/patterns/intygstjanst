@@ -1,28 +1,28 @@
 # ------------------------------------------------------------
 # IT__STATISTICS_PARSE
 # ------------------------------------------------------------
-IT__STATISTICS_REVOKED Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - revoke sent to statistics
-IT__STATISTICS_CREATED Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - sent to statistics
-IT__STATISTICS_SENT Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - sent to statistics
-IT__STATISTICS_MESSAGE_SENT Message with topic '%{DATA:amne}' for certificate '%{DATA:intygid}' - sent to statistics
+IT__STATISTICS_REVOKED Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - revoke sent to statistics
+IT__STATISTICS_CREATED Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - sent to statistics
+IT__STATISTICS_SENT Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - sent to statistics
+IT__STATISTICS_MESSAGE_SENT Message with topic '%{NOTSPACE:amne}' for certificate '%{UUID:intygid}' - sent to statistics
 IT__STATISTICS_PARSE (%{IT__STATISTICS_REVOKED}|%{IT__STATISTICS_CREATED}|%{IT__STATISTICS_SENT}|%{IT__STATISTICS_MESSAGE_SENT})
 
 # ------------------------------------------------------------
 # IT__CERTIFICATE_PARSE
 # ------------------------------------------------------------
-IT__CERTIFICATE_REGISTERED Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - registered
-IT__CERTIFICATE_SENT Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - sent to '%{DATA:recipient}'
-IT__CERTIFICATE_REVOKED Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - revoked
-IT__CERTIFICATE_REVOKE_SENT Certificate '%{DATA:intygid}' with type '%{DATA:intygtyp}', care unit '%{DATA:unit}' - revoke sent to '%{DATA:recipient}'
-IT__CERTIFICATE_LISTED_BY_CITIZEN Certificates for citizen '%{DATA:user}' - listed by citizen
-IT__CERTIFICATE_LISTED_BY_CARE Certificates for citizen '%{DATA:user}' - listed by care
-IT__CERTIFICATE_STATUS_CHANGED Certificate '%{DATA:intygid}' - changed to status '%{DATA:status}'
-IT__APPROVED_RECEIVER_REGISTERED Approved receiver '%{DATA:recipient}' registered for certificate '%{DATA:intygid}'
+IT__CERTIFICATE_REGISTERED Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - registered
+IT__CERTIFICATE_SENT Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - sent to '%{DATA:recipient}'
+IT__CERTIFICATE_REVOKED Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - revoked
+IT__CERTIFICATE_REVOKE_SENT Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - revoke sent to '%{DATA:recipient}'
+IT__CERTIFICATE_LISTED_BY_CITIZEN Certificates for citizen '%{NOTSPACE:user}' - listed by citizen
+IT__CERTIFICATE_LISTED_BY_CARE Certificates for citizen '%{NOTSPACE:user}' - listed by care
+IT__CERTIFICATE_STATUS_CHANGED Certificate '%{UUID:intygid}' - changed to status '%{NOTSPACE:status}'
+IT__APPROVED_RECEIVER_REGISTERED Approved receiver '%{DATA:recipient}' registered for certificate '%{UUID:intygid}'
 IT__CERTIFICATE_PARSE (%{IT__CERTIFICATE_REGISTERED}|%{IT__CERTIFICATE_SENT}|%{IT__CERTIFICATE_REVOKED}|%{IT__CERTIFICATE_REVOKE_SENT}|%{IT__CERTIFICATE_LISTED_BY_CITIZEN}|%{IT__CERTIFICATE_LISTED_BY_CARE}|%{IT__CERTIFICATE_STATUS_CHANGED}|%{IT__APPROVED_RECEIVER_REGISTERED})
 
 # ------------------------------------------------------------
 # IT__SEND_MESSAGE_PARSE
 # ------------------------------------------------------------
-IT__SEND_MESSAGE_TO_CARE_RECEIVED Message with id '%{DATA:messageId}', care unit recipient '%{DATA:recipient}' - was received and forwarded to its recipient.
-IT__SEND_MESSAGE_TO_RECIPIENT Message with id '%{DATA:messageId}' sent to recipient '%{DATA:recipient}'
+IT__SEND_MESSAGE_TO_CARE_RECEIVED Message with id '%{UUID:messageId}', care unit recipient '%{DATA:recipient}' - was received and forwarded to its recipient.
+IT__SEND_MESSAGE_TO_RECIPIENT Message with id '%{UUID:messageId}' sent to recipient '%{DATA:recipient}'
 IT__SEND_MESSAGE_PARSE (%{IT__SEND_MESSAGE_TO_CARE_RECEIVED}|%{IT__SEND_MESSAGE_TO_RECIPIENT})
