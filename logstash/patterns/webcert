@@ -94,12 +94,16 @@ WC__SJF_PARSE (%{WC__LOGIN_OTHER_UNIT}|%{WC__LOGIN_OTHER_CAREGIVER})
 # ------------------------------------------------------------
 # WC__SRS_PARSE
 # ------------------------------------------------------------
-WC__SRS_CONSENT_SET Consent set for '%{DATA:personnummer}' to '%{DATA:consent}'
-WC__SRS_QUESTIONS_LISTED Questions listed for diagnosis code '%{DATA:diagnosis_code}'
-WC__SRS_INFORMATION_RETREIVED SRS information retreived for certifiacte '%{UUID:intygid}' for diagnosis code '%{DATA:diagnosis_code}'
-WC__SRS_SHOWN SRS shown
-WC__SRS_ATGARD_CLICKED SRS atgard clicked
-WC__SRS_STATISTIK_CLICKED SRS statistik clicked
-WC__SRS_CLICKED SRS clicked
+WC__SRS_LOADED SRS loaded in client context '%{DATA:klientkontext}' for intyg '%{UUID:intygid}' and diagnosis code '%{DATA:diagnosis_code}' with caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}'
+WC__SRS_PANEL_ACTIVATED SRS panel activated in client context '%{DATA:klientkontext}' for intyg '%{UUID:intygid}' with caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}'
+WC__SRS_CONSENT_ANSWERED SRS consent answered in client context '%{DATA:klientkontext}' for intyg '%{UUID:intygid}' with caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}'
+WC__SRS_QUESTION_ANSWERED SRS question answered in client context '%{DATA:klientkontext}' for intyg '%{UUID:intygid}' with caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}'
+WC__SRS_CALCULATE_CLICKED SRS calculate prediction clicked in client context '%{DATA:klientkontext}' for intyg '%{UUID:intygid}' with caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}'
+WC__SRS_HIDE_QUESTIONS_CLICKED SRS hide questions clicked in client context '%{DATA:klientkontext}' for intyg '%{UUID:intygid}' with caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}'
+WC__SRS_SHOW_QUESTIONS_CLICKED SRS show questions clicked in client context '%{DATA:klientkontext}' for intyg '%{UUID:intygid}' with caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}'
+WC__SRS_MEASURES_SHOW_MORE_CLICKED SRS show more measures clicked in client context '%{DATA:klientkontext}' for intyg '%{UUID:intygid}' with caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}'
+WC__SRS_MEASURES_LINK_CLICKED SRS measures link clicked in client context '%{DATA:klientkontext}' for intyg '%{UUID:intygid}' with caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}'
+WC__SRS_STATISTICS_ACTIVATED SRS statistics tab activated in client context '%{DATA:klientkontext}' for intyg '%{UUID:intygid}' with caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}'
+WC__SRS_STATISTICS_LINK_CLICKED SRS statistics link clicked in client context '%{DATA:klientkontext}' for intyg '%{UUID:intygid}' with caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}'
 WC__SRS_GET_SRS_FOR_DIAGNOSIS_CODE SRS information retreived for diagnosis code '%{DATA:diagnosis_code}'
-WC__SRS_PARSE (%{WC__SRS_CONSENT_SET}|%{WC__SRS_QUESTIONS_LISTED}|%{WC__SRS_INFORMATION_RETREIVED}|%{WC__SRS_SHOWN}|%{WC__SRS_ATGARD_CLICKED}|%{WC__SRS_STATISTIK_CLICKED}|%{WC__SRS_CLICKED}|%{WC__SRS_GET_SRS_FOR_DIAGNOSIS_CODE})
+WC__SRS_PARSE (%{WC__SRS_LOADED}|%{WC__SRS_PANEL_ACTIVATED}|%{WC__SRS_CONSENT_ANSWERED}|%{WC__SRS_QUESTION_ANSWERED}|%{WC__SRS_CALCULATE_CLICKED}|%{WC__SRS_HIDE_QUESTIONS_CLICKED}|%{WC__SRS_SHOW_QUESTIONS_CLICKED}|%{WC__SRS_MEASURES_SHOW_MORE_CLICKED}|%{WC__SRS_MEASURES_LINK_CLICKED}|%{WC__SRS_STATISTICS_ACTIVATED}|%{WC__SRS_STATISTICS_LINK_CLICKED}|%{WC__SRS_GET_SRS_FOR_DIAGNOSIS_CODE})
