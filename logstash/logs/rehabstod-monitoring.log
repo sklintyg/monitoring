@@ -27,3 +27,6 @@ INFO: Trying to find master from available Sentinels...
 INFO: Redis master running at 127.0.0.1:6379, starting Sentinel listeners...
 INFO 2/20/19 7:41 PM: liquibase: Successfully acquired change log lock
 INFO 2/20/19 7:41 PM: liquibase: Reading from rehabstod.DATABASECHANGELOG
+2019-02-20 18:18:19.001 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,noUser] --- s.i.i.r.s.m.MonitoringLogService         : USER_LOGIN Login user 'HSA_ID-OLD_LOG' using scheme 'AUTH_SCHEME'
+2019-02-20 18:18:19.001 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,noUser] --- s.i.i.r.s.m.MonitoringLogService         : USER_LOGIN Login user 'TSTNMT2321000156-103F' as role 'LAKARE' roleTypeName 'Läkare - inom EU' using scheme 'urn:inera:rehabstod:siths:fake'
+2019-02-20 18:18:19.001 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,noUser] --- s.i.i.r.s.m.MonitoringLogService         : USER_LOGIN Login user 'TSTNMT2321000156-10CD' as role 'REHABKOORDINATOR' roleTypeName 'REHABKOORDINATOR' using scheme 'urn:inera:rehabstod:siths:fake'
