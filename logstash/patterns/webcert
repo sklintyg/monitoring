@@ -59,6 +59,7 @@ WC__PP_TERMS_ACCEPTED_PARSE User '%{USER:user}', personId '%{DATA:personnummer}'
 # ------------------------------------------------------------
 # WC__AUTH_PARSE
 # ------------------------------------------------------------
+WC__USER_LOGIN_EXT Login user '%{USER:user}' as role '%{DATA:role}' roleTypeName '%{DATA:roleTypeName}' using scheme '%{DATA:scheme}' with origin '%{ORIGIN:origin}'
 WC__USER_LOGIN Login user '%{USER:user}' using scheme '%{DATA:scheme}' with origin '%{ORIGIN:origin}'
 WC__USER_LOGOUT Logout user '%{USER:user}' using scheme '%{DATA:scheme}'
 WC__USER_SESSION_EXPIRY Session expired for user '%{USER:user}' using scheme '%{DATA:scheme}'
@@ -68,7 +69,7 @@ WC__SCREEN_RESOLUTION Width '%{NUMBER:screen_width}', height '%{NUMBER:screen_he
 # !!!
 # Make sure that USER_MISSING_MIU_ON_ENHET is caught before USER_MISSING_MIU because 
 # regex pattern matching of USER_MISSING_MIU_ON_ENHET would match even on USER_MISSING_MIU
-WC__AUTH_PARSE (%{WC__USER_LOGIN}|%{WC__USER_LOGOUT}|%{WC__USER_SESSION_EXPIRY}|%{WC__USER_MISSING_MIU_ON_ENHET}|%{WC__USER_MISSING_MIU}|%{WC__SCREEN_RESOLUTION})
+WC__AUTH_PARSE (%{WC__USER_LOGIN_EXT}|%{WC__USER_LOGIN}|%{WC__USER_LOGOUT}|%{WC__USER_SESSION_EXPIRY}|%{WC__USER_MISSING_MIU_ON_ENHET}|%{WC__USER_MISSING_MIU}|%{WC__SCREEN_RESOLUTION})
 
 # ------------------------------------------------------------
 # WC__NOTIFICATION_PARSE
