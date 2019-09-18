@@ -18,7 +18,10 @@ WC__INTYG_PRINT_PDF Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was p
 WC__INTYG_PRINT_PDF_CONTENT Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was printed as PDF with '%{NOTSPACE:pdfprinttype}' content
 WC__INTYG_SIGNED Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' signed by '%{USER:signer}' using scheme '%{DATA:scheme}' and relation code '%{DATA:relation}'
 WC__INTYG_REGISTERED Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' registered with Intygstjänsten
+#(EXT)ensions of existing patterns so we can handle both original and new independently of which version thats actually logged by app. The original pattern can be removed after next release.
+WC__INTYG_SENT_EXT Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' sent to recipient '%{DATA:recipient}'
 WC__INTYG_SENT Intyg '%{UUID:intygid}' sent to recipient '%{DATA:recipient}'
+WC__INTYG_REVOKED_EXT Intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' revoked by '%{USER:revoker}' reason '%{DATA:reason}'
 WC__INTYG_REVOKED Intyg '%{UUID:intygid}' revoked by '%{USER:revoker}' reason '%{DATA:reason}'
 WC__INTYG_COPIED Utkast '%{UUID:intygid}' created as a copy of '%{UUID:original}'
 WC__INTYG_COPIED_RENEWAL Utkast '%{UUID:intygid}' created as a renewal copy of '%{UUID:original}'
@@ -37,7 +40,7 @@ WC__UTKAST_READY_NOTIFICATION_SENT Utkast '%{UUID:intygid}' of type '%{NOTSPACE:
 WC__REVOKED_PRINT Revoked intyg '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' printed
 WC__DIAGNOSKODVERK_CHANGED Diagnoskodverk changed for utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}'
 WC__UTKAST_SIGN_FAILED Utkast '%{UUID:intygid}' failed signing process with message '%{DATA:message}'
-WC__INTYG_PARSE (%{WC__INTYG_READ}|%{WC__INTYG_REVOKE_STATUS_READ}|%{WC__INTYG_PRINT_PDF_CONTENT}|%{WC__INTYG_PRINT_PDF}|%{WC__INTYG_SIGNED}|%{WC__INTYG_REGISTERED}|%{WC__INTYG_SENT}|%{WC__INTYG_REVOKED}|%{WC__INTYG_COPIED}|%{WC__INTYG_COPIED_RENEWAL}|%{WC__INTYG_COPIED_REPLACEMENT}|%{WC__INTYG_COPIED_COMPLETION}|%{WC__UTKAST_READ}|%{WC__UTKAST_CREATED}|%{WC__UTKAST_CREATED_PREFILL}|%{WC__UTKAST_EDITED}|%{WC__UTKAST_PATIENT_UPDATED}|%{WC__UTKAST_DELETED}|%{WC__UTKAST_PRINT}|%{WC__UTKAST_CONCURRENTLY_EDITED}|%{WC__UTKAST_REVOKED}|%{WC__UTKAST_READY_NOTIFICATION_SENT}|%{WC__REVOKED_PRINT}|%{WC__DIAGNOSKODVERK_CHANGED}|%{WC__UTKAST_SIGN_FAILED})
+WC__INTYG_PARSE (%{WC__INTYG_READ}|%{WC__INTYG_REVOKE_STATUS_READ}|%{WC__INTYG_PRINT_PDF_CONTENT}|%{WC__INTYG_PRINT_PDF}|%{WC__INTYG_SIGNED}|%{WC__INTYG_REGISTERED}|%{WC__INTYG_SENT_EXT}|%{WC__INTYG_SENT}|%{WC__INTYG_REVOKED_EXT}|%{WC__INTYG_REVOKED}|%{WC__INTYG_COPIED}|%{WC__INTYG_COPIED_RENEWAL}|%{WC__INTYG_COPIED_REPLACEMENT}|%{WC__INTYG_COPIED_COMPLETION}|%{WC__UTKAST_READ}|%{WC__UTKAST_CREATED}|%{WC__UTKAST_CREATED_PREFILL}|%{WC__UTKAST_EDITED}|%{WC__UTKAST_PATIENT_UPDATED}|%{WC__UTKAST_DELETED}|%{WC__UTKAST_PRINT}|%{WC__UTKAST_CONCURRENTLY_EDITED}|%{WC__UTKAST_REVOKED}|%{WC__UTKAST_READY_NOTIFICATION_SENT}|%{WC__REVOKED_PRINT}|%{WC__DIAGNOSKODVERK_CHANGED}|%{WC__UTKAST_SIGN_FAILED})
 
 # ------------------------------------------------------------
 # WC__MAIL_PARSE
