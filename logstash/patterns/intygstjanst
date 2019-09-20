@@ -11,6 +11,7 @@ IT__STATISTICS_PARSE (%{IT__STATISTICS_REVOKED}|%{IT__STATISTICS_CREATED}|%{IT__
 # IT__CERTIFICATE_PARSE
 # ------------------------------------------------------------
 IT__CERTIFICATE_REGISTERED Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - registered
+IT__CERTIFICATE_RETRIEVED Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - retrieved by part '%{NOTSPACE:part}'
 IT__CERTIFICATE_SENT Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - sent to '%{DATA:recipient}'
 IT__CERTIFICATE_REVOKED Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - revoked
 IT__CERTIFICATE_REVOKE_SENT Certificate '%{UUID:intygid}' with type '%{NOTSPACE:intygtyp}', care unit '%{UNIT:unit}' - revoke sent to '%{DATA:recipient}'
@@ -18,7 +19,7 @@ IT__CERTIFICATE_LISTED_BY_CITIZEN Certificates for citizen '%{NOTSPACE:user}' - 
 IT__CERTIFICATE_LISTED_BY_CARE Certificates for citizen '%{NOTSPACE:user}' - listed by care
 IT__CERTIFICATE_STATUS_CHANGED Certificate '%{UUID:intygid}' - changed to status '%{NOTSPACE:status}'
 IT__APPROVED_RECEIVER_REGISTERED Approved receiver '%{DATA:recipient}' registered for certificate '%{UUID:intygid}'
-IT__CERTIFICATE_PARSE (%{IT__CERTIFICATE_REGISTERED}|%{IT__CERTIFICATE_SENT}|%{IT__CERTIFICATE_REVOKED}|%{IT__CERTIFICATE_REVOKE_SENT}|%{IT__CERTIFICATE_LISTED_BY_CITIZEN}|%{IT__CERTIFICATE_LISTED_BY_CARE}|%{IT__CERTIFICATE_STATUS_CHANGED}|%{IT__APPROVED_RECEIVER_REGISTERED})
+IT__CERTIFICATE_PARSE (%{IT__CERTIFICATE_RETRIEVED}|%{IT__CERTIFICATE_REGISTERED}|%{IT__CERTIFICATE_SENT}|%{IT__CERTIFICATE_REVOKED}|%{IT__CERTIFICATE_REVOKE_SENT}|%{IT__CERTIFICATE_LISTED_BY_CITIZEN}|%{IT__CERTIFICATE_LISTED_BY_CARE}|%{IT__CERTIFICATE_STATUS_CHANGED}|%{IT__APPROVED_RECEIVER_REGISTERED})
 
 # ------------------------------------------------------------
 # IT__SEND_MESSAGE_PARSE

@@ -31,3 +31,7 @@ Feb 18, 2019 4:42:09 PM redis.clients.jedis.JedisSentinelPool initPool
 2019-02-18 16:51:11,015 [http-apr-8080-exec-6] INFO  org.hibernate.hql.internal.QueryTranslatorFactoryInitiator- HHH000397: Using ASTQueryTranslatorFactory
 Feb 18, 2019 5:41:56 PM com.sun.xml.internal.messaging.saaj.soap.ver1_1.Fault1_1Impl getFaultSubcodes
 SEVERE: SAAJ0303: Operation getFaultSubcodes not supported by SOAP 1.1
+2019-09-19 11:03:04.800 INFO  [monitoring,-,hLa1G0vY,noUser] --- s.i.i.i.w.s.MonitoringLogService : CERTIFICATE_RETRIEVED Certificate 'cc95565c-77ff-41c1-8f10-a3886cbf9a3d' with type 'lisjp', care unit 'TSTNMT2321000156-1077' - retrieved by part 'HSVARD'
+2019-09-19 11:05:18.656 INFO  [monitoring,-,2ioq0tLQ,noUser] --- s.i.i.i.w.s.MonitoringLogService : CERTIFICATE_RETRIEVED Certificate 'cc95565c-77ff-41c1-8f10-a3886cbf9a3d' with type 'lisjp', care unit 'TSTNMT2321000156-1077' - retrieved by part 'INVANA'
+2019-09-20 12:06:38.980 INFO  [monitoring,-,s6BnRRrh,noUser] --- s.i.i.i.w.s.MonitoringLogService : CERTIFICATE_RETRIEVED Certificate '7592babc-6f6b-4c07-b6fc-642db709301c' with type 'ts-diabetes', care unit 'TSTNMT2321000156-1077' - retrieved by part 'N/A'
+
