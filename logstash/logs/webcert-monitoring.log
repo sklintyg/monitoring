@@ -93,6 +93,7 @@ Feb 14, 2019 5:41:42 PM redis.clients.jedis.JedisSentinelPool initSentinels
 Feb 14, 2019 5:41:42 PM redis.clients.jedis.JedisSentinelPool initPool
 INFO: Created JedisPool to master at 127.0.0.1:6379
 2019-06-05 12:46:03.301 INFO  [monitoring,0fee835f-fe93-4252-a6f8-88e81ea352d4,Xwlm9Yvk,TSTNMT2321000156-1079,TSTNMT2321000156-1077,NORMAL,LAKARE] --- s.i.i.w.w.s.m.MonitoringLogService : INTYG_PRINT_PDF Intyg '3fee835f-fe93-4252-a6f8-88e81ea352d4' of type 'ag114' was printed as PDF with 'MINIMAL' content
+2019-09-20 10:36:25.432 INFO  [monitoring,910815c7-5694-43e7-b25c-0bf6632f4f2a,3ubEzAu4,TSTNMT2321000156-1079,TSTNMT2321000156-1077,NORMAL,LAKARE] --- s.i.i.w.w.s.m.MonitoringLogService : IDP_CONNECTIVITY_CHECK IDP Connectivity for ip '185.152.177.10' with care giver 'TSTNMT2321000156-102Q' and care unit 'TSTNMT2321000156-1077': https://idp.ineratest.org OK! https://idp.ineraqa.org OK! https://idp.inera.se Not OK!
 
 
 
