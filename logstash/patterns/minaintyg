@@ -13,3 +13,4 @@ MI__CERTIFICATE_PARSE (%{MI__CERTIFICATE_READ}|%{MI__CERTIFICATE_SEND}|%{MI__CER
 MI__CITIZEN_LOGIN Citizen '%{NOTSPACE:user}' logged in using login method '%{DATA:scheme}'
 MI__CITIZEN_LOGOUT Citizen '%{NOTSPACE:user}' logged out using login method '%{DATA:scheme}'
 MI__AUTH_PARSE (%{MI__CITIZEN_LOGIN}|%{MI__CITIZEN_LOGOUT})
+MI__BROWSER_INFO Name '%{DATA:browsername}' Version '%{NOTSPACE:browserversion}' OSFamily '%{DATA:osname}' OSVersion '%{NOTSPACE:osversion}' Width '%{NUMBER:screen_width}' Height '%{NUMBER:screen_height}'

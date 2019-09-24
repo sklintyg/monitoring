@@ -30,3 +30,5 @@ INFO 2/20/19 7:41 PM: liquibase: Reading from rehabstod.DATABASECHANGELOG
 2019-02-20 18:18:19.001 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,noUser] --- s.i.i.r.s.m.MonitoringLogService         : USER_LOGIN Login user 'HSA_ID-OLD_LOG' using scheme 'AUTH_SCHEME'
 2019-02-20 18:18:19.001 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,noUser] --- s.i.i.r.s.m.MonitoringLogService         : USER_LOGIN Login user 'TSTNMT2321000156-103F' as role 'LAKARE' roleTypeName 'Läkare - inom EU' using scheme 'urn:inera:rehabstod:siths:fake'
 2019-02-20 18:18:19.001 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,noUser] --- s.i.i.r.s.m.MonitoringLogService         : USER_LOGIN Login user 'TSTNMT2321000156-10CD' as role 'REHABKOORDINATOR' roleTypeName 'REHABKOORDINATOR' using scheme 'urn:inera:rehabstod:siths:fake'
+2019-09-20 18:18:19.001 INFO  [monitoring,sEsSiOnShAsHsEsSiOnShAsH,tRaCeId1,noUser] --- s.i.i.r.s.m.MonitoringLogService         : BROWSER_INFO Name 'Chrome' Version '76.0' OSFamily 'Mac OS X' OSVersion '10.14' Width '2389' Height '1306'
+
