@@ -21,4 +21,6 @@
 2019-02-18 16:10:40,092 [main] INFO  org.apache.catalina.startup.Catalina- Server startup in 51519 ms
 Feb 18, 2019 16:10:50 PM redis.clients.jedis.JedisSentinelPool initSentinels
 INFO: Redis master running at 127.0.0.1:6379, starting Sentinel listeners...
+2019-09-18 14:30:24.664 INFO  [monitoring,a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9,tRaCeId1] --- s.i.i.m.w.s.MonitoringLogService : BROWSER_INFO Name 'Chromium' Version '71.6' OSFamily 'Mac OS X' OSVersion '12' Width '9530' Height '1306'
+
 

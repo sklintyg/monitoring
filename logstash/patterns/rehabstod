@@ -5,6 +5,7 @@ RHS__USER_SESSION_EXPIRY Session expired for user '%{USER:user}' using scheme '%
 RHS__USER_MISSING_MIU No valid MIU was found for user '%{USER:user}'
 RHS__USER_MISSING_MIU_ON_ENHET No valid MIU was found for user '%{USER:user}' on unit '%{UNIT:unit}'
 RHS__USER_VIEWED_SJUKFALL User '%{USER:user}' viewed %{NUMBER:count} sjukfall on enhet '%{UNIT:unit}'
+RHS__BROWSER_INFO Name '%{DATA:browsername}' Version '%{NOTSPACE:browserversion}' OSFamily '%{DATA:osname}' OSVersion '%{NOTSPACE:osversion}' Width '%{NUMBER:screen_width}' Height '%{NUMBER:screen_height}'
 
 # Make sure that USER_MISSING_MIU_ON_ENHET is caught before USER_MISSING_MIU in RHS__AUTH_PARSE
 RHS__AUTH_PARSE (%{RHS__USER_LOGIN_EXT}|%{RHS__USER_LOGIN}|%{RHS__USER_LOGOUT}|%{RHS__USER_SESSION_EXPIRY}|%{RHS__USER_MISSING_MIU_ON_ENHET}|%{RHS__USER_MISSING_MIU})

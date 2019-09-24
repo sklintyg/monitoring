@@ -46,3 +46,4 @@
 2019-02-19 17:01:02,040 [localhost-startStop-1] INFO  org.apache.catalina.startup.HostConfig- Deploying web application archive /deployments/ROOT.war
 Feb 19, 2019 05:04:26 PM redis.clients.jedis.JedisSentinelPool initSentinels
 INFO: Trying to find master from available Sentinels...
+2019-09-19 15:33:51.829 INFO  [monitoring,a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9,tRaCeId1] --- s.i.s.w.s.m.MonitoringLogService : BROWSER_INFO Name 'Chrome' Version '76.0' OSFamily 'Mac OS X' OSVersion '10.14' Width '2389' Height '1306'

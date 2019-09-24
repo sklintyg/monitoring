@@ -5,6 +5,11 @@ ST__USER_LOGIN Login user hsaId '%{USER:user}'
 ST__AUTH_PARSE (%{ST__USER_LOGIN})
 
 # ------------------------------------------------------------
+# ST__(MISC)
+# ------------------------------------------------------------
+ST__BROWSER_INFO Name '%{DATA:browsername}' Version '%{NOTSPACE:browserversion}' OSFamily '%{DATA:osname}' OSVersion '%{NOTSPACE:osversion}' Width '%{NUMBER:screen_width}' Height '%{NUMBER:screen_height}'
+
+# ------------------------------------------------------------
 # ST__FILE_PARSE
 # ------------------------------------------------------------
 ST__FILE_UPLOAD User hsaId '%{USER:user}', vardgivarId '%{UNIT:vardgivare}' uploaded file '%{DATA:filename}' with '%{NUMBER:nbr_rows}' rows
