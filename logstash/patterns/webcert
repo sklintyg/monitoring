@@ -70,10 +70,11 @@ WC__USER_MISSING_MIU No valid MIU was found for user '%{USER:user}'
 WC__USER_MISSING_MIU_ON_ENHET No valid MIU was found for user '%{USER:user}' on unit '%{UNIT:unit}'
 WC__SCREEN_RESOLUTION Width '%{NUMBER:screen_width}', height '%{NUMBER:screen_height}'
 WC__BROWSER_INFO Name '%{DATA:browsername}' Version '%{NOTSPACE:browserversion}' OSFamily '%{DATA:osname}' OSVersion '%{NOTSPACE:osversion}' Width '%{NUMBER:screen_width}' Height '%{NUMBER:screen_height}' NetIdVersion '%{NOTSPACE:netidversion}'
+WC__IDP_CONNECTIVITY_CHECK IDP Connectivity for ip '%{IP:ip}' with care giver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}': https://idp.ineratest.org %{DATA:ConnectionTest1}! https://idp.ineraqa.org %{DATA:ConnectionTest2}! https://idp.inera.se %{DATA:ConnectionTest3}!
 # !!!
 # Make sure that USER_MISSING_MIU_ON_ENHET is caught before USER_MISSING_MIU because 
 # regex pattern matching of USER_MISSING_MIU_ON_ENHET would match even on USER_MISSING_MIU
-WC__AUTH_PARSE (%{WC__USER_LOGIN_EXT}|%{WC__USER_LOGIN}|%{WC__USER_LOGOUT}|%{WC__USER_SESSION_EXPIRY}|%{WC__USER_MISSING_MIU_ON_ENHET}|%{WC__USER_MISSING_MIU}|%{WC__SCREEN_RESOLUTION})
+WC__AUTH_PARSE (%{WC__USER_LOGIN_EXT}|%{WC__USER_LOGIN}|%{WC__USER_LOGOUT}|%{WC__USER_SESSION_EXPIRY}|%{WC__USER_MISSING_MIU_ON_ENHET}|%{WC__USER_MISSING_MIU}|%{WC__SCREEN_RESOLUTION}|%{WC__IDP_CONNECTIVITY_CHECK})
 
 # ------------------------------------------------------------
 # WC__NOTIFICATION_PARSE
