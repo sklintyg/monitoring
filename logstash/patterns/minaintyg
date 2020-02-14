@@ -2,7 +2,7 @@
 # MI__CERTIFICATE_PARSE
 # ------------------------------------------------------------
 MI__CERTIFICATE_READ Certificate '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was read
-MI__CERTIFICATE_SEND Certificate '%{UUID:intygid}' sent to '%{DATA:recipient}'
+MI__CERTIFICATE_SEND Certificate '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' sent to '%{DATA:recipient}'
 MI__CERTIFICATE_ARCHIVED Certificate '%{UUID:intygid}' archived
 MI__CERTIFICATE_RESTORED Certificate '%{UUID:intygid}' restored
 MI__CERTIFICATE_PRINTED_FULLY Certificate '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was printed including all information
