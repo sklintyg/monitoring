@@ -5,7 +5,9 @@ MI__CERTIFICATE_READ Certificate '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}
 MI__CERTIFICATE_SEND Certificate '%{UUID:intygid}' sent to '%{DATA:recipient}'
 MI__CERTIFICATE_ARCHIVED Certificate '%{UUID:intygid}' archived
 MI__CERTIFICATE_RESTORED Certificate '%{UUID:intygid}' restored
-MI__CERTIFICATE_PARSE (%{MI__CERTIFICATE_READ}|%{MI__CERTIFICATE_SEND}|%{MI__CERTIFICATE_ARCHIVED}|%{MI__CERTIFICATE_RESTORED})
+MI__CERTIFICATE_PRINTED_FULLY Certificate '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was printed including all information
+MI__CERTIFICATE_PRINTED_EMPLOYER_COPY Certificate '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was printed as employer copy
+MI__CERTIFICATE_PARSE (%{MI__CERTIFICATE_READ}|%{MI__CERTIFICATE_SEND}|%{MI__CERTIFICATE_ARCHIVED}|%{MI__CERTIFICATE_RESTORED}|%{MI__CERTIFICATE_PRINTED_FULLY}|%{MI__CERTIFICATE_PRINTED_EMPLOYER_COPY})
 
 # ------------------------------------------------------------
 # MI__AUTH_PARSE
