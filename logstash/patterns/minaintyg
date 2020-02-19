@@ -16,3 +16,12 @@ MI__CITIZEN_LOGIN Citizen '%{NOTSPACE:user}' logged in using login method '%{DAT
 MI__CITIZEN_LOGOUT Citizen '%{NOTSPACE:user}' logged out using login method '%{DATA:scheme}'
 MI__AUTH_PARSE (%{MI__CITIZEN_LOGIN}|%{MI__CITIZEN_LOGOUT})
 MI__BROWSER_INFO Name '%{DATA:browsername}' Version '%{NOTSPACE:browserversion}' OSFamily '%{DATA:osname}' OSVersion '%{NOTSPACE:osversion}' Width '%{NUMBER:screen_width}' Height '%{NUMBER:screen_height}'
+
+# ------------------------------------------------------------
+# MI__OPENED_PARSE
+# ------------------------------------------------------------
+
+MI__OPENED_ABOUT Om Mina intyg was opened by user '%{NOTSPACE:user}'
+MI__OPENED_FAQ FAQ for Mina intyg was opened by user '%{NOTSPACE:user}'
+MI__OPENED_QUESTION Question '%{NOTSPACE:question_id}' with title '%{NOTSPACE:question_title}' was opened by user '%{NOTSPACE:user}'
+MI__OPENED_PARSE (%{MI__OPENED_ABOUT}|%{MI__OPENED_FAQ}|%{MI__OPENED_QUESTION})
