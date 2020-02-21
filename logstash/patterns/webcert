@@ -28,7 +28,8 @@ WC__INTYG_COPIED_RENEWAL Utkast '%{UUID:intygid}' created as a renewal copy of '
 WC__INTYG_COPIED_REPLACEMENT Utkast '%{UUID:intygid}' created as a replacement copy of '%{UUID:original}'
 WC__INTYG_COPIED_COMPLETION Utkast '%{UUID:intygid}' created as a completion copy of '%{UUID:original}'
 WC__UTKAST_READ Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was read
-WC__UTKAST_CREATED_TEMPLATE Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' created by '%{USER:creator_person}' on unit '%{UNIT:creator_unit}' from signed template '%{UUID:original}' of type '%{NOTSPACE:original_type}'
+WC__UTKAST_CREATED_TEMPLATE_MANUAL Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was manually created by '%{USER:creator_person}' on unit '%{UNIT:creator_unit}' from signed template '%{UUID:original}' of type '%{NOTSPACE:original_type}'
+WC__UTKAST_CREATED_TEMPLATE_AUTO Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was automatically created by '%{USER:creator_person}' on unit '%{UNIT:creator_unit}' from signed template '%{UUID:original}' of type '%{NOTSPACE:original_type}'
 WC__UTKAST_CREATED Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' created by '%{USER:creator_person}' on unit '%{UNIT:creator_unit}'
 WC__UTKAST_CREATED_PREFILL Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' created with '%{NOTSPACE:prefill_svar_count}' forifyllnad svar by '%{USER:creator_person}' on unit '%{UNIT:creator_unit}'
 WC__UTKAST_EDITED Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was edited
@@ -43,7 +44,7 @@ WC__DIAGNOSKODVERK_CHANGED Diagnoskodverk changed for utkast '%{UUID:intygid}' o
 WC__UTKAST_SIGN_FAILED Utkast '%{UUID:intygid}' failed signing process with message '%{DATA:message}'
 WC__UTKAST_LOCKED Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was locked
 WC__UTKAST_SIGN_MISSING_CERTIFICATE Utkast '%{UUID:intygid}' was signed but Net iD with version '%{DATA:netidversion}' returned empty certificate
-WC__INTYG_PARSE (%{WC__INTYG_READ}|%{WC__INTYG_REVOKE_STATUS_READ}|%{WC__INTYG_PRINT_PDF_CONTENT}|%{WC__INTYG_PRINT_PDF}|%{WC__INTYG_SIGNED}|%{WC__INTYG_REGISTERED}|%{WC__INTYG_SENT_EXT}|%{WC__INTYG_SENT}|%{WC__INTYG_REVOKED_EXT}|%{WC__INTYG_REVOKED}|%{WC__INTYG_COPIED}|%{WC__INTYG_COPIED_RENEWAL}|%{WC__INTYG_COPIED_REPLACEMENT}|%{WC__INTYG_COPIED_COMPLETION}|%{WC__UTKAST_READ}|%{WC__UTKAST_CREATED_TEMPLATE}|%{WC__UTKAST_CREATED}|%{WC__UTKAST_CREATED_PREFILL}|%{WC__UTKAST_EDITED}|%{WC__UTKAST_PATIENT_UPDATED}|%{WC__UTKAST_DELETED}|%{WC__UTKAST_PRINT}|%{WC__UTKAST_CONCURRENTLY_EDITED}|%{WC__UTKAST_REVOKED}|%{WC__UTKAST_READY_NOTIFICATION_SENT}|%{WC__REVOKED_PRINT}|%{WC__DIAGNOSKODVERK_CHANGED}|%{WC__UTKAST_SIGN_FAILED}|%{WC__UTKAST_LOCKED}|%{WC__UTKAST_SIGN_MISSING_CERTIFICATE})
+WC__INTYG_PARSE (%{WC__INTYG_READ}|%{WC__INTYG_REVOKE_STATUS_READ}|%{WC__INTYG_PRINT_PDF_CONTENT}|%{WC__INTYG_PRINT_PDF}|%{WC__INTYG_SIGNED}|%{WC__INTYG_REGISTERED}|%{WC__INTYG_SENT_EXT}|%{WC__INTYG_SENT}|%{WC__INTYG_REVOKED_EXT}|%{WC__INTYG_REVOKED}|%{WC__INTYG_COPIED}|%{WC__INTYG_COPIED_RENEWAL}|%{WC__INTYG_COPIED_REPLACEMENT}|%{WC__INTYG_COPIED_COMPLETION}|%{WC__UTKAST_READ}|%{WC__UTKAST_CREATED_TEMPLATE_MANUAL}|%{WC__UTKAST_CREATED_TEMPLATE_AUTO}|%{WC__UTKAST_CREATED}|%{WC__UTKAST_CREATED_PREFILL}|%{WC__UTKAST_EDITED}|%{WC__UTKAST_PATIENT_UPDATED}|%{WC__UTKAST_DELETED}|%{WC__UTKAST_PRINT}|%{WC__UTKAST_CONCURRENTLY_EDITED}|%{WC__UTKAST_REVOKED}|%{WC__UTKAST_READY_NOTIFICATION_SENT}|%{WC__REVOKED_PRINT}|%{WC__DIAGNOSKODVERK_CHANGED}|%{WC__UTKAST_SIGN_FAILED}|%{WC__UTKAST_LOCKED}|%{WC__UTKAST_SIGN_MISSING_CERTIFICATE})
 
 # ------------------------------------------------------------
 # WC__MAIL_PARSE
