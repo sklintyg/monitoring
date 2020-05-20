@@ -44,7 +44,7 @@ WC__DIAGNOSKODVERK_CHANGED Diagnoskodverk changed for utkast '%{UUID:intygid}' o
 WC__UTKAST_SIGN_FAILED Utkast '%{UUID:intygid}' failed signing process with message '%{DATA:message}'
 WC__UTKAST_LOCKED Utkast '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' was locked
 WC__UTKAST_SIGN_MISSING_CERTIFICATE Utkast '%{UUID:intygid}' was signed but Net iD with version '%{DATA:netidversion}' returned empty certificate
-WC__TEST_CERTIFICATE_ERASED Test certificate '%{UUID:intygid}' on care unit '%{UNIT:creator_unit}' create by '%{USER:creator_person}' was erased
+WC__TEST_CERTIFICATE_ERASED Test certificate '%{UUID:intygid}' on care unit '%{UNIT:creator_unit}' created by '%{USER:creator_person}' was erased
 WC__INTYG_PARSE (%{WC__INTYG_READ}|%{WC__INTYG_REVOKE_STATUS_READ}|%{WC__INTYG_PRINT_PDF_CONTENT}|%{WC__INTYG_PRINT_PDF}|%{WC__INTYG_SIGNED}|%{WC__INTYG_REGISTERED}|%{WC__INTYG_SENT_EXT}|%{WC__INTYG_SENT}|%{WC__INTYG_REVOKED_EXT}|%{WC__INTYG_REVOKED}|%{WC__INTYG_COPIED}|%{WC__INTYG_COPIED_RENEWAL}|%{WC__INTYG_COPIED_REPLACEMENT}|%{WC__INTYG_COPIED_COMPLETION}|%{WC__UTKAST_READ}|%{WC__UTKAST_CREATED_TEMPLATE_MANUAL}|%{WC__UTKAST_CREATED_TEMPLATE_AUTO}|%{WC__UTKAST_CREATED}|%{WC__UTKAST_CREATED_PREFILL}|%{WC__UTKAST_EDITED}|%{WC__UTKAST_PATIENT_UPDATED}|%{WC__UTKAST_DELETED}|%{WC__UTKAST_PRINT}|%{WC__UTKAST_CONCURRENTLY_EDITED}|%{WC__UTKAST_REVOKED}|%{WC__UTKAST_READY_NOTIFICATION_SENT}|%{WC__REVOKED_PRINT}|%{WC__DIAGNOSKODVERK_CHANGED}|%{WC__UTKAST_SIGN_FAILED}|%{WC__UTKAST_LOCKED}|%{WC__UTKAST_SIGN_MISSING_CERTIFICATE}|%{WC__TEST_CERTIFICATE_ERASED})
 
 # ------------------------------------------------------------
