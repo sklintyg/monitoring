@@ -34,4 +34,5 @@ SEVERE: SAAJ0303: Operation getFaultSubcodes not supported by SOAP 1.1
 2019-09-19 11:03:04.800 INFO  [monitoring,-,hLa1G0vY,noUser] --- s.i.i.i.w.s.MonitoringLogService : CERTIFICATE_RETRIEVED Certificate 'cc95565c-77ff-41c1-8f10-a3886cbf9a3d' with type 'lisjp', care unit 'TSTNMT2321000156-1077' - retrieved by part 'HSVARD'
 2019-09-19 11:05:18.656 INFO  [monitoring,-,2ioq0tLQ,noUser] --- s.i.i.i.w.s.MonitoringLogService : CERTIFICATE_RETRIEVED Certificate 'cc95565c-77ff-41c1-8f10-a3886cbf9a3d' with type 'lisjp', care unit 'TSTNMT2321000156-1077' - retrieved by part 'INVANA'
 2019-09-20 12:06:38.980 INFO  [monitoring,-,s6BnRRrh,noUser] --- s.i.i.i.w.s.MonitoringLogService : CERTIFICATE_RETRIEVED Certificate '7592babc-6f6b-4c07-b6fc-642db709301c' with type 'ts-diabetes', care unit 'TSTNMT2321000156-1077' - retrieved by part 'N/A'
+2020-01-20 12:06:38.980 INFO  [monitoring,-,s6BnRRrh,noUser] --- s.i.i.i.w.s.MonitoringLogService : TEST_CERTIFICATE_ERASED Test certificate '790171b0-e08d-496c-9554-f27286fe0f23' on care unit 'TSTNMT2321000156-1077' was erased
 
