@@ -94,7 +94,8 @@ WC__ARENDE_RECEIVED_QUESTION Received arende with amne '%{DATA:amne}' for '%{UUI
 WC__MEDICINSKT_ARENDE_RECEIVED Received medicinskt arende for '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' for unit '%{UNIT:unit}' on questions '%{DATA:questions}'
 WC__ARENDE_CREATED_QUESTION Created arende with amne '%{DATA:amne}' for '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' for unit '%{UNIT:unit}'
 WC__ARENDE_CREATED_ANSWER Created arende with amne '%{DATA:amne}' for '%{UUID:intygid}' of type '%{NOTSPACE:intygtyp}' for unit '%{UNIT:unit}'
-WC__ARENDE_PARSE (%{WC__ARENDE_RECEIVED_ANSWER}|%{WC__ARENDE_RECEIVED_QUESTION}|%{WC__MEDICINSKT_ARENDE_RECEIVED}|%{WC__ARENDE_CREATED_QUESTION}|%{WC__ARENDE_CREATED_ANSWER})
+WC__MESSAGE_IMPORTED Message '%{UUID:messageid}' with type '%{DATA:messagetype}' for certificate '%{UUID:intygid}' on caregiver '%{UNIT:caregiver}' and care unit '%{UNIT:careunit}' was imported
+WC__ARENDE_PARSE (%{WC__ARENDE_RECEIVED_ANSWER}|%{WC__ARENDE_RECEIVED_QUESTION}|%{WC__MEDICINSKT_ARENDE_RECEIVED}|%{WC__ARENDE_CREATED_QUESTION}|%{WC__ARENDE_CREATED_ANSWER}|%{WC__MESSAGE_IMPORTED})
 
 # ------------------------------------------------------------
 # WC__SJF_PARSE
