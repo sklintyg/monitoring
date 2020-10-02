@@ -13,7 +13,7 @@ allprojects {
         mavenLocal()
         mavenCentral()
         maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
-        maven { url "https://build-inera.nordicmedtest.se/nexus/content/repositories/releases/" }
+        maven { url "https://nexus.drift.inera.se/repositories/maven-releases/" }
     }
 }
 
