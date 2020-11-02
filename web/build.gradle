@@ -76,7 +76,7 @@ gretty {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url:"https://nexus.drift.inera.se/content/repositories/maven-releases/") {
+            repository(url:"https://nexus.drift.inera.se/repository/maven-releases/") {
                 authentication(userName: System.properties['ineraNexusUsername'], password: System.properties['ineraNexusPassword'])
             }
         }
