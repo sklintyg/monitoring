@@ -133,3 +133,13 @@ WC__RESPONSE_ERROR_RECEIVED Received error from sign service for request with tr
 WC__REQUEST_CREATED Sign request for certificate '%{UUID:intygid}' created with transactionID '%{DATA:transactionid}'
 
 WC__DSS_PARSE (%{WC__RESPONSE_RECEIVED}|%{WC__RESPONSE_INVALID}|%{WC__RESPONSE_ERROR_RECEIVED}|%{WC__REQUEST_CREATED})
+
+# ------------------------------------------------------------
+# WC__STATUS_UPDATE_PARSE
+# ------------------------------------------------------------
+WC__QUEUED Sent notification to aggregation queue, certificateId: '%{UUID:certificateId}', correlationId: '%{UUID:correlationId}', logicalAddress: '%{UNIT:logicalAddress}', certificateType: '%{NOTSPACE:certificateType}', certificateVersion: '%{NOTSPACE:certificateVersion}', eventType: '%{NOTSPACE:eventType}', eventTime: '%{TIMESTAMP_ISO8601:eventTime}', currentUser: '%{USER:currentUser}'
+WC__RESULT_SUCCESS Status update for care success on delivery attempt '%{NUMBER:totalDeliveries}' for event \[certificateId: '%{UUID:certificateId}', correlationId: '%{UUID:correlationId}', logicalAddress: '%{UNIT:logicalAddress}', eventId: '%{NUMBER:eventId}', eventType: '%{NOTSPACE:eventType}'\].
+WC__RESULT_RESEND Status update for care failure on delivery attempt '%{NUMBER:totalDeliveries}' for event \[certificateId: '%{UUID:certificateId}', correlationId: '%{UUID:correlationId}', logicalAddress: '%{UNIT:logicalAddress}', eventId: '%{NUMBER:eventId}', eventType: '%{NOTSPACE:eventType}', errorCode: '%{NOTSPACE:errorCode}', errorMessage: '%{DATA:errorMessage}'\]. Redelivery has been scheduled for '%{TIMESTAMP_ISO8601:nextRedelivery}'.
+WC__RESULT_FAILURE Status update for care failure on delivery attempt '%{NUMBER:totalDeliveries}' for event \[certificateId: '%{UUID:certificateId}', correlationId: '%{UUID:correlationId}', logicalAddress: '%{UNIT:logicalAddress}', eventId: '%{NUMBER:eventId}', eventType: '%{NOTSPACE:eventType}', errorCode: '%{NOTSPACE:errorCode}', errorMessage: '%{DATA:errorMessage}'\]. No further delivery attempts will be performed.
+
+WC__STATUS_UPDATE_PARSE (%{WC__QUEUED}|%{WC__RESULT_SUCCESS}|%{WC__RESULT_RESEND}|%{WC__RESULT_FAILURE})
