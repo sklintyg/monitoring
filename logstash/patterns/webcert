@@ -128,11 +128,12 @@ WC__SRS_PARSE (%{WC__SRS_LOADED}|%{WC__SRS_PANEL_ACTIVATED}|%{WC__SRS_CONSENT_AN
 # WC__DSS_PARSE
 # ------------------------------------------------------------
 WC__RESPONSE_RECEIVED Received sign response from sign service with transactionID '%{DATA:transactionid}'
+WC__RESPONSE_SUCCESS Received sign response success for certificate '%{UUID:intygid}' with transactionID '%{DATA:transactionid}'
 WC__RESPONSE_INVALID Failed to read or validate sign response with transactionID '%{DATA:transactionid}' for certificate '%{UUID:intygid}': %{GREEDYDATA:faultmessage}
 WC__RESPONSE_ERROR_RECEIVED Received error from sign service for request with transactionID '%{DATA:transactionid}' for certificate '%{UUID:intygid}' with error message: %{DATA:resultmajor} - %{DATA:resultminor} - %{DATA:resultmessage}
 WC__REQUEST_CREATED Sign request for certificate '%{UUID:intygid}' created with transactionID '%{DATA:transactionid}'
 
-WC__DSS_PARSE (%{WC__RESPONSE_RECEIVED}|%{WC__RESPONSE_INVALID}|%{WC__RESPONSE_ERROR_RECEIVED}|%{WC__REQUEST_CREATED})
+WC__DSS_PARSE (%{WC__RESPONSE_RECEIVED}|%{WC__RESPONSE_SUCCESS}|%{WC__RESPONSE_INVALID}|%{WC__RESPONSE_ERROR_RECEIVED}|%{WC__REQUEST_CREATED})
 
 # ------------------------------------------------------------
 # WC__STATUS_UPDATE_PARSE
