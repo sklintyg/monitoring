@@ -144,3 +144,11 @@ WC__RESULT_RESEND Status update for care failure on delivery attempt '%{NUMBER:t
 WC__RESULT_FAILURE Status update for care failure on delivery attempt '%{NUMBER:totalDeliveries}' for event \[certificateId: '%{UUID:certificateId}', correlationId: '%{UUID:correlationId}', logicalAddress: '%{UNIT:logicalAddress}', eventId: '%{NUMBER:eventId}', eventType: '%{NOTSPACE:eventType}', errorCode: '%{NOTSPACE:errorCode}', errorMessage: '%{DATA:errorMessage}'\]. No further delivery attempts will be performed.
 
 WC__STATUS_UPDATE_PARSE (%{WC__QUEUED}|%{WC__RESULT_SUCCESS}|%{WC__RESULT_RESEND}|%{WC__RESULT_FAILURE})
+
+# ------------------------------------------------------------
+# WC__SUBSCRIPTION_PARSE
+# ------------------------------------------------------------
+WC__LOGIN_ATTEMPT_MISSING_SUBSCRIPTION User id '%{NOTSPACE:userId}' attempting login with '%{NOTSPACE:loginMethod}' was denied access to organizations '%{DATA:organizationIds}' due to missing subscriptions
+WC__SUBSCRIPTION_SERVICE_CALL_FAILURE Subscription service call failure for id's '%{DATA:organizationIds}', with statusCode '%{NUMBER:statusCode}', statusText '%{DATA:statusText}', exceptionMessage '%{DATA:exceptionMessage}' and time '%{TIMESTAMP_ISO8601:responseTimestamp}'
+
+WC__SUBSCRIPTION_PARSE (%{WC__LOGIN_ATTEMPT_MISSING_SUBSCRIPTION}|%{WC__SUBSCRIPTION_SERVICE_CALL_FAILURE})
