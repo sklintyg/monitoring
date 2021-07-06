@@ -149,6 +149,7 @@ WC__STATUS_UPDATE_PARSE (%{WC__QUEUED}|%{WC__RESULT_SUCCESS}|%{WC__RESULT_RESEND
 # WC__SUBSCRIPTION_PARSE
 # ------------------------------------------------------------
 WC__LOGIN_ATTEMPT_MISSING_SUBSCRIPTION User id '%{NOTSPACE:userId}' attempting login with '%{NOTSPACE:loginMethod}' was denied access to organizations '%{DATA:organizationIds}' due to missing subscriptions
-WC__SUBSCRIPTION_SERVICE_CALL_FAILURE Subscription service call failure for id's '%{DATA:organizationIds}', with statusCode '%{NUMBER:statusCode}', statusText '%{DATA:statusText}', exceptionMessage '%{DATA:exceptionMessage}' and time '%{TIMESTAMP_ISO8601:responseTimestamp}'
+WC__MISSING_SUBSCRIPTION_WARNING User id '%{NOTSPACE:userId}' logging in with '%{NOTSPACE:loginMethod}' received subscription warning for organizations '%{DATA:organizationIds}'
+WC__SUBSCRIPTION_SERVICE_CALL_FAILURE Subscription service call failure for id's '%{DATA:organizationIds}', with exceptionMessage '%{DATA:exceptionMessage}'
 
-WC__SUBSCRIPTION_PARSE (%{WC__LOGIN_ATTEMPT_MISSING_SUBSCRIPTION}|%{WC__SUBSCRIPTION_SERVICE_CALL_FAILURE})
+WC__SUBSCRIPTION_PARSE (%{WC__LOGIN_ATTEMPT_MISSING_SUBSCRIPTION}|%{WC__MISSING_SUBSCRIPTION_WARNING}|%{WC__SUBSCRIPTION_SERVICE_CALL_FAILURE})
