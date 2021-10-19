@@ -25,3 +25,10 @@ MI__OPENED_ABOUT Om Mina intyg was opened by user '%{NOTSPACE:user}'
 MI__OPENED_FAQ FAQ for Mina intyg was opened by user '%{NOTSPACE:user}'
 MI__OPENED_QUESTION Question '%{NOTSPACE:question_id}' with title '%{NOTSPACE:question_title}' was opened by user '%{NOTSPACE:user}'
 MI__OPENED_PARSE (%{MI__OPENED_ABOUT}|%{MI__OPENED_FAQ}|%{MI__OPENED_QUESTION})
+
+# ------------------------------------------------------------
+# MI__SAML_STATUS_PARSE
+# ------------------------------------------------------------
+
+MI__SAML_STATUS_LOGIN_FAIL Login failed at IDP '%{DATA:issuer}' with status code '%{NOTSPACE:samlstatuscode}', status message '%{DATA:samlstatusmessage}' and exception message "%{DATA:exceptionmessage}"
+MI__SAML_STATUS_PARSE (%{MI__SAML_STATUS_LOGIN_FAIL})

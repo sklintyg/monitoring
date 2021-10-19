@@ -22,5 +22,4 @@
 Feb 18, 2019 16:10:50 PM redis.clients.jedis.JedisSentinelPool initSentinels
 INFO: Redis master running at 127.0.0.1:6379, starting Sentinel listeners...
 2019-09-18 14:30:24.664 INFO  [monitoring,a9a9a9a9-a9a9-a9a9-a9a9-a9a9a9a9a9a9,tRaCeId1] --- s.i.i.m.w.s.MonitoringLogService : BROWSER_INFO Name 'Chromium' Version '71.6' OSFamily 'Mac OS X' OSVersion '12' Width '9530' Height '1306'
-
-
+2021-09-16 23:23:34.147 INFO  [monitoring,MDdjN2U1YTYtNDQzMi00ZjA0LThkYmMtYmRlOTMxNzI1MGI2,5VXmZsQa,noUser] --- s.i.i.m.w.s.MonitoringLogService : SAML_STATUS_LOGIN_FAIL Login failed at IDP 'https://m00-mg-local.testidp.funktionstjanster.se/samlv2/idp/metadata/0/30' with status code 'urn:oasis:names:tc:SAML:2.0:status:Success', status message 'null' and exception message "org.opensaml.common.SAMLException: InResponseToField of the Response doesn't correspond to sent message a1h9gj0a5i0f2c1g35h82h8084b596g"
