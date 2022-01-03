@@ -3,7 +3,7 @@
 Här samlas relevanta konfigurationsfiler och övervakningsverktyg för intygsprojekten under [SKL Intyg](http://github.com/sklintyg).
 
 ## Licens
-Copyright (C) 2016 Inera AB (http://www.inera.se)
+Copyright (C) 2022 Inera AB (http://www.inera.se)
 
 Intyg Monitoring is free software: you can redistribute it and/or modify it under the terms of the GNU LESSER GENERAL PUBLIC LICENSE as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
